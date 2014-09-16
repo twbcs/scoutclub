@@ -1,0 +1,17 @@
+<h3>登入</h3>
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div><%= f.label "電子信箱" %>
+  <%= f.email_field :email, autofocus: true %>
+
+  <div><%= f.label "密 碼" %>
+    <%= f.password_field :password, autocomplete: "off" %></div>
+
+  <% if devise_mapping.rememberable? -%>
+    <div><%= f.check_box :remember_me %> 記住我</div>
+  <% end -%>
+<p></p>
+  <div><%= f.submit "登入", :class => 'btn btn-primary' %></div>
+<% end %>
+<p></p>
+<%= render "devise/shared/links" %>
