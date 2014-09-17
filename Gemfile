@@ -43,7 +43,7 @@ gem 'spring',        group: :development
 gem "devise"
 gem "omniauth"
 gem 'omniauth-facebook'
-
+gem "cocoon"
 gem 'carrierwave'
 gem 'mini_magick'
 

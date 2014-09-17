@@ -1,0 +1,15 @@
+<ol class="breadcrumb">
+  <li><a href="#">首頁</a></li>
+  <li class="active">團員資料</a></li>
+</ol>
+
+<% @members.each do |member| %>
+	<%= member.year %>
+	<%= member.name %>
+	<%= member.nname %>
+	<%= member.sex ? '男' : '女' %>
+	<%= link_to "修改", edit_member_path(member) %>
+	<%= link_to "刪除", member_path(member),
+:method => :delete %>
+<% end %>
+<p><%= link_to '新增', new_member_path %></p>

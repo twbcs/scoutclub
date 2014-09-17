@@ -1,0 +1,19 @@
+
+@mixin gap($side: top, $value: 2px){
+  margin-#{$side}: $value;
+}
+
+@mixin gap-all($top, $right, $bottom, $left){
+	@if $top != 'n' {
+		margin-top: $top;
+	}
+	@if $right != 'n' {
+		margin-right: $right;
+	}
+	@if $bottom != 'n' {
+		margin-bottom: $bottom;
+	}
+	@if $left != 'n' {
+		margin-left: $left;
+	}
+}

@@ -1,0 +1,6 @@
+<div class="nested-fields">
+  <%= f.label :title_year, "職務年份" %><br />
+  <%= f.text_field :title_year %><br />
+ 	<%= f.select(:title_id, Title.all.order_by_level.collect {|u| [u.title, u.id]}, { :prompt => '請選擇'}, :class => 'form-control' ) %>
+  <%= link_to_remove_association "remove", f %>
+</div>

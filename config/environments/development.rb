@@ -47,5 +47,5 @@ Rails.application.configure do
     authentication: "plain",
     domain: "gmail.com"
   }
-  GA.tracker = "UA-52347361-1"
+  #GA.tracker = "UA-52347361-1"
 end

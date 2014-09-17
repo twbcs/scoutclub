@@ -1,0 +1,37 @@
+<ol class="breadcrumb">
+  <li><a href="#">首頁</a></li>
+  <li><%= link_to "團員資料", members_path %></li>
+  <li class="active">修改</li>
+</ol>
+
+<%= form_for @member do |f| %>
+  <div class="form-inline">
+  	<%= f.label :name %>
+    <%= f.text_field :name, :placeholder => "輸入姓名", :class => "form-control" %>
+  </div>
+  <div class="form-inline">
+  	<%= f.label :nname %>
+    <%= f.text_field :nname, :placeholder => "輸入外號", :class => "form-control" %>
+  </div>
+  <div class="form-inline">
+  	<%= f.label :fname %>
+    <%= f.text_field :fname, :placeholder => "輸入FB代號", :class => "form-control" %>
+  </div>
+  <div class="form-inline">
+  	<%= f.label :year %>
+    <%= f.text_field :year, :placeholder => "輸入學年", :class => "form-control" %>
+  </div>
+<div class="btn-group" data-toggle="buttons">
+  <label class="btn btn-default active">
+  	<%= f.radio_button( :sex, 'true' , { :checked => true }) %> 男
+  </label>
+  <label class="btn btn-default">
+  	<%= f.radio_button( :sex, 'false' ) %> 女
+  </label>
+</div>
+		<%= f.fields_for :title_ths do |title_th| %>
+			<%= render "title_th_fields", :f => title_th %>
+		<% end %>
+		<p><%= link_to_add_association 'add task', f, :title_ths %></p>
+<%= f.submit "確認", :disable_with => '處理中...', :class => "btn btn-default" %>
+<% end %>	

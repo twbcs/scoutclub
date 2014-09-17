@@ -1,0 +1,14 @@
+<ol class="breadcrumb">
+  <li><a href="#">首頁</a></li>
+  <li class="active">職務職掌</a></li>
+</ol>
+
+<% @titles.each do |t| %>
+
+<%= t.title %>
+<%= t.description %>
+<%= t.level %>
+<%= link_to "修改", edit_title_path(t) %>
+<%= link_to "刪除", title_path(t) %><br/>
+<% end %>
+<%= link_to "新增", new_title_path %>

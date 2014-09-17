@@ -1,0 +1,3 @@
+module MemberHelper
+
+end
