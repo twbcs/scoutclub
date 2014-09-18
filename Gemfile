@@ -47,6 +47,10 @@ gem "cocoon"
 gem 'carrierwave'
 gem 'mini_magick'
 
+gem 'will_paginate'
+gem 'will_paginate-bootstrap'
+gem 'rails_autolink'
+
 group  :development do
   gem "better_errors"
 	gem "binding_of_caller"

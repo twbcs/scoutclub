@@ -1,0 +1,16 @@
+<ol class="breadcrumb">
+  <li><a href="#">首頁</a></li>
+  <li class="active">活動行事曆</li>
+</ol>
+<% @schedules.each do |t| %>
+  <%= t.title %>
+  <%= t.start_date %>
+  <%= t.end_date %>
+  <%= t.public_at %>
+  <%= t.local %>
+  <%= t.number %>
+  <%= t.description %>
+  <%= t.doing_type.title %>
+  <%= link_to "修改", edit_schedule_path(t) %>
+<% end %>
+<%= link_to "新增", new_schedule_path %>

@@ -1,0 +1,11 @@
+<ol class="breadcrumb">
+  <li><a href="#">首頁</a></li>
+  <li class="active">活動類型</li>
+</ol>
+
+<% @doing_types.each do |doing_type| %>
+	<%= doing_type.title %>
+	<%= link_to "修改", edit_doing_type_path(doing_type) %>
+
+<% end %>
+<%= link_to "新增", new_doing_type_path %>

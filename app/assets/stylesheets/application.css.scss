@@ -23,16 +23,16 @@ body{ position: relative; }
 .page-header{ margin: 20px 0 10px; }
 
 .alert {
-  position: relative; 
-  top: 1px;
+  position : relative;
+  top      : 1px;
   @include gap(bottom, 2px);
 }
 
 tbody { border: 1px solid #dddddd; }
 
 .btn-sm {
-padding-top: 2px;
-padding-bottom: 2px;
+padding-top    : 2px;
+padding-bottom : 2px;
 @include gap;
 }
 
@@ -48,13 +48,13 @@ padding-bottom: 2px;
 }
 
 footer {
-	border-top: 1px solid #cccccc;
-	color: #666666;
-	padding-top: 20px;
+	border-top  : 1px solid #cccccc;
+	color       : #666666;
+	padding-top : 20px;
 	@include gap(top, 30px);
 	@include gap(bottom, 20px);
-	.icon-html5{ color: #FF6600; }
-	.icon-css3{ color: #FF6600; }
+	.icon-html5{ color : #FF6600; }
+	.icon-css3{ color  : #FF6600; }
 }
 
 .font-set{

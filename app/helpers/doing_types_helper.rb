@@ -1,0 +1,2 @@
+module DoingTypesHelper
+end

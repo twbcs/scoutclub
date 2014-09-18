@@ -4,7 +4,7 @@ zh_TW:
       level: "權限表"
       member: "屆數表"
       title: "職務表"
-      doing: "活動"
+      schedule: "活動"
       user: "帳號"
       doing_type: "活動類型"
       board: "留言"
@@ -24,7 +24,7 @@ zh_TW:
       level:
         title: "名稱"
         description: "內容"
-      doing:
+      schedule:
         title: "名稱"
         start_date: "舉辦日期"
         end_date: "結束日期"
@@ -33,6 +33,7 @@ zh_TW:
         doing_type_id: "活動類型"
         local: "地點"
         image: "標題相片"
+        number: "人數"
       doing_type:
         title: "類型名稱"
       user:

@@ -1,9 +1,4 @@
 Rails.application.routes.draw do
-  get 'titles/index'
-
-  get 'titles/new'
-
-  get 'titles/edit'
 
   devise_for :users, :controllers => {
   :registrations => "users/registrations",
