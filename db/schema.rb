@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140916041125) do
+ActiveRecord::Schema.define(version: 20140930112900) do
 
   create_table "boards", force: true do |t|
     t.integer  "user_id"
@@ -35,16 +35,27 @@ ActiveRecord::Schema.define(version: 20140916041125) do
   end
 
   create_table "forums", force: true do |t|
-    t.string   "title",                   null: false
+    t.string   "title",                        null: false
     t.text     "description"
     t.integer  "forum_type_id"
-    t.integer  "see_level",     limit: 1, null: false
-    t.integer  "create_level",  limit: 1, null: false
-    t.integer  "manage_level",  limit: 1, null: false
-    t.integer  "school_level",  limit: 2, null: false
     t.boolean  "lock"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "public_at",     default: true
+    t.date     "closing_date"
+  end
+
+  create_table "group_forums", force: true do |t|
+    t.integer  "group_id"
+    t.integer  "forum_id"
+    t.integer  "level",      limit: 1
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "groups", force: true do |t|
+    t.string  "name"
+    t.boolean "admin"
   end
 
   create_table "members", force: true do |t|
@@ -103,6 +114,13 @@ ActiveRecord::Schema.define(version: 20140916041125) do
     t.string   "title",                 null: false
     t.text     "description"
     t.integer  "level",       limit: 1
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_groups", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "group_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -8,6 +8,7 @@ zh_TW:
       user: "帳號"
       doing_type: "活動類型"
       board: "留言"
+      forum: "討論區"
     attributes:
       member:
         year: "年份"
@@ -29,7 +30,7 @@ zh_TW:
         start_date: "舉辦日期"
         end_date: "結束日期"
         description: "內容"
-        public_at: "公開於"
+        public_at: "公開日期"
         doing_type_id: "活動類型"
         local: "地點"
         image: "標題相片"
@@ -46,3 +47,8 @@ zh_TW:
       board:
         subject: "主題"
         content: "內容"
+      forum:
+        title: "名稱"
+        description: "簡介"
+        public: "公開性"
+        closing_date: "關閉日期"

@@ -1,0 +1,20 @@
+<ol class="breadcrumb">
+  <li><a href="#">首頁</a></li>
+  <li class="active">討論分區</li>
+</ol>
+<% @forum_types.each do |f| %>
+  <h5><%= f.title %></h5>
+  <%= f.description %>
+  <%= link_to "修改", edit_forum_type_path(f) %><br/>
+  <% @forums.each do |x| %>
+    <% if x.forum_type_id == f.id %>
+      <%= x.title %>
+      <%= x.description %>
+      <%= x.public_at ? '公開' : '隱私' %>
+      <%= x.closing_date ? x.closing_date : ''  %>
+      <%= link_to "修改", edit_forum_path(x) %><br/>
+    <% end %>
+  <% end %>
+  <%= link_to "新增子板", new_forum_type_forum_path(f) %><br/>
+<% end %>
+  <%= link_to "新增", new_forum_type_path, :class => 'btn btn-default' %>

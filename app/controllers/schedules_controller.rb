@@ -1,7 +1,7 @@
 class SchedulesController < ApplicationController
 	before_action :set_schedule, only: [:edit, :update, :destroy, :show]
   def index
-  	@schedules = Schedule.all.order_by_time
+  	@schedules = Schedule.all.includes(:doing_type).order_by_time
   end
 
   def new
@@ -13,7 +13,7 @@ class SchedulesController < ApplicationController
   	if @schedule.save
   		redirect_to schedules_url
   	else
-  		render new
+  		render :new
   	end
   end
 
@@ -24,7 +24,7 @@ class SchedulesController < ApplicationController
   	if @schedule.update(scheduls_params)
   		redirect_to schedules_url
   	else
-  		render edit
+  		render :edit
   	end
   end
 
@@ -43,6 +43,6 @@ class SchedulesController < ApplicationController
 
   def scheduls_params
   	params.require(:schedule).permit(:title, :start_date, :end_date, :public_at,
-		 :local, :number, :description)
+		 :local, :number, :description, :doing_type_id)
   end
 end

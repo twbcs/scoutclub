@@ -1,0 +1,2 @@
+module ForumTypesHelper
+end

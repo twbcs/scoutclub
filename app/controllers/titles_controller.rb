@@ -15,7 +15,7 @@ class TitlesController < ApplicationController
   	if @title.save
   		redirect_to titles_url, notice: '資料已新增'
   	else
-  		render new
+  		render :new
   	end
   end
 
@@ -27,7 +27,7 @@ class TitlesController < ApplicationController
   	if @title.update(title_params)
   		redirect_to titles_url, notice: '資料已更新'
   	else
-  		render edit
+  		render :edit
   	end
   end
 

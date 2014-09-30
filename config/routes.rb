@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => {
   :registrations => "users/registrations",
   :passwords     => "users/passwords",
-  :omniauth_callbacks => "users/omniauth_callbacks" 
+  :omniauth_callbacks => "users/omniauth_callbacks"
   }
 
   resources :members
@@ -13,10 +13,13 @@ Rails.application.routes.draw do
   resources :forums do
     resources :posts
   end
-  resources :forum_types
+  resources :forum_types do
+    resources :forums
+  end
   resources :schedule_attends
   resources :schedules
   resources :doing_types
+
 
   root 'members#index'
   # The priority is based upon order of creation: first created -> highest priority.

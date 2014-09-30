@@ -19,15 +19,18 @@
   </div>
   <div class="form-inline">
   	<%= f.label :start_date %>
-	  <%= f.text_field :start_date %>
+    <%= f.date_field :start_date %>
+    <%= f.time_field :start_date, :ignore_date => true %>
   </div>
   <div class="form-inline">
   	<%= f.label :end_date %>
-  	<%= f.text_field :end_date %>
+    <%= f.date_field :end_date %>
+    <%= f.time_field :end_date, :ignore_date => true %>
   </div>
   <div class="form-inline">
   	<%= f.label :public_at %>
-	  <%= f.text_field :public_at %>
+    <%= f.date_field :public_at %>
+    <%= f.time_field :public_at, :ignore_date => true %>
   </div>
   <div class="form-inline">
   	<%= f.label :local %>

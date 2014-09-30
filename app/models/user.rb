@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
   has_many :posts
   has_many :schedule_attends
   has_many :schedule, :through => :schedule_attends
+  has_many :user_groups, :dependent => :destroy
+  has_many :groups, :through => :user_groups
 
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
     user = User.where(:provider => auth.provider, :uid => auth.uid).first

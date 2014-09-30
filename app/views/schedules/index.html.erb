@@ -4,13 +4,13 @@
 </ol>
 <% @schedules.each do |t| %>
   <%= t.title %>
-  <%= t.start_date %>
-  <%= t.end_date %>
-  <%= t.public_at %>
+  <%= t.start_date.strftime("%Y %m %d %H:%M") %>
+  <%= t.end_date.strftime("%Y %m %d %H:%M") %>
+  <%= t.public_at.strftime("%Y %m %d %H:%M") if t.public_at %>
   <%= t.local %>
   <%= t.number %>
   <%= t.description %>
   <%= t.doing_type.title %>
-  <%= link_to "修改", edit_schedule_path(t) %>
+  <%= link_to "修改", edit_schedule_path(t) %><br/>
 <% end %>
 <%= link_to "新增", new_schedule_path %>
