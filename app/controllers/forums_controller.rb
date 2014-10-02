@@ -36,6 +36,7 @@ class ForumsController < ApplicationController
     @forum = Forum.find(params[:id])
     if @forum.post.count < 1
       @forum.destroy
+      redirect_to(forum_types_url, notice: '討論板已刪除')
     else
       redirect_to(forum_types_url, alert: '板內有文章，無法進行刪除作業')
     end

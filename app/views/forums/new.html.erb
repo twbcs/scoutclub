@@ -10,8 +10,8 @@
   <%= f.text_field :title %><br/>
   <%= f.label :description %>
   <%= f.text_area  :description %><br/>
-  <%= f.label :public_at %>
   <%= f.hidden_field :forum_type_id, value: @forum.forum_type_id %>
+  <%= f.label :public_at %>
 <div class="btn-group" data-toggle="buttons">
   <label class="btn btn-default active">
     <%= f.radio_button( :public_at, 'true' , { :checked => true }) %> 公開
