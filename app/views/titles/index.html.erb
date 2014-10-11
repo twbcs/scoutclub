@@ -9,6 +9,6 @@
 <%= t.description %>
 <%= t.level %>
 <%= link_to "修改", edit_title_path(t) %>
-<%= link_to "刪除", title_path(t) %><br/>
+<%= link_to "刪除", title_path(t), :method => :delete  %><br/>
 <% end %>
 <%= link_to "新增", new_title_path %>

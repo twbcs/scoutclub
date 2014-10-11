@@ -1,0 +1,16 @@
+<ol class="breadcrumb">
+  <li><a href="#">首頁</a></li>
+  <li><%= link_to "討論區權限", user_groups_path %></li>
+  <li class="active">新增使用者權限</li>
+</ol>
+
+<%= form_for @user_group do |f| %>
+<%= f.hidden_field :user_id, value: @user_group.user_id %>
+<div class="form-inline">
+  <%= f.label :group_id %>
+  <%= f.select(:group_id, Group.all.collect {|u| [u.name, u.id]}, { :prompt => '請選擇'}, :class => 'form-control' ) %>
+</div>
+  <%= f.submit "確認", class: " btn btn-success" %>
+<% end %>
+
+<%= @user_group.user_id %>

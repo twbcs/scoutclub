@@ -9,7 +9,6 @@
 	<%= member.nname %>
 	<%= member.sex ? '男' : '女' %>
 	<%= link_to "修改", edit_member_path(member) %>
-	<%= link_to "刪除", member_path(member),
-:method => :delete %>
+	<%= link_to "刪除", member_path(member), :method => :delete %>
 <% end %>
 <p><%= link_to '新增', new_member_path %></p>

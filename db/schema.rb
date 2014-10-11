@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140930112900) do
+ActiveRecord::Schema.define(version: 20141010195507) do
 
   create_table "boards", force: true do |t|
     t.integer  "user_id"
@@ -66,6 +66,13 @@ ActiveRecord::Schema.define(version: 20140930112900) do
     t.boolean  "sex"
     t.integer  "year",       limit: 2
     t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "modifies", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "user_rule",  limit: 1
     t.datetime "created_at"
     t.datetime "updated_at"
   end

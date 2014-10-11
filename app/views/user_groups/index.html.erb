@@ -1,0 +1,17 @@
+<ol class="breadcrumb">
+  <li><a href="#">首頁</a></li>
+  <li class="active">討論區權限</li>
+</ol>
+
+<% @user_groups.each do |m| %>
+  <%= m.name  %>
+  <%= m.email %>
+  <% m.groups.each do |g| %>
+    <%= g.name %>
+    <%= link_to "修改權限", edit_user_group_path(id: m.id, user_id: m.id, group_id: g.id) %>
+    <%= link_to "刪除權限", user_group_path(id: m.id, user_id: m.id, group_id: g.id),
+  :method => :delete  %>
+  <% end %> |
+  <%= link_to "新增權限", new_user_group_path(user_id: m.id) %>
+<% end %><br/>
+<%= @user_rule.user_rule %>

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   :omniauth_callbacks => "users/omniauth_callbacks"
   }
 
+  resources :user_groups
   resources :members
   resources :titles
   resources :title_ths
@@ -23,7 +24,7 @@ Rails.application.routes.draw do
   resources :schedules
   resources :doing_types
   resources :group_forums
-
+  
 
   root 'members#index'
 

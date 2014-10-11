@@ -9,11 +9,11 @@
   <%= f.text_field :name %>
   <%= f.label :admin %>
   <div class="btn-group" data-toggle="buttons">
-    <label class="btn btn-default active">
-      <%= f.radio_button( :admin, 'false', { :checked => true } ) %> 使用者
+      <%=raw @group.admin ? '<label class="btn btn-default">' : '<label class="btn btn-default active">' %>
+      <%= @group.admin ? f.radio_button( :admin, 'false' ) : f.radio_button( :admin, 'false', { :checked => true } )  %> 使用者
     </label>
-    <label class="btn btn-default">
-      <%= f.radio_button( :admin, 'true' ) %> 管理者
+      <%=raw @group.admin ? '<label class="btn btn-default active">' : '<label class="btn btn-default">' %>
+      <%= @group.admin ? f.radio_button( :admin, 'true', { :checked => true } ) : f.radio_button( :admin, 'true' ) %> 管理者
     </label>
   </div>
   <%= f.submit "確認", class: " btn btn-success" %>

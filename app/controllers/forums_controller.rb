@@ -19,6 +19,11 @@ class ForumsController < ApplicationController
     end
   end
 
+  def show
+    @forum = Forum.find(params[:id])
+    @post = Post.find_by(forum_id: params[:id])
+  end
+
   def edit
     @forum = Forum.find(params[:id])
   end
