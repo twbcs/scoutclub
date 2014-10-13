@@ -1,0 +1,13 @@
+<ol class="breadcrumb">
+  <li><%= link_to "首頁", root_path %></li>
+  <li><%= link_to "討論區", forums_path %></li>
+  <li class="active"><%= @forum.title %></li>
+</ol>
+<%= link_to "新增", new_forum_post_path(forum_id: @forum.id) %><br/>
+<% @posts.each do |m| %>
+  <%= link_to m.subject, forum_post_path(@forum,m.id) %>
+  <%= m.user.name %>
+  <%= m.view_count %>
+  <%= m.created_at %>
+  <%= m.updated_at if m.created_at != m.updated_at %>
+<% end %>

@@ -1,5 +1,5 @@
 <ol class="breadcrumb">
-  <li><a href="#">首頁</a></li>
+  <li><%= link_to "首頁", root_path %></li>
   <li><%= link_to "團員資料", members_path %></li>
   <li class="active">新增</li>
 </ol>
@@ -34,4 +34,4 @@
 		<% end %>
 		<p><%= link_to_add_association '新增職務', f, :title_ths %></p>
 	<%= f.submit "確認", :disable_with => '處理中...', :class => "btn btn-default" %>
-<% end %>	
+<% end %>

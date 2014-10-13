@@ -1,25 +1,26 @@
-class PostController < ApplicationController
+class PostsController < ApplicationController
 
   def show
-    @post = Psot.find(params[:id])
+    @post = Post.where(id: params[:id]).includes(:user).first
+    @forum = Forum.find_by(id: params[:forum_id])
+
   end
 
   def new
     @post = Post.new
-    @post.reply_id =|| params[:reply_id]
+    @post.reply_id = params[:reply_id] if params[:reply_id]
     @post.forum_id = params[:forum_id]
+    @post.user_id = current_user.id
+    @forum = Forum.find_by(id: params[:forum_id])
     if params[:reply_id]
       @posts = Post.where("id = ? OR reply_id = ?", params[:reply_id], params[:reply_id])
+        .includes(:user)
     end
   end
 
   def create
     @post = Post.new(post_params)
     if @post.save
-      if @post.reply_id
-        po = Post.find_by(id: @post.reply_id)
-        po.update(params.require(:post).permit(:updated_at Time.now))
-      end
       redirect_to forum_post_path(@post.forum_id, @post)
     else
       render :new
@@ -28,6 +29,7 @@ class PostController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    @forum = Forum.find_by(id: params[:forum_id])
   end
 
   def update

@@ -1,5 +1,5 @@
 <ol class="breadcrumb">
-  <li><a href="#">首頁</a></li>
+  <li><%= link_to "首頁", root_path %></li>
   <li class="active">討論區</li>
 </ol>
 <% @forum_types.each do |f| %>
@@ -7,7 +7,7 @@
   <%= f.description %><br/>
   <% @forums.each do |x| %>
     <% if x.forum_type_id == f.id %>
-      <%= x.title %>
+      <%= link_to x.title, forum_path(x) %>
       <%= x.description %>
       <%= x.public_at ? '公開' : '隱私' %>
       <%= x.closing_date ? x.closing_date : ''  %><br/>

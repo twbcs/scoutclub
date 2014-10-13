@@ -1,5 +1,5 @@
 <ol class="breadcrumb">
-  <li><a href="#">首頁</a></li>
+  <li><%= link_to "首頁", root_path %></li>
   <li><%= link_to "職務職掌", titles_path %></li>
   <li class="active">新增</li>
 </ol>
@@ -22,4 +22,4 @@
 
 <%= f.submit "確認", :disable_with => '處理中...' %>
 
-<% end %>	
+<% end %>

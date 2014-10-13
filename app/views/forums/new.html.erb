@@ -1,5 +1,5 @@
 <ol class="breadcrumb">
-  <li><a href="#">首頁</a></li>
+  <li><%= link_to "首頁", root_path %></li>
   <li><%= link_to "討論分區", forum_types_path %></li>
   <li><%=  @forum.forum_type.title %></li>
   <li class="active">新增子板</li>

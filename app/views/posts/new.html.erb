@@ -1,0 +1,27 @@
+<ol class="breadcrumb">
+  <li><%= link_to "首頁", root_path %></li>
+  <li><%= link_to "討論區", forums_path %></li>
+  <li><%= link_to @forum.title, forum_path(@forum) %></li>
+  <li class="active" >新增</li>
+</ol>
+
+<%= form_for @post do |f| %>
+  <%= f.label :subject %>
+  <%= f.text_field :subject %><br/>
+  <%= f.label :body %>
+  <%= f.text_area :body %>
+  <%= f.hidden_field :forum_id %>
+  <%= f.hidden_field :reply_id %>
+  <%= f.hidden_field :user_id %><br/>
+  <%= f.submit  "確認", class: "btn btn-success" %>
+<% end %>
+
+<% if @posts %>
+  <% @posts.each do |m| %>
+    <%= m.subject  %>
+    <%= m.body %>
+    <% m.user.each do |u| %>
+      <%= u.name %>
+    <% end %>
+  <% end %>
+<% end %>

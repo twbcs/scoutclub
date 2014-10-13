@@ -1,0 +1,10 @@
+<ol class="breadcrumb">
+  <li><%= link_to "首頁", root_path %></li>
+  <li><%= link_to "討論區", forums_path %></li>
+  <li><%= link_to @forum.title, forum_path(@forum) %></li>
+  <li class="active" ><%= @post.subject %></li>
+</ol>
+
+
+  <%= @post.user.name %>
+  <%= @post.subject  %>
