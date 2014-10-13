@@ -21,7 +21,7 @@ class ForumsController < ApplicationController
 
   def show
     @forum = Forum.find(params[:id])
-    @post = Post.find_by(forum_id: params[:id])
+    @post = Post.find_by(forum_id: params[:id], reply_id: nil).order_by_updated_at
   end
 
   def edit

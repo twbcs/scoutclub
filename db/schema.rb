@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141010195507) do
+ActiveRecord::Schema.define(version: 20141012122412) do
 
   create_table "boards", force: true do |t|
     t.integer  "user_id"
@@ -81,11 +81,13 @@ ActiveRecord::Schema.define(version: 20141010195507) do
     t.integer  "forum_id",   null: false
     t.string   "subject",    null: false
     t.text     "body",       null: false
-    t.integer  "post_id"
+    t.integer  "reply_id"
     t.integer  "user_id"
-    t.boolean  "lock"
+    t.datetime "lock_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "type"
+    t.integer  "view_count"
   end
 
   create_table "schedule_attends", force: true do |t|

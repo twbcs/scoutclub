@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   resources :schedules
   resources :doing_types
   resources :group_forums
-  
+
 
   root 'members#index'
 

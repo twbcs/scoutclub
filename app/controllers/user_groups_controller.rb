@@ -11,7 +11,7 @@ class UserGroupsController < ApplicationController
   end
 
   def create
-    @user_group = UserGroup.new(ug_params)
+    @user_group = UserGroup.new(user_group_params)
     if @user_group.save
       redirect_to user_groups_path
     else
@@ -25,7 +25,7 @@ class UserGroupsController < ApplicationController
 
   def update
     @user_group = UserGroup.find(params[:id])
-    if @user_group.update(ug_params)
+    if @user_group.update(user_group_params)
       redirect_to user_groups_path
     else
       render :edit
@@ -39,7 +39,7 @@ class UserGroupsController < ApplicationController
   end
 
   private
-  def ug_params
+  def user_group_params
     params.require(:user_group).permit(:user_id, :group_id)
   end
 

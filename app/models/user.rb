@@ -29,14 +29,6 @@ class User < ActiveRecord::Base
     SecureRandom.uuid
   end
 
-  def rules
-    user_count = User.all.count
-    if use_count = 1
-      user = User.first
-      user_rule = Modify.new(:user_id => user.id, :user_rule => 63)
-      user_rule.save
-    end
-  end
 
   def self.new_with_session(params, session)
     super.tap do |user|
@@ -46,5 +38,14 @@ class User < ActiveRecord::Base
     end
   end
 
+  private
+  def rules
+    user_count = User.all.count
+    if use_count == 1
+      user = User.first
+      user_rule = Modify.new(:user_id => user.id, :user_rule => 63)
+      user_rule.save
+    end
+  end
 
 end
