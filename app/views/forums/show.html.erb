@@ -12,5 +12,6 @@
     <%= m.view_count %>
     <%= m.created_at %>
     <%= m.updated_at if m.created_at != m.updated_at %>
+    <%= link_to "刪除討論串", forum_post_path(forum_id: m.forum_id, id: m.id), :method => :delete %><br/>
   <% end %>
 <% end %>

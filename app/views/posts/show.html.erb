@@ -9,5 +9,7 @@
   <%= m.subject  %>
   <%= m.body %>
   <%= m.user.name %>
-  <%= link_to "回文", new_forum_post_path(forum_id: m.forum_id, reply_id: @posts.first.id) %><br/>
+  <%= link_to "修改", edit_forum_post_path(forum_id: m.forum_id, id: m.id) %>
+  <%= link_to "回文", new_forum_post_path(forum_id: m.forum_id, reply_id: @posts.first.id) %>
+  <%= link_to "刪除", forum_post_path(forum_id: m.forum_id, id: m.id), :method => :delete %><br/>
 <% end %>

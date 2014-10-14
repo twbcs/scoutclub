@@ -4,7 +4,6 @@ class PostsController < ApplicationController
     @posts = Post.where("id = ? OR reply_id = ?", params[:id], params[:id])
             .includes(:user)
     @forum = Forum.find_by(id: params[:forum_id])
-
   end
 
   def new
@@ -25,7 +24,6 @@ class PostsController < ApplicationController
       else
         redirect_to forum_post_path(@post.forum_id, @post)
       end
-
     else
       render :new
     end
@@ -47,8 +45,15 @@ class PostsController < ApplicationController
 
   def destroy
     @post = Post.find(params[:id])
-    @post.destroy
-    redirect_to forum_path(@post.forum_id)
+    if @post.reply_id
+      @post.destroy
+      redirect_to forum_post_path(forum_id: @post.forum_id, id: @post.reply_id)
+    else
+      @posts = Post.where(reply_id: params[:id])
+      @posts.each{|x| x.destroy} if @posts
+      @post.destroy
+      redirect_to forum_path(@post.forum_id)
+    end
   end
 
   private

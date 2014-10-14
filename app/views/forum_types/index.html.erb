@@ -12,7 +12,8 @@
       <%= x.description %>
       <%= x.public_at ? '公開' : '隱私' %>
       <%= x.closing_date ? x.closing_date : ''  %>
-      <%= link_to "修改", edit_forum_path(x) %><br/>
+      <%= link_to "修改", edit_forum_path(x) %>
+      <%= link_to "刪除", forum_path(x), :method => :delete %><br/>
     <% end %>
   <% end %>
   <%= link_to "新增子板", new_forum_type_forum_path(f) %><br/>

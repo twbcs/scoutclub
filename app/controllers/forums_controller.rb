@@ -23,7 +23,8 @@ class ForumsController < ApplicationController
 
   def show
     @forum = Forum.find(params[:id])
-    @posts = Post.where(forum_id: params[:id], reply_id: nil).includes(:user).order_by_updated_at
+    @posts = Post.where(forum_id: params[:id], reply_id: nil).includes(:user)
+            .order_by_updated_at
   end
 
   def edit
@@ -40,8 +41,10 @@ class ForumsController < ApplicationController
   end
 
   def destroy
-    @forum = Forum.find(params[:id])
+    @forum = Forum.find(params[:id]).includes(:posts)
     if @forum.post.count < 1
+      @group_forums = GroupForum.where(:forum_id params[:id])
+      @group_forums.each{|x| x.destroy} if @group_forums
       @forum.destroy
       redirect_to(forum_types_url, notice: '討論板已刪除')
     else
@@ -56,9 +59,7 @@ class ForumsController < ApplicationController
   end
 
   def post_list_power
-    temp1 = Array.new
-    temp2 = Array.new
-    view = Array.new
+    temp1, temp2, view = Array.new
     power = UserGroup.where(user_id: current_user.id)
     power.each{|x| temp1 << x.group_id}
     temp2 = GroupForum.where(group_id: temp1, forum_id: params[:id])
@@ -70,9 +71,7 @@ class ForumsController < ApplicationController
   end
 
   def forum_list_power
-    temp1 = Array.new
-    temp2 = Array.new
-    @forum_view = Array.new
+    temp1, temp2, @forum_view = Array.new
     power = UserGroup.where(user_id: current_user.id)
     power.each{|x| temp1 << x.group_id}
     temp2 = GroupForum.where(group_id: temp1)
