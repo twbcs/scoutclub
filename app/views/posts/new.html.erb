@@ -20,8 +20,6 @@
   <% @posts.each do |m| %>
     <%= m.subject  %>
     <%= m.body %>
-    <% m.user.each do |u| %>
-      <%= u.name %>
-    <% end %>
+    <%= m.user.name %><br/>
   <% end %>
 <% end %>

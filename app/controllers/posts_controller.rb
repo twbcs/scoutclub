@@ -1,7 +1,8 @@
 class PostsController < ApplicationController
 
   def show
-    @post = Post.where(id: params[:id]).includes(:user).first
+    @posts = Post.where("id = ? OR reply_id = ?", params[:id], params[:id])
+            .includes(:user)
     @forum = Forum.find_by(id: params[:forum_id])
 
   end
@@ -12,16 +13,19 @@ class PostsController < ApplicationController
     @post.forum_id = params[:forum_id]
     @post.user_id = current_user.id
     @forum = Forum.find_by(id: params[:forum_id])
-    if params[:reply_id]
-      @posts = Post.where("id = ? OR reply_id = ?", params[:reply_id], params[:reply_id])
-        .includes(:user)
-    end
+    @posts = Post.where("id = ? OR reply_id = ?", params[:reply_id], params[:reply_id])
+            .includes(:user) if params[:reply_id]
   end
 
   def create
     @post = Post.new(post_params)
     if @post.save
-      redirect_to forum_post_path(@post.forum_id, @post)
+      if @post.reply_id
+        redirect_to forum_post_path(@post.forum_id, @post.reply_id)
+      else
+        redirect_to forum_post_path(@post.forum_id, @post)
+      end
+
     else
       render :new
     end

@@ -8,6 +8,7 @@
 <%= @group.admin ? '管理者' : '' %><br/>
 <% @group_forums.each do |g| %>
   <%= g.title %>
-  <%= ability(g.level)  %><br/>
+  <%= ability(g.level)  %>
+  <%= link_to "修改", edit_group_group_forum_path(@group, g.id) %><br/>
 <% end %>
 <%= link_to "新增權限", new_group_group_forum_path(@group) %>

@@ -21,7 +21,7 @@ class GroupForumsController < ApplicationController
 
   def update
     @group_forum = GroupForum.find(params[:id])
-    if @group_forum.update
+    if @group_forum.update(gf_params)
       redirect_to group_path(@group_forum.group_id), notice: '權限修改完成'
     else
       render :edit

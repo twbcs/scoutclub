@@ -1,4 +1,6 @@
 class ForumsController < ApplicationController
+  before_action :forum_list_power, only: [:index]
+  before_action :post_list_power, only: [:show]
 
   def index
     @forum_types = ForumType.all
@@ -51,5 +53,30 @@ class ForumsController < ApplicationController
 
   def forum_params
     params.require(:forum).permit(:forum_type_id, :title, :description, :public_at, :closing_date )
+  end
+
+  def post_list_power
+    temp1 = Array.new
+    temp2 = Array.new
+    view = Array.new
+    power = UserGroup.where(user_id: current_user.id)
+    power.each{|x| temp1 << x.group_id}
+    temp2 = GroupForum.where(group_id: temp1, forum_id: params[:id])
+    temp2.each{|v| view << [v.forum_id, v.level]}
+    @post_view = view.sort.last
+    unless @post_view
+      redirect_to(forums_path, alert: '子版錯誤或無權限進入')
+    end
+  end
+
+  def forum_list_power
+    temp1 = Array.new
+    temp2 = Array.new
+    @forum_view = Array.new
+    power = UserGroup.where(user_id: current_user.id)
+    power.each{|x| temp1 << x.group_id}
+    temp2 = GroupForum.where(group_id: temp1)
+    temp2.each{|v| @forum_view << v.forum_id}
+    @forum_view.sort!.uniq!
   end
 end

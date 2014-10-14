@@ -6,11 +6,13 @@
   <h5><%= f.title %></h5>
   <%= f.description %><br/>
   <% @forums.each do |x| %>
-    <% if x.forum_type_id == f.id %>
-      <%= link_to x.title, forum_path(x) %>
-      <%= x.description %>
-      <%= x.public_at ? '公開' : '隱私' %>
-      <%= x.closing_date ? x.closing_date : ''  %><br/>
+    <% if x.public_at || @forum_view.include?(x.id)  %>
+      <% if x.forum_type_id == f.id %>
+        <%= link_to x.title, forum_path(x) %>
+        <%= x.description %>
+        <%= x.public_at ? '公開' : '隱私' %>
+        <%= x.closing_date ? x.closing_date : ''  %><br/>
+      <% end %>
     <% end %>
   <% end %>
 <% end %>
