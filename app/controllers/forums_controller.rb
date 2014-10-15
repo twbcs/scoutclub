@@ -43,7 +43,7 @@ class ForumsController < ApplicationController
   def destroy
     @forum = Forum.find(params[:id]).includes(:posts)
     if @forum.post.count < 1
-      @group_forums = GroupForum.where(:forum_id params[:id])
+      @group_forums = GroupForum.where(forum_id: params[:id])
       @group_forums.each{|x| x.destroy} if @group_forums
       @forum.destroy
       redirect_to(forum_types_url, notice: '討論板已刪除')
@@ -59,23 +59,27 @@ class ForumsController < ApplicationController
   end
 
   def post_list_power
-    temp1, temp2, view = Array.new
-    power = UserGroup.where(user_id: current_user.id)
-    power.each{|x| temp1 << x.group_id}
-    temp2 = GroupForum.where(group_id: temp1, forum_id: params[:id])
-    temp2.each{|v| view << [v.forum_id, v.level]}
-    @post_view = view.sort.last
-    unless @post_view
-      redirect_to(forums_path, alert: '子版錯誤或無權限進入')
+    if current_user
+      temp1 = Array.new
+      view  = Array.new
+      power = UserGroup.where(user_id: current_user.id)
+      power.each{|x| temp1 << x.group_id}
+      temp2 = GroupForum.where(group_id: temp1, forum_id: params[:id])
+      temp2.each{|v| view << [v.forum_id, v.level]}
+      @post_view = view.sort.last
+      redirect_to(forums_path, alert: '子版錯誤或無權限進入') unless @post_view
     end
   end
 
   def forum_list_power
-    temp1, temp2, @forum_view = Array.new
-    power = UserGroup.where(user_id: current_user.id)
-    power.each{|x| temp1 << x.group_id}
-    temp2 = GroupForum.where(group_id: temp1)
-    temp2.each{|v| @forum_view << v.forum_id}
-    @forum_view.sort!.uniq!
+    if current_user
+      temp1 = Array.new
+      @forum_view = Array.new
+      power = UserGroup.where(user_id: current_user.id)
+      power.each{|x| temp1 << x.group_id}
+      temp2 = GroupForum.where(group_id: temp1)
+      temp2.each{|v| @forum_view << v.forum_id}
+      @forum_view.sort!.uniq!
+    end
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141012122412) do
+ActiveRecord::Schema.define(version: 20141015195014) do
 
   create_table "boards", force: true do |t|
     t.integer  "user_id"
@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 20141012122412) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "boards", ["user_id"], name: "index_boards_on_user_id", using: :btree
 
   create_table "doing_types", force: true do |t|
     t.string   "title",      null: false
@@ -45,6 +47,8 @@ ActiveRecord::Schema.define(version: 20141012122412) do
     t.date     "closing_date"
   end
 
+  add_index "forums", ["forum_type_id"], name: "index_forums_on_forum_type_id", using: :btree
+
   create_table "group_forums", force: true do |t|
     t.integer  "group_id"
     t.integer  "forum_id"
@@ -52,6 +56,9 @@ ActiveRecord::Schema.define(version: 20141012122412) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "group_forums", ["forum_id"], name: "index_group_forums_on_forum_id", using: :btree
+  add_index "group_forums", ["group_id"], name: "index_group_forums_on_group_id", using: :btree
 
   create_table "groups", force: true do |t|
     t.string  "name"
@@ -70,12 +77,16 @@ ActiveRecord::Schema.define(version: 20141012122412) do
     t.datetime "updated_at"
   end
 
+  add_index "members", ["user_id"], name: "index_members_on_user_id", using: :btree
+
   create_table "modifies", force: true do |t|
     t.integer  "user_id"
     t.integer  "user_rule",  limit: 1
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "modifies", ["user_id"], name: "index_modifies_on_user_id", using: :btree
 
   create_table "posts", force: true do |t|
     t.integer  "forum_id",   null: false
@@ -90,6 +101,9 @@ ActiveRecord::Schema.define(version: 20141012122412) do
     t.integer  "view_count"
   end
 
+  add_index "posts", ["forum_id"], name: "index_posts_on_forum_id", using: :btree
+  add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
+
   create_table "schedule_attends", force: true do |t|
     t.integer  "user_id"
     t.integer  "schedule_id"
@@ -97,6 +111,9 @@ ActiveRecord::Schema.define(version: 20141012122412) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "schedule_attends", ["schedule_id"], name: "index_schedule_attends_on_schedule_id", using: :btree
+  add_index "schedule_attends", ["user_id"], name: "index_schedule_attends_on_user_id", using: :btree
 
   create_table "schedules", force: true do |t|
     t.string   "title",                   null: false
@@ -111,6 +128,8 @@ ActiveRecord::Schema.define(version: 20141012122412) do
     t.datetime "updated_at"
   end
 
+  add_index "schedules", ["doing_type_id"], name: "index_schedules_on_doing_type_id", using: :btree
+
   create_table "title_ths", force: true do |t|
     t.integer  "member_id",  null: false
     t.integer  "title_id",   null: false
@@ -118,6 +137,9 @@ ActiveRecord::Schema.define(version: 20141012122412) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "title_ths", ["member_id"], name: "index_title_ths_on_member_id", using: :btree
+  add_index "title_ths", ["title_id"], name: "index_title_ths_on_title_id", using: :btree
 
   create_table "titles", force: true do |t|
     t.string   "title",                 null: false
@@ -133,6 +155,9 @@ ActiveRecord::Schema.define(version: 20141012122412) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "user_groups", ["group_id"], name: "index_user_groups_on_group_id", using: :btree
+  add_index "user_groups", ["user_id"], name: "index_user_groups_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

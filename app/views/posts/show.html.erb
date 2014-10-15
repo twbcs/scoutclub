@@ -4,12 +4,21 @@
   <li><%= link_to @forum.title, forum_path(@forum) %></li>
   <li class="active" ><%= @posts.first.subject %></li>
 </ol>
+<% if @post_view
+    view = @post_view.first == @forum.id
+    reply = @post_view.last >= 3
+    edit = @post_view.last >= 7
+    delete = @post_view.last >= 15
+  end %>
 
-<% @posts.each do |m| %>
-  <%= m.subject  %>
-  <%= m.body %>
-  <%= m.user.name %>
-  <%= link_to "修改", edit_forum_post_path(forum_id: m.forum_id, id: m.id) %>
-  <%= link_to "回文", new_forum_post_path(forum_id: m.forum_id, reply_id: @posts.first.id) %>
-  <%= link_to "刪除", forum_post_path(forum_id: m.forum_id, id: m.id), :method => :delete %><br/>
+<% if @forum.public_at || view %>
+  <% @posts.each do |m| %>
+    <% user = m.user_id == current_user.id if current_user %>
+    <%= m.subject %>
+    <%= m.body %>
+    <%= m.user.name %>
+    <%= link_to "修改", edit_forum_post_path(forum_id: m.forum_id, id: m.id) if user || edit %>
+    <%= link_to "回文", new_forum_post_path(forum_id: m.forum_id, reply_id: @posts.first.id) if reply %>
+    <%= link_to "刪除", forum_post_path(forum_id: m.forum_id, id: m.id), :method => :delete if delete %><br/>
+  <% end %>
 <% end %>

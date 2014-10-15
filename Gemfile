@@ -52,6 +52,7 @@ gem 'will_paginate-bootstrap'
 gem 'rails_autolink'
 
 group  :development do
+  gem 'traceroute'
   gem "better_errors"
 	gem "binding_of_caller"
 end

@@ -6,7 +6,8 @@
   <h5><%= f.title %></h5>
   <%= f.description %><br/>
   <% @forums.each do |x| %>
-    <% if x.public_at || @forum_view.include?(x.id)  %>
+    <% view = @forum_view.include?(x.id) if @forum_view %>
+    <% if x.public_at || view  %>
       <% if x.forum_type_id == f.id %>
         <%= link_to x.title, forum_path(x) %>
         <%= x.description %>

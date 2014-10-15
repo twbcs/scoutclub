@@ -1,30 +1,32 @@
 Rails.application.routes.draw do
 
+  get 'title_ths/index'
+
   devise_for :users, :controllers => {
   :registrations => "users/registrations",
   :passwords     => "users/passwords",
   :omniauth_callbacks => "users/omniauth_callbacks"
   }
 
-  resources :user_groups
+  resources :user_groups, except: [:show]
   resources :members
   resources :titles
-  resources :title_ths
+  resources :title_ths, only: [:index]
   resources :boards
   resources :forums do
-    resources :posts
+    resources :posts, except: [:index]
   end
   resources :forum_types do
     resources :forums
   end
   resources :groups do
-    resources :group_forums
+    resources :group_forums, except: [:show, :index]
   end
   resources :schedule_attends
   resources :schedules
-  resources :doing_types
-  resources :group_forums
-  resources :posts
+  resources :doing_types, except: [:show]
+  resources :group_forums, except: [:show, :index]
+  resources :posts, except: [:index]
 
 
   root 'members#index'

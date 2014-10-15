@@ -1,0 +1,11 @@
+<ol class="breadcrumb">
+  <li><%= link_to "首頁", root_path %></li>
+  <li class="active">各屆幹部</li>
+</ol>
+
+<% @title_ths.each do |m| %>
+  <%= m.title_year %>
+  <%= m.member_th %>
+  <%= m.title_title %>
+  <%= m.member_name %><br/>
+<% end %>

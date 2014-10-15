@@ -6,6 +6,10 @@
 
 <%= form_for @member do |f| %>
   <div class="form-inline">
+    <%= f.label :th %>
+    <%= f.text_field :th, :placeholder => "輸入屆數", :class => "form-control" %>
+  </div>
+  <div class="form-inline">
   	<%= f.label :name %>
     <%= f.text_field :name, :placeholder => "輸入姓名", :class => "form-control" %>
   </div>

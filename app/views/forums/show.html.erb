@@ -3,15 +3,21 @@
   <li><%= link_to "討論區", forums_path %></li>
   <li class="active"><%= @forum.title %></li>
 </ol>
-<%= @post_view %>
-<% if @post_view.first == @forum.id %>
-  <%= link_to "新增", new_forum_post_path(forum_id: @forum.id) if @post_view.last > 6 %><br/>
+
+<% if @post_view
+    view = @post_view.first == @forum.id
+    reply = @post_view.last >= 3
+    delete = @post_view.last >= 15
+  end %>
+
+<% if @forum.public_at || view %>
+  <%= link_to "新增", new_forum_post_path(forum_id: @forum.id) if reply %><br/>
   <% @posts.each do |m| %>
     <%= link_to m.subject, forum_post_path(@forum,m.id) %>
     <%= m.user.name %>
     <%= m.view_count %>
     <%= m.created_at %>
     <%= m.updated_at if m.created_at != m.updated_at %>
-    <%= link_to "刪除討論串", forum_post_path(forum_id: m.forum_id, id: m.id), :method => :delete %><br/>
+    <%= link_to "刪除討論串", forum_post_path(forum_id: m.forum_id, id: m.id), :method => :delete if delete %><br/>
   <% end %>
 <% end %>
