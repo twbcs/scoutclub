@@ -26,11 +26,11 @@
     <%= f.text_field :year, :placeholder => "輸入學年", :class => "form-control" %>
   </div>
 <div class="btn-group" data-toggle="buttons">
+  <label class="btn btn-default">
+    <%= f.radio_button( :sex, 'false' ) %> 女
+  </label>
   <label class="btn btn-default active">
   	<%= f.radio_button( :sex, 'true' , { :checked => true }) %> 男
-  </label>
-  <label class="btn btn-default">
-  	<%= f.radio_button( :sex, 'false' ) %> 女
   </label>
 </div>
 		<%= f.fields_for :title_ths do |title_th| %>

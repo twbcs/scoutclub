@@ -16,7 +16,7 @@
     <% user = m.user_id == current_user.id if current_user %>
     <%= m.subject %>
     <%= m.body %>
-    <%= m.user.name %>
+    <%= m.post_name %>
     <%= link_to "修改", edit_forum_post_path(forum_id: m.forum_id, id: m.id) if user || edit %>
     <%= link_to "回文", new_forum_post_path(forum_id: m.forum_id, reply_id: @posts.first.id) if reply %>
     <%= link_to "刪除", forum_post_path(forum_id: m.forum_id, id: m.id), :method => :delete if delete %><br/>
