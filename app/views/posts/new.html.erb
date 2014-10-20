@@ -8,7 +8,6 @@
 <%= form_for @post do |f| %>
   <%= f.label :subject %>
   <%= f.text_field :subject %><br/>
-  <%= f.label :body %>
   <%= f.text_area :body %>
   <%= f.hidden_field :forum_id %>
   <%= f.hidden_field :reply_id %><br/>
@@ -18,7 +17,7 @@
 <% if @posts %>
   <% @posts.each do |m| %>
     <%= m.subject  %>
-    <%= m.body %>
+    <%= markdown(m.body) %>
     <%= m.post_name %><br/>
   <% end %>
 <% end %>

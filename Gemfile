@@ -51,8 +51,12 @@ gem 'activerecord-mysql-unsigned'
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
 gem 'rails_autolink'
+gem 'redcarpet'
 
 group  :development do
+  gem 'pry'
+  gem 'pry-rails'
+  gem 'pry-nav'
   gem 'traceroute'
   gem "better_errors"
 	gem "binding_of_caller"

@@ -23,6 +23,21 @@
             <li><%= link_to " 討論區", forums_path, class: "glyphicon glyphicon-list-alt" %></li>
           </ul>
         </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle clearfix" data-toggle="dropdown">授課課程</a>
+          <ul class="dropdown-menu" role="menu">
+            <li><%= link_to " 課程行事曆", members_path, class: "icon-calendar" %></li>
+            <li><%= link_to " 課程相關資料", title_ths_path, class: "icon-profile" %></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle clearfix" data-toggle="dropdown">花絮集錦</a>
+          <ul class="dropdown-menu" role="menu">
+            <li><%= link_to " 相簿", members_path, class: "icon-image" %></li>
+            <li><%= link_to " 團康音樂", title_ths_path, class: "icon-music" %></li>
+            <li><%= link_to " 影片連結", schedules_path, class: "icon-film" %></li>
+          </ul>
+        </li>
         <li class="dropdown <%= 'active' if params[:controller] == 'years' || params[:controller] == 'doings'%>">
           <a href="#" class="dropdown-toggle clearfix" data-toggle="dropdown">歷史資料</a>
           <ul class="dropdown-menu" role="menu">
