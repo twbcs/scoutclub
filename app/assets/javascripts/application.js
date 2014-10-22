@@ -12,7 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require to-markdown
+//= require markdown
 //= require bootstrap
+//= require bootstrap-markdown
 //= require cocoon
 //= require turbolinks
 //= require_tree .

@@ -20,7 +20,9 @@
       <% end %>
 
         <%= yield %>
-     <%= render :partial => 'footer' %>
+  </div>
+  <div class='container'>
+  <%= render :partial => 'footer' %>
   </div>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 </body>

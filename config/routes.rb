@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'welcomes/index'
+
   devise_for :users, :controllers => {
   :registrations => "users/registrations",
   :passwords     => "users/passwords",
@@ -27,7 +29,7 @@ Rails.application.routes.draw do
   resources :posts, except: [:index]
 
 
-  root 'members#index'
+  root 'welcomes#index'
 
 
   # Example resource route with concerns:
