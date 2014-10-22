@@ -10,13 +10,26 @@
   <%= f.text_area :body, class: "form-control", rows: "20", "data-provide" => "markdown" %>
   <%= f.hidden_field :forum_id %>
   <%= f.hidden_field :reply_id %>
-  <%= f.submit  "確認", class: "btn btn-success", style: "margin-top: 10px;" %>
+  <%= f.submit  "確認", class: "btn btn-success", style: "margin-top: 10px;margin-bottom: 10px;" %>
 <% end %>
 
 <% if @posts %>
   <% @posts.each do |m| %>
-    <%= m.subject  %>
-    <%= markdown(m.body) %>
-    <%= m.post_name %><br/>
+    <div class="col-md-2 user">
+      <img src="http://graph.facebook.com/<%= m.user.uid %>/picture?type=normal"/><br/>
+      <%= link_to m.post_name, "http://www.facebook.com/#{m.user.uid}" %><br/>
+      加入時間：<%= m.user.created_at.strftime("%Y %m.%d") %><br/>
+      上次登入：<%= m.user.last_sign_in_at.strftime("%Y %m.%d") %>
+    </div>
+    <div  class="col-md-10 post">
+      <div class="subject">
+        <strong><%= m.subject %></strong>
+      </div>
+      <div class="content">
+        <%= markdown(m.body) %>
+      </div>
+      <div class="controller">
+      </div>
+    </div>
   <% end %>
 <% end %>

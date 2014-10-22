@@ -19,7 +19,10 @@
  */
 @import 'base';
 
-body{ position: relative; }
+body{
+  position: relative;
+  background-color: #9f9f9f;
+}
 
 .page-header{ margin: 20px 0 10px; }
 
@@ -37,7 +40,9 @@ padding-bottom : 2px;
 @include gap;
 }
 
-.navbar { @include gap(bottom, 0px); }
+.navbar {
+  @include gap(bottom, 0px);
+  }
 
 .panel-body { padding: 5px 5px 5px 5px;}
 
@@ -50,14 +55,19 @@ padding-bottom : 2px;
 
 footer {
 	border-top  : 1px solid #cccccc;
-	color       : #666666;
+	color       : #dddddd;
 	padding-top : 20px;
 	@include gap(top, 30px);
 	@include gap(bottom, 20px);
-	.icon-html5{ color : #FF6600; }
-	.icon-css3{ color  : #FF6600; }
+	.icon-html5{ color : #ffbda0; }
+  .icon-css3{ color : #a1c5ff; }
 }
 
 .font-set{
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+#user-dropdown{
+  padding-top    : 4px;
+  padding-bottom : 4px;
 }
