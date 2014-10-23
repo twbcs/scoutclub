@@ -4,8 +4,10 @@ class ForumsController < ApplicationController
 
   def index
     @forum_types = ForumType.all
-    @forums = Forum.all.order_by_forum_type
+    @forums = Forum.all.order_by_forum_type.includes(:posts)
     @posts = Post.where( reply_id: nil, one: true ).includes(:user)
+    @post_count = Post.where( reply_id: nil).group(:forum_id).count
+    @reply_count = Post.all.group(:forum_id).count
   end
 
   def new
