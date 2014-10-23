@@ -13,6 +13,12 @@
         <%= x.description %>
         <%= x.public_at ? '公開' : '隱私' %>
         <%= x.closing_date ? x.closing_date : ''  %><br/>
+        <% @posts.each do |post| %>
+          <% if x.id == post.forum_id %>
+            <%= link_to post.subject, forum_post_path(post.forum.id,post.id) %>
+            <%= post.post_name %><br/>
+          <% end %>
+        <% end %>
       <% end %>
     <% end %>
   <% end %>

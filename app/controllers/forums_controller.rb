@@ -5,8 +5,7 @@ class ForumsController < ApplicationController
   def index
     @forum_types = ForumType.all
     @forums = Forum.all.order_by_forum_type
-    @posts = Post.where(reply_id: nil).includes(:user)
-            .order_by_updated_at
+    @posts = Post.where( reply_id: nil, one: true ).includes(:user)
   end
 
   def new
