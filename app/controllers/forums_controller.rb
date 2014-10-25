@@ -4,7 +4,11 @@ class ForumsController < ApplicationController
 
   def index
     @forum_types = ForumType.all
-    @forums = Forum.all.order_by_forum_type
+    @forums = Forum.all.order_by_forum_type.includes(:posts)
+    @posts = Post.includes(:user).find_by_sql("select * from (select * from posts
+              where reply_id IS NULL order by updated_at DESC) t group by forum_id")
+    @post_count = Post.where( reply_id: nil).group(:forum_id).count
+    @reply_count = Post.all.group(:forum_id).count
   end
 
   def new

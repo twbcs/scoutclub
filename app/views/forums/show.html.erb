@@ -14,7 +14,7 @@
   <%= link_to "新增", new_forum_post_path(forum_id: @forum.id) if reply %><br/>
   <% @posts.each do |m| %>
     <%= link_to m.subject, forum_post_path(@forum,m.id) %>
-    <%= m.user.name %>
+    <%= m.post_name %>
     <%= m.view_count %>
     <%= m.created_at %>
     <%= m.updated_at if m.created_at != m.updated_at %>

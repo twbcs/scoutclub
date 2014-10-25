@@ -3,7 +3,6 @@
 <head>
   <title>黑衫軍 | <%= controller.controller_name %> </title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-
   <%= analytics_init if Rails.env.production? %>
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width, initial-scale=1"/><%#= RWD 必要資訊 %>
@@ -21,7 +20,9 @@
       <% end %>
 
         <%= yield %>
-     <%= render :partial => 'footer' %>
+  </div>
+  <div class='container'>
+  <%= render :partial => 'footer' %>
   </div>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 </body>

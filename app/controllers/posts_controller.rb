@@ -38,7 +38,11 @@ class PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
-      redirect_to forum_post_path(@post.forum_id, @post)
+      if @post.reply_id
+        redirect_to forum_post_path(@post.forum_id, @post.reply_id)
+      else
+        redirect_to forum_post_path(@post.forum_id, @post)
+      end
     else
       render :edit
     end

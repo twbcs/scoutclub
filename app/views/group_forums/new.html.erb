@@ -6,7 +6,7 @@
 </ol>
 
 <%= form_for @group_forum do |f| %>
-  <%= f.hidden_field :group_id, value: @group_forum.group_id %>
+  <%= f.hidden_field :group_id %>
   <div class="form-inline">
     <%= f.label :forum_id %>
     <%= f.select(:forum_id, Forum.all.order_by_forum_type.collect {|u| [u.title, u.id]}, { :prompt => '請選擇'}, :class => 'form-control' ) %>

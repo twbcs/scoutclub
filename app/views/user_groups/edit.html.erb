@@ -5,7 +5,7 @@
 </ol>
 
 <%= form_for @user_group do |f| %>
-<%= f.hidden_field :user_id, value: @user_group.user_id %>
+<%= f.hidden_field :user_id %>
 <div class="form-inline">
   <%= f.label :group_id %>
   <%= f.select(:group_id, Group.all.collect {|u| [u.name, u.id]}, { :prompt => '請選擇'}, :class => 'form-control' ) %>

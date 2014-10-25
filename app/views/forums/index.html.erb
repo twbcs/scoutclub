@@ -2,18 +2,56 @@
   <li><%= link_to "首頁", root_path %></li>
   <li class="active">討論區</li>
 </ol>
-<% @forum_types.each do |f| %>
-  <h5><%= f.title %></h5>
-  <%= f.description %><br/>
-  <% @forums.each do |x| %>
-    <% view = @forum_view.include?(x.id) if @forum_view %>
-    <% if x.public_at || view  %>
-      <% if x.forum_type_id == f.id %>
-        <%= link_to x.title, forum_path(x) %>
-        <%= x.description %>
-        <%= x.public_at ? '公開' : '隱私' %>
-        <%= x.closing_date ? x.closing_date : ''  %><br/>
+<div id="forum-list">
+  <table class="table  table-hover">
+    <thead>
+      <tr>
+        <td>討論區</td>
+        <td>最新發表</td>
+        <td>主題數</td>
+        <td>文章數</td>
+      </tr>
+    </thead>
+    <tbody>
+      <% @forum_types.each do |f| %>
+        <tr>
+          <td colspan="4">
+            <strong><%= f.title %></strong>
+            <%= f.description %>
+          </td>
+        </tr>
+        <% @forums.each do |x| %>
+          <% view = @forum_view.include?(x.id) if @forum_view %>
+          <% if x.public_at || view  %>
+            <% if x.forum_type_id == f.id %>
+              <tr>
+                <td>
+                  <%= link_to x.title, forum_path(x) %><br/>
+                  <%= x.description %>
+                  <%= x.public_at ? '公開' : '隱私' %>
+                </td>
+                <td>
+                  <% have = false  %>
+                  <% @posts.each do |po| %>
+                    <% if po.forum_id == x.id  %>
+                      <%= link_to po.subject, forum_post_path(po.forum.id,po.id) %><br/>
+                      <%= po.post_name %>
+                      <% have = true %>
+                    <% end %>
+                  <% end %>
+                  <%= '無文章' unless have %>
+                </td>
+                <td>
+                  <%= @post_count[x.id] if @post_count.include?(x.id) %>
+                </td>
+                <td>
+                  <%= @reply_count[x.id] if @reply_count.include?(x.id) %>
+                </td>
+              </tr>
+            <% end %>
+          <% end %>
+        <% end %>
       <% end %>
-    <% end %>
-  <% end %>
-<% end %>
+    </tbody>
+  </table>
+</div>
