@@ -9,15 +9,42 @@
     reply = @post_view.last >= 3
     delete = @post_view.last >= 15
   end %>
-
+<%= link_to "新增", new_forum_post_path(forum_id: @forum.id), class: "btn btn-success" if reply %><br/>
 <% if @forum.public_at || view %>
-  <%= link_to "新增", new_forum_post_path(forum_id: @forum.id) if reply %><br/>
-  <% @posts.each do |m| %>
-    <%= link_to m.subject, forum_post_path(@forum,m.id) %>
-    <%= m.post_name %>
-    <%= m.view_count %>
-    <%= m.created_at %>
-    <%= m.updated_at if m.created_at != m.updated_at %>
-    <%= link_to "刪除討論串", forum_post_path(forum_id: m.forum_id, id: m.id), :method => :delete if delete %><br/>
-  <% end %>
+<div class="forum-list">
+  <table class="table">
+    <thead>
+      <tr>
+        <td>主題</td>
+        <td>發布者</td>
+        <td>瀏覽數</td>
+        <td>發布日期</td>
+        <td>更新日期</td>
+      </tr>
+    </thead>
+    <tbody>
+        <% @posts.each do |m| %>
+        <tr>
+          <td>
+            <%= link_to m.subject, forum_post_path(@forum,m.id) %>
+            <%= link_to " 刪除討論串", forum_post_path(forum_id: m.forum_id, id: m.id),
+                    :method => :delete, :class "btn btn-sm btn-danger" if delete %>
+          </td>
+          <td>
+            <%= m.post_name %>
+          </td>
+          <td>
+            <%= m.view_count %>
+          </td>
+          <td>
+            <%= m.created_at %>
+          </td>
+          <td>
+            <%= m.updated_post if m.created_at != m.updated_post%>
+          </td>
+        </tr>
+        <% end %>
+    </tbody>
+  </table>
+</div>
 <% end %>

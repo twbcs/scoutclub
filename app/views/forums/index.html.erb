@@ -8,6 +8,7 @@
       <tr>
         <td>討論區</td>
         <td>最新發表</td>
+        <td>回應數</td>
         <td>主題數</td>
         <td>文章數</td>
       </tr>
@@ -15,7 +16,7 @@
     <tbody>
       <% @forum_types.each do |f| %>
         <tr>
-          <td colspan="4">
+          <td colspan="5">
             <strong><%= f.title %></strong>
             <%= f.description %>
           </td>
@@ -37,9 +38,14 @@
                       <%= link_to po.subject, forum_post_path(po.forum.id,po.id) %><br/>
                       <%= po.post_name %>
                       <% have = true %>
+                      </td><td>
+                      <%= po.reply_count  %>
                     <% end %>
                   <% end %>
-                  <%= '無文章' unless have %>
+                  <% unless have %>
+                    <%= '無文章' %>
+                    </td><td>
+                  <% end %>
                 </td>
                 <td>
                   <%= @post_count[x.id] if @post_count.include?(x.id) %>

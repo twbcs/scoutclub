@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   before_action :post_list_power, only: [:show, :new, :edit]
   before_action :login,         except: [:show]
   before_action :set_post,        only: [:edit, :update, :destroy]
+  after_action  :view_add,        only: [:show]
 
   def show
     @posts = Post.where("id = ? OR reply_id = ?", params[:id], params[:id])
@@ -62,7 +63,7 @@ class PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:forum_id, :subject, :body, :reply_id, :user_id)
+    params.require(:post).permit(:forum_id, :subject, :body, :reply_id, :user_id, :update_post)
   end
 
   def set_post
@@ -79,6 +80,13 @@ class PostsController < ApplicationController
       @post_view = view.sort.last
       redirect_to(forums_path, alert: '子版錯誤或無權限進入') unless @post_view
     end
+  end
+
+  def view_add
+    view = Post.find(params[:id])
+    x = view.view_count
+    x !=nil ? x = x + 1 : x = 1
+    view.update_column(:view_count, x)
   end
 
   def login

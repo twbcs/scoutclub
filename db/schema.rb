@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141015195014) do
+ActiveRecord::Schema.define(version: 20141025073213) do
 
   create_table "boards", force: true do |t|
     t.integer  "user_id"
@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 20141015195014) do
   create_table "group_forums", force: true do |t|
     t.integer  "group_id"
     t.integer  "forum_id"
-    t.integer  "level",      limit: 1
+    t.integer  "level"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(version: 20141015195014) do
 
   create_table "modifies", force: true do |t|
     t.integer  "user_id"
-    t.integer  "user_rule",  limit: 1
+    t.integer  "user_rule"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -89,9 +89,9 @@ ActiveRecord::Schema.define(version: 20141015195014) do
   add_index "modifies", ["user_id"], name: "index_modifies_on_user_id", using: :btree
 
   create_table "posts", force: true do |t|
-    t.integer  "forum_id",   null: false
-    t.string   "subject",    null: false
-    t.text     "body",       null: false
+    t.integer  "forum_id",    null: false
+    t.string   "subject",     null: false
+    t.text     "body",        null: false
     t.integer  "reply_id"
     t.integer  "user_id"
     t.datetime "lock_at"
@@ -99,6 +99,8 @@ ActiveRecord::Schema.define(version: 20141015195014) do
     t.datetime "updated_at"
     t.string   "type"
     t.integer  "view_count"
+    t.datetime "update_post"
+    t.boolean  "first_post"
   end
 
   add_index "posts", ["forum_id"], name: "index_posts_on_forum_id", using: :btree
@@ -107,7 +109,7 @@ ActiveRecord::Schema.define(version: 20141015195014) do
   create_table "schedule_attends", force: true do |t|
     t.integer  "user_id"
     t.integer  "schedule_id"
-    t.integer  "level",       limit: 1
+    t.integer  "level"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

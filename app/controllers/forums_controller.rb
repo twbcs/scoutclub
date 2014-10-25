@@ -5,8 +5,9 @@ class ForumsController < ApplicationController
   def index
     @forum_types = ForumType.all
     @forums = Forum.all.order_by_forum_type.includes(:posts)
-    @posts = Post.includes(:user).find_by_sql("select * from (select * from posts
-              where reply_id IS NULL order by updated_at DESC) t group by forum_id")
+    @posts = Post.includes(:user).find_by_sql("select po.*, COUNT(reply.reply_id) as reply_conut
+              FROM (select * from posts where reply_id IS NULL AND first_post) AS po
+              left join posts as reply ON po.id = reply.reply_id GROUP BY reply.reply_id")
     @post_count = Post.where( reply_id: nil).group(:forum_id).count
     @reply_count = Post.all.group(:forum_id).count
   end
@@ -28,7 +29,7 @@ class ForumsController < ApplicationController
   def show
     @forum = Forum.find(params[:id])
     @posts = Post.where(forum_id: params[:id], reply_id: nil).includes(:user)
-            .order_by_updated_at
+            .order_by_updated_post
   end
 
   def edit
