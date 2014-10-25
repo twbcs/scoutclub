@@ -10,7 +10,7 @@ default: &default
   host: 127.0.0.1
   username: archer
   password:	ms6510
-  port: 3306
+  port: 8889
 
 development:
   <<: *default

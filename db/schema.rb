@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 20141025073213) do
   create_table "group_forums", force: true do |t|
     t.integer  "group_id"
     t.integer  "forum_id"
-    t.integer  "level"
+    t.integer  "level",      limit: 1
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(version: 20141025073213) do
 
   create_table "modifies", force: true do |t|
     t.integer  "user_id"
-    t.integer  "user_rule"
+    t.integer  "user_rule",  limit: 1
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -109,7 +109,7 @@ ActiveRecord::Schema.define(version: 20141025073213) do
   create_table "schedule_attends", force: true do |t|
     t.integer  "user_id"
     t.integer  "schedule_id"
-    t.integer  "level"
+    t.integer  "level",       limit: 1
     t.datetime "created_at"
     t.datetime "updated_at"
   end

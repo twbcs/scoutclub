@@ -72,7 +72,8 @@ class PostsController < ApplicationController
 
   def post_list_power
     if current_user
-      temp1, view = Array.new(2,[])
+      view = Array.new
+      temp1 = Array.new
       power = UserGroup.where(user_id: current_user.id)
       power.each{|x| temp1 << x.group_id}
       temp2 = GroupForum.where(group_id: temp1, forum_id: params[:forum_id])

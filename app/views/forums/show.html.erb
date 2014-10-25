@@ -11,7 +11,7 @@
   end %>
 <%= link_to "新增", new_forum_post_path(forum_id: @forum.id), class: "btn btn-success" if reply %><br/>
 <% if @forum.public_at || view %>
-<div class="forum-list">
+<div id="forum-list">
   <table class="table">
     <thead>
       <tr>
@@ -28,7 +28,7 @@
           <td>
             <%= link_to m.subject, forum_post_path(@forum,m.id) %>
             <%= link_to " 刪除討論串", forum_post_path(forum_id: m.forum_id, id: m.id),
-                    :method => :delete, :class "btn btn-sm btn-danger" if delete %>
+                    :method => :delete, class: "btn btn-sm btn-danger" if delete %>
           </td>
           <td>
             <%= m.post_name %>
@@ -37,10 +37,10 @@
             <%= m.view_count %>
           </td>
           <td>
-            <%= m.created_at %>
+            <%= m.created_at.strftime("%Y %m.%d %H:%M") %>
           </td>
           <td>
-            <%= m.updated_post if m.created_at != m.updated_post%>
+            <%= m.update_post.strftime("%Y %m.%d %H:%M") if m.created_at != m.update_post %>
           </td>
         </tr>
         <% end %>
