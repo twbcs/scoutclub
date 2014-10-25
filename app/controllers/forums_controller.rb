@@ -60,8 +60,7 @@ class ForumsController < ApplicationController
 
   def post_list_power
     if current_user
-      temp1 = Array.new
-      view  = Array.new
+      temp1, view = Array.new(2,[])
       power = UserGroup.where(user_id: current_user.id)
       power.each{|x| temp1 << x.group_id}
       temp2 = GroupForum.where(group_id: temp1, forum_id: params[:id])
@@ -73,8 +72,7 @@ class ForumsController < ApplicationController
 
   def forum_list_power
     if current_user
-      temp1 = Array.new
-      @forum_view = Array.new
+      temp1, @forum_view = Array.new(2,[])
       power = UserGroup.where(user_id: current_user.id)
       power.each{|x| temp1 << x.group_id}
       temp2 = GroupForum.where(group_id: temp1)

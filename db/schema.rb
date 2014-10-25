@@ -67,11 +67,11 @@ ActiveRecord::Schema.define(version: 20141015195014) do
 
   create_table "members", force: true do |t|
     t.integer  "th"
-    t.string   "name",                 null: false
+    t.string   "name",                                 null: false
     t.string   "nname"
     t.string   "fname"
     t.boolean  "sex"
-    t.integer  "year",       limit: 2
+    t.integer  "year",       limit: 2, unsigned: true
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -116,12 +116,12 @@ ActiveRecord::Schema.define(version: 20141015195014) do
   add_index "schedule_attends", ["user_id"], name: "index_schedule_attends_on_user_id", using: :btree
 
   create_table "schedules", force: true do |t|
-    t.string   "title",                   null: false
+    t.string   "title",                                   null: false
     t.datetime "start_date"
     t.datetime "end_date"
     t.datetime "public_at"
     t.string   "local"
-    t.integer  "number",        limit: 2
+    t.integer  "number",        limit: 2, unsigned: true
     t.integer  "doing_type_id"
     t.text     "description"
     t.datetime "created_at"
@@ -142,9 +142,9 @@ ActiveRecord::Schema.define(version: 20141015195014) do
   add_index "title_ths", ["title_id"], name: "index_title_ths_on_title_id", using: :btree
 
   create_table "titles", force: true do |t|
-    t.string   "title",                 null: false
+    t.string   "title",                                 null: false
     t.text     "description"
-    t.integer  "level",       limit: 1
+    t.integer  "level",       limit: 1, unsigned: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end

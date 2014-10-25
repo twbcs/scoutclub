@@ -46,6 +46,7 @@ gem 'omniauth-facebook'
 gem "cocoon"
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'activerecord-mysql-unsigned'
 
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
