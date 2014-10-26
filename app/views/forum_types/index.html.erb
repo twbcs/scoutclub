@@ -2,10 +2,14 @@
   <li><%= link_to "首頁", root_path %></li>
   <li class="active">討論分區</li>
 </ol>
+
 <% @forum_types.each do |f| %>
-  <h5><%= f.title %></h5>
+<div id="forum-list">
+  <strong><%= f.title %></strong>
   <%= f.description %>
-  <%= link_to "修改", edit_forum_type_path(f), :class => 'btn btn-sm btn-success' %><br/>
+  <%= link_to "修改", edit_forum_type_path(f), :class => 'btn btn-sm btn-success' %>
+  <%= link_to "新增子板", new_forum_type_forum_path(f), :class => 'btn btn-sm btn-success' %><br/>
+
   <% @forums.each do |x| %>
     <% if x.forum_type_id == f.id %>
       <%= x.title %>
@@ -16,6 +20,6 @@
       <%= link_to "刪除", forum_path(x), :method => :delete, :class => 'btn btn-sm btn-danger' %><br/>
     <% end %>
   <% end %>
-  <%= link_to "新增子板", new_forum_type_forum_path(f), :class => 'btn btn-sm btn-success'  %><br/>
+</div>
 <% end %>
-  <%= link_to "新增", new_forum_type_path, :class => 'btn btn-success' %>
+<%= link_to "新增", new_forum_type_path, :class => 'btn btn-success' %>
