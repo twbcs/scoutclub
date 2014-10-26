@@ -32,7 +32,8 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
-    @group_forums = GroupForum.where(:group_id => params[:id] ).joins(:forum).select("group_forums.id, group_forums.level, forums.title")
+    @group_forums = GroupForum.where(:group_id => params[:id] ).joins(:forum)
+                  .select("group_forums.id, group_forums.level, forums.title")
   end
 
   def destroy

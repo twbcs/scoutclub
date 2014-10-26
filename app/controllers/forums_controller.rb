@@ -5,9 +5,7 @@ class ForumsController < ApplicationController
   def index
     @forum_types = ForumType.all
     @forums = Forum.all.order_by_forum_type.includes(:posts)
-    @posts = Post.includes(:user).find_by_sql("select po.*, COUNT(reply.reply_id) as reply_id
-              FROM (select * from posts where reply_id IS NULL AND first_post) AS po
-              left join posts as reply ON po.id = reply.reply_id GROUP BY reply.reply_id")
+    @posts = Post.includes(:user).find_first_count_reply
     @post_count = Post.where( reply_id: nil).group(:forum_id).count
     @reply_count = Post.all.group(:forum_id).count
   end

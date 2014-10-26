@@ -45,5 +45,4 @@ class DoingTypesController < ApplicationController
   	params.require(:doing_type).permit(:title)
   end
 
-
 end

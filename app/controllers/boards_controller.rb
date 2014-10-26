@@ -5,7 +5,8 @@ class BoardsController < ApplicationController
 
   # GET /boards
   def index
-    @boards = Board.all.includes(:user).paginate(:page => params[:page], :per_page => 20).order('created_at DESC')
+    @boards = Board.all.includes(:user).paginate(:page => params[:page], :per_page => 20)
+                      .order('created_at DESC')
   end
 
 
@@ -60,7 +61,7 @@ class BoardsController < ApplicationController
     end
 
     def set_user_level
-      if current_user
+      if current_user.present?
         @user_level = current_user.user_level
       else
         @user_level = 0

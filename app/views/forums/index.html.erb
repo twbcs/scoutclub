@@ -42,7 +42,7 @@
                       <%= po.reply_id %>
                     <% end %>
                   <% end %>
-                  <% unless have %>
+                  <% if have.blank? %>
                     <%= '無文章' %>
                     </td><td>
                   <% end %>

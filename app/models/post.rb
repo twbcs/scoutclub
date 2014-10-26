@@ -5,6 +5,9 @@ class Post < ActiveRecord::Base
 	delegate :name, to: :user, prefix: "post"
 
 	scope :order_by_updated_post, -> { order(update_post: :desc) }
+	scope :find_first_count_reply, -> { find_by_sql("select po.*, COUNT(reply.reply_id) as reply_id
+						FROM (select * from posts where reply_id IS NULL AND first_post) AS po
+						left join posts as reply ON po.id = reply.reply_id GROUP BY reply.reply_id") }
 
 	private
 	def update_first
