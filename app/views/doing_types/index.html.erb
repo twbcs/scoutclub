@@ -4,8 +4,9 @@
 </ol>
 
 <% @doing_types.each do |doing_type| %>
+  <%= doing_type.id %>
 	<%= doing_type.title %>
-	<%= link_to "修改", edit_doing_type_path(doing_type) %>
+	<%= link_to "修改", edit_doing_type_path(doing_type) %><br/>
 
 <% end %>
 <%= link_to "新增", new_doing_type_path %>

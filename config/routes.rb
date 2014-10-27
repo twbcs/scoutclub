@@ -31,6 +31,10 @@ Rails.application.routes.draw do
 
   root 'welcomes#index'
 
+  #if ::Rails.env.production?
+  #  match '*path', via: :all, to: 'welcomes#error_404'
+  #end
+
 
   # Example resource route with concerns:
   #   concern :toggleable do

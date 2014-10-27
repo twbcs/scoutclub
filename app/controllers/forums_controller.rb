@@ -5,7 +5,8 @@ class ForumsController < ApplicationController
   def index
     @forum_types = ForumType.all
     @forums = Forum.all.order_by_forum_type.includes(:posts)
-    @posts = Post.includes(:user).find_first_count_reply
+    @posts = Post.includes(:user).find_first_post
+    @reply = Post.find_reply_count
     @post_count = Post.where( reply_id: nil).group(:forum_id).count
     @reply_count = Post.all.group(:forum_id).count
   end
@@ -27,7 +28,7 @@ class ForumsController < ApplicationController
   def show
     @forum = Forum.find(params[:id])
     @posts = Post.where(forum_id: params[:id], reply_id: nil).includes(:user)
-            .order_by_updated_post
+            .order_by_update_post
   end
 
   def edit

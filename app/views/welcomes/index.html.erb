@@ -1,18 +1,97 @@
-  <div id="training" class="col-md-6">
-    近期授課
+<ol class="breadcrumb">
+  <li>首頁</li>
+</ol>
+
+<div class="col-md-6">
+  <div id="training" class="list">
+    <table class="table">
+      <thead>
+        <tr>
+          <td>
+            <strong>近期授課</strong>
+          </td>
+          <td align="right">
+            更多...
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <% @training_list.each do |train| %>
+        <tr>
+          <td><%= train.title %></td>
+          <td align="right">
+            <%= train.start_date.strftime("%Y %m.%d %H:%M") %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
-  <div id="schedules" class="col-md-6">
-    近期活動
+</div>
+<div class="col-md-6">
+  <div id="schedules" class="list">
+    <table class="table">
+      <thead>
+        <tr>
+          <td>
+            <strong>近期活動</strong>
+          </td>
+          <td align="right">
+            更多...
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <% @schedule_list.each do |doing| %>
+        <tr>
+          <td><%= doing.title %></td>
+          <td align="right">
+            <%= doing.start_date.strftime("%Y %m.%d %H:%M") %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
-  <div id="forums" class="col-md-6">
-    討論區最新主題
+</div>
+<div class="col-md-6">
+  <div id="forums" class="list">
+    <table class="table">
+      <thead>
+        <tr>
+          <td>
+            <strong>討論區最新主題</strong>
+          </td>
+          <td align="right">
+            更多...
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <% @post_list.each do |post| %>
+        <tr>
+          <td><%= post.subject %></td>
+          <td align="right">
+            <%= post.update_post.strftime("%Y %m.%d %H:%M") %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
-  <div id="books" class="col-md-6">
+</div>
+<div class="col-md-6">
+  <div id="books" class="list">
     近期文章
   </div>
-  <div id="photos" class="col-md-6">
+</div>
+<div class="col-md-6">
+  <div id="photos" class="list">
     最新相片
   </div>
-  <div id="movies" class="col-md-6">
+</div>
+<div class="col-md-6">
+  <div id="movies" class="list">
     近期影片
   </div>
+</div>

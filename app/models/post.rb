@@ -4,10 +4,11 @@ class Post < ActiveRecord::Base
 	belongs_to :user
 	delegate :name, to: :user, prefix: "post"
 
-	scope :order_by_updated_post, -> { order(update_post: :desc) }
-	scope :find_first_count_reply, -> { find_by_sql("select po.*, COUNT(reply.reply_id) as reply_id
-						FROM (select * from posts where reply_id IS NULL AND first_post) AS po
-						left join posts as reply ON po.id = reply.reply_id GROUP BY reply.reply_id") }
+	scope :order_by_update_post, -> { order(update_post: :desc) }
+	scope :find_first_post, -> { where(first_post: true, reply_id: nil) }
+	scope :find_reply_count, -> { find_by_sql("select po.id, po.forum_id, count(rep.reply_id)
+		 		as reply_id FROM (select * from posts where reply_id IS NULL AND first_post)
+				 AS po join posts as rep ON po.id = rep.reply_id group by rep.reply_id")}
 
 	private
 	def update_first

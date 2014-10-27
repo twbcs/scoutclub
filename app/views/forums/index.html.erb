@@ -21,37 +21,41 @@
             <%= f.description %>
           </td>
         </tr>
-        <% @forums.each do |x| %>
-          <% view = @forum_view.include?(x.id) if @forum_view %>
-          <% if x.public_at || view  %>
-            <% if x.forum_type_id == f.id %>
+        <% @forums.each do |forum| %>
+          <% view = @forum_view.include?(forum.id) if @forum_view %>
+          <% if forum.public_at || view  %>
+            <% if forum.forum_type_id == f.id %>
               <tr>
                 <td>
-                  <%= link_to x.title, forum_path(x) %><br/>
-                  <%= x.description %>
-                  <%= x.public_at ? '公開' : '隱私' %>
+                  <%= link_to forum.title, forum_path(forum) %><br/>
+                  <%= forum.description %>
+                  <%= forum.public_at ? '公開' : '隱私' %>
                 </td>
                 <td>
                   <% have = false  %>
                   <% @posts.each do |po| %>
-                    <% if po.forum_id == x.id  %>
-                      <%= link_to po.subject, forum_post_path(po.forum.id,po.id) %><br/>
+                    <% if po.forum_id == forum.id  %>
+                      <%= link_to po.subject, forum_post_path(po.forum_id,po.id) %><br/>
                       <%= po.post_name %>
                       <% have = true %>
-                      </td><td>
-                      <%= po.reply_id %>
                     <% end %>
                   <% end %>
                   <% if have.blank? %>
                     <%= '無文章' %>
-                    </td><td>
                   <% end %>
                 </td>
                 <td>
-                  <%= @post_count[x.id] if @post_count.include?(x.id) %>
+                  <% @reply.each do |rep| %>
+                    <% if rep.forum_id == forum.id %>
+                      <%= rep.reply_id %>
+                    <% end %>
+                  <% end %>
                 </td>
                 <td>
-                  <%= @reply_count[x.id] if @reply_count.include?(x.id) %>
+                  <%= @post_count[forum.id] if @post_count.include?(forum.id) %>
+                </td>
+                <td>
+                  <%= @reply_count[forum.id] if @reply_count.include?(forum.id) %>
                 </td>
               </tr>
             <% end %>
