@@ -6,7 +6,9 @@ class ForumsController < ApplicationController
     @forum_types = ForumType.all
     @forums = Forum.all.order_by_forum_type.includes(:posts)
     @posts = Post.includes(:user).find_first_post
-    @reply = Post.find_reply_count
+    @reply = Post.find_reply_count.inject({}) do |result, reply|
+      result.merge(reply[:forum_id] => reply[:reply_id])
+    end
     @post_count = Post.where( reply_id: nil).group(:forum_id).count
     @reply_count = Post.all.group(:forum_id).count
   end

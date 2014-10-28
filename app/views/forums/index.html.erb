@@ -32,7 +32,7 @@
                   <%= forum.public_at ? '公開' : '隱私' %>
                 </td>
                 <td>
-                  <% have = false  %>
+                  <% have = false %>
                   <% @posts.each do |po| %>
                     <% if po.forum_id == forum.id  %>
                       <%= link_to po.subject, forum_post_path(po.forum_id,po.id) %><br/>
@@ -45,17 +45,13 @@
                   <% end %>
                 </td>
                 <td>
-                  <% @reply.each do |rep| %>
-                    <% if rep.forum_id == forum.id %>
-                      <%= rep.reply_id %>
-                    <% end %>
-                  <% end %>
+                  <%= @reply.include?(forum.id) ? @reply[forum.id] : '0'%>
                 </td>
                 <td>
-                  <%= @post_count[forum.id] if @post_count.include?(forum.id) %>
+                  <%= @post_count.include?(forum.id) ? @post_count[forum.id] : '0' %>
                 </td>
                 <td>
-                  <%= @reply_count[forum.id] if @reply_count.include?(forum.id) %>
+                  <%= @reply_count.include?(forum.id) ? @reply_count[forum.id] : '0' %>
                 </td>
               </tr>
             <% end %>

@@ -4,7 +4,7 @@
 
 <div class="col-md-6">
   <div id="training" class="list">
-    <table class="table">
+    <table class="table table-hover">
       <thead>
         <tr>
           <td>
@@ -20,7 +20,7 @@
         <tr>
           <td><%= train.title %></td>
           <td align="right">
-            <%= train.start_date.strftime("%Y %m.%d %H:%M") %>
+            <%= train.start_date > Time.now ? '還有' + time_ago_in_words(train.start_date) : '經過' + time_ago_in_words(train.start_date) %>
           </td>
         </tr>
         <% end %>
@@ -30,7 +30,7 @@
 </div>
 <div class="col-md-6">
   <div id="schedules" class="list">
-    <table class="table">
+    <table class="table table-hover">
       <thead>
         <tr>
           <td>
@@ -46,7 +46,7 @@
         <tr>
           <td><%= doing.title %></td>
           <td align="right">
-            <%= doing.start_date.strftime("%Y %m.%d %H:%M") %>
+            <%= doing.start_date > Time.now ? '還有' + time_ago_in_words(doing.start_date) : '經過' + time_ago_in_words(doing.start_date) %>
           </td>
         </tr>
         <% end %>
@@ -56,7 +56,7 @@
 </div>
 <div class="col-md-6">
   <div id="forums" class="list">
-    <table class="table">
+    <table class="table table-hover">
       <thead>
         <tr>
           <td>
@@ -72,7 +72,7 @@
         <tr>
           <td><%= post.subject %></td>
           <td align="right">
-            <%= post.update_post.strftime("%Y %m.%d %H:%M") %>
+            <%= time_ago_in_words(post.update_post) %>
           </td>
         </tr>
         <% end %>

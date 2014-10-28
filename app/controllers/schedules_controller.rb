@@ -41,7 +41,7 @@ class SchedulesController < ApplicationController
   	@schedule = Schedule.find(params[:id])
   end
 
-  def scheduls_params
+	def scheduls_params
   	params.require(:schedule).permit(:title, :start_date, :end_date, :public_at,
 		 :local, :number, :description, :doing_type_id)
   end

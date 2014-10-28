@@ -16,6 +16,9 @@
 //= require markdown
 //= require bootstrap
 //= require bootstrap-markdown
+//= require moment
+//= require moment/zh-tw
+//= require bootstrap-datetimepicker
 //= require cocoon
 //= require turbolinks
 //= require_tree .

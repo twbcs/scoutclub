@@ -13,15 +13,18 @@
  *= require bootstrap
  *= require bootstrap-theme
  *= require bootstrap-markdown
+ *= require bootstrap-datetimepicker
  *= require iconmoon
  *= require_tree .
  *= require_self
  */
 @import 'base';
 
+
 body{
   position: relative;
-  background-color: #9f9f9f;
+  background-attachment: fixed;
+  background-image: image-url('DSC_9806.jpg');
 }
 
 .page-header{ margin: 20px 0 10px; }
@@ -57,8 +60,8 @@ footer {
 	padding-top : 20px;
 	@include gap(top, 30px);
 	@include gap(bottom, 20px);
-	.icon-html5{ color : #ffbda0; }
-  .icon-css3{ color : #a1c5ff; }
+	.icon-html5{ color : #f89c78; }
+  .icon-css3{ color : #6aa5f2; }
 }
 
 .font-set{
