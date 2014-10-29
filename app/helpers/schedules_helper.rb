@@ -3,9 +3,7 @@ module SchedulesHelper
     if time
       hh = time.strftime("%H").to_i
       mm = time.strftime("%M").to_i
-      h = time.strftime("%I").to_i
-      g = time.strftime("%m").to_i
-      d = time.strftime("%d").to_i
+
       case hh
       when 0..8
         x = '早上'
@@ -25,8 +23,7 @@ module SchedulesHelper
         x = '晚上'
       end
 
-      xtime = time.strftime("%Y年") + g.to_s + '月' + d.to_s + '日 ' + x +
-                                    h.to_s + '點' + time.strftime("%M")
+      xtime = time.strftime("%Y年%-m月%e日 #{x}%l點%M")
     end
   end
 end

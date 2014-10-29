@@ -2,11 +2,15 @@
   <li><%= link_to "首頁", root_path %></li>
   <li class="active">權限群組</li>
 </ol>
-
-<% @groups.each do |f| %>
-  <%= f.name %>
-  <%= f.admin ? '管理者' : '' %>
-  <%= link_to "權限管理", group_path(f) %>
-  <%= link_to "修改", edit_group_path(f) %><br/>
-<% end %>
+<div class="list">
+  <% @groups.each do |f| %>
+    <%= f.name %>
+    <%= f.admin ? '管理者' : '' %>
+    <%= link_to "權限管理", group_path(f) %>
+    <%= link_to "修改", edit_group_path(f) %><br/>
+    <% f.users.each do |u| %>
+      <%= u.name %>
+    <% end %><br/>
+  <% end %>
+</div>
 <%= link_to "新增", new_group_path %>

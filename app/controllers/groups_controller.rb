@@ -1,7 +1,7 @@
 class GroupsController < ApplicationController
 
   def index
-    @groups = Group.all
+    @groups = Group.all.includes(:users)
   end
 
   def new

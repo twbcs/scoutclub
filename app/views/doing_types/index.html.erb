@@ -2,11 +2,12 @@
   <li><%= link_to "首頁", root_path %></li>
   <li class="active">活動類型</li>
 </ol>
+<div class="list">
+  <% @doing_types.each do |doing_type| %>
+    <%= doing_type.id %>
+    <%= doing_type.title %>
+    <%= link_to "修改", edit_doing_type_path(doing_type), class: "btn btn-sm btn-success" %><br/>
+  <% end %>
+</div>
 
-<% @doing_types.each do |doing_type| %>
-  <%= doing_type.id %>
-	<%= doing_type.title %>
-	<%= link_to "修改", edit_doing_type_path(doing_type) %><br/>
-
-<% end %>
-<%= link_to "新增", new_doing_type_path %>
+<%= link_to "新增", new_doing_type_path, class: "btn btn-success"  %>
