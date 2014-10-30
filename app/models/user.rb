@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
 
   has_many :boards
   has_many :posts
+  has_many :articles
+  has_many :comments
   has_many :schedule_attends
   has_many :schedule, :through => :schedule_attends
   has_many :user_groups, :dependent => :destroy

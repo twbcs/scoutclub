@@ -3,9 +3,21 @@
   <li class="active">各屆幹部</li>
 </ol>
 
-<% @title_ths.each do |m| %>
-  <%= m.title_year %>
-  <%= m.member_th %>
-  <%= m.title_title %>
-  <%= m.member_name %><br/>
-<% end %>
+<div>
+  <% @title_ths.each do |m| %>
+    <% unless @year %>
+      <%= m.title_year %>
+      <br/>
+    <% end %>
+    <% @year ||= m.title_year %>
+    <% unless @year == m.title_year %>
+      <% @year = m.title_year %>
+      <br/>
+      <%= m.title_year %>
+      <br/>
+    <% end %>
+    <%= m.member_th %>
+    <%= m.title_title %>
+    <%= m.member_name %>
+  <% end %>
+</div>

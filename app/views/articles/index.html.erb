@@ -1,0 +1,16 @@
+<ol class="breadcrumb">
+  <li><%= link_to "首頁", root_path %></li>
+  <li class="active">文章總覽</li>
+</ol>
+
+<% @articles.each do |art| %>
+  <%= link_to art.title, article_path(art.id) %>
+  <%= art.title %>
+  <%= art.content %>
+  <%= art.user.name %>
+  <%= art.art_type.name %>
+  <%= time_ago_in_words(art.created_at) %>
+  <%= link_to "修改", edit_article_path(art.id) %><br/>
+<% end %>
+
+<%= link_to "新增文章", new_article_path %>

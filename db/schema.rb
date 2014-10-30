@@ -11,7 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141025073213) do
+ActiveRecord::Schema.define(version: 20141029060457) do
+
+  create_table "art_types", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "articles", force: true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.integer  "user_id"
+    t.integer  "art_type_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "boards", force: true do |t|
     t.integer  "user_id"
@@ -22,6 +37,14 @@ ActiveRecord::Schema.define(version: 20141025073213) do
   end
 
   add_index "boards", ["user_id"], name: "index_boards_on_user_id", using: :btree
+
+  create_table "comments", force: true do |t|
+    t.string   "content"
+    t.integer  "user_id"
+    t.integer  "article_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "doing_types", force: true do |t|
     t.string   "title",      null: false

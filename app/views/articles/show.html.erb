@@ -1,0 +1,22 @@
+<ol class="breadcrumb">
+  <li><%= link_to "首頁", root_path %></li>
+  <li><%= link_to "文章總覽", articles_path %></li>
+  <li class="active">文章：<%= @article.title %></li>
+</ol>
+
+<%= @article.title %>
+<%= @article.user.name %>
+<%= @article.content %>
+
+<% if @comments %>
+  <% @comments.each do |co| %>
+    <%= co.content %>
+    <%= co.user.name %>
+    <%= time_ago_in_words(co.created_at) %>
+  <% end %>
+<% end %>
+
+<%= form_for @comment do |f| %>
+  <%= f.text_area :content, class: "form-control" %>
+  <%= f.submit "回應", class: "btn btn-success" %>
+<% end %>

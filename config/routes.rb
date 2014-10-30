@@ -7,7 +7,11 @@ Rails.application.routes.draw do
   :passwords     => "users/passwords",
   :omniauth_callbacks => "users/omniauth_callbacks"
   }
-
+  resources :articles do
+    resources :comments, except: [:show, :index]
+  end
+  resources :comments, except: [:show, :index]
+  resources :art_types, except: [:show]
   resources :user_groups, except: [:show]
   resources :members
   resources :titles
@@ -16,18 +20,17 @@ Rails.application.routes.draw do
   resources :forums do
     resources :posts, except: [:index]
   end
+  resources :posts, except: [:index]
   resources :forum_types do
     resources :forums
   end
   resources :groups do
     resources :group_forums, except: [:show, :index]
   end
+  resources :group_forums, except: [:show, :index]
   resources :schedule_attends
   resources :schedules
   resources :doing_types, except: [:show]
-  resources :group_forums, except: [:show, :index]
-  resources :posts, except: [:index]
-
 
   root 'welcomes#index'
 

@@ -1,0 +1,13 @@
+<ol class="breadcrumb">
+  <li><%= link_to "首頁", root_path %></li>
+  <li><%= link_to "文章總覽", articles_path %></li>
+  <li class="active">新增文章</li>
+</ol>
+
+<%= form_for @article do |f| %>
+  <%= f.text_field :title, class: "form-control" %>
+  <%= f.select(:art_type_id, ArtType.all.collect {|u| [u.name, u.id]},
+      { :prompt => '請選擇'}, :class => 'form-control' ) %>
+  <%= f.text_area :content %>
+  <%= f.submit "新增", class: " btn btn-success" %>
+<% end %>
