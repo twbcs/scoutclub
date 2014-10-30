@@ -21,7 +21,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    @post.user_id = current_user.id
+    @post.set_user(current_user.id)
     if @post.save
       if @post.reply_id
         redirect_to forum_post_path(@post.forum_id, @post.reply_id)

@@ -9,7 +9,7 @@
 </head>
 <body>
 <span id='top'> </span>
-  <%= render :partial => 'nav'%>
+  <%= render 'nav'%>
   <div class='container'>
 
       <% if notice %>
@@ -22,7 +22,7 @@
         <%= yield %>
   </div>
   <div class='container'>
-  <%= render :partial => 'footer' %>
+  <%= render 'footer' %>
   </div>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 </body>

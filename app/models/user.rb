@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
   def self.new_with_session(params, session)
     super.tap do |user|
       if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
-        user.email = data["email"] if user.email.blank?
+        user.email ||= data["email"]
       end
     end
   end
@@ -43,7 +43,7 @@ class User < ActiveRecord::Base
   private
   def rules
     user_count = User.all.count
-    if use_count == 1
+    if user_count == 1
       user = User.first
       user_rule = Modify.new(:user_id => user.id, :user_rule => 63)
       user_rule.save

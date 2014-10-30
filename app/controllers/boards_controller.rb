@@ -24,8 +24,7 @@ class BoardsController < ApplicationController
   # POST /boards
   def create
     @board = Board.new(board_params)
-    @board.user_id = current_user.id
-
+    @board.set_user(current_user.id)
     if @board.save
       redirect_to boards_url, notice: '留言已新增.'
     else

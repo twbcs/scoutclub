@@ -9,7 +9,7 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(art_params)
-    @article.user_id = current_user.id
+    @article.set_user(current_user.id)
     if @article.save
       redirect_to article_path(@article.id)
     else
@@ -34,6 +34,12 @@ class ArticlesController < ApplicationController
     @article  = Article.where(id: params[:id]).includes(:user, :art_type).first
     @comments = Comment.where(article_id: params[:id]).includes(:user)
     @comment = Comment.new
+  end
+
+  def destroy
+    @article = Article.find(params[:id])
+    @article.destroy
+    redirect_to articles_path
   end
 
   private

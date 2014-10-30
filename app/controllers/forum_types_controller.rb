@@ -29,6 +29,12 @@ class ForumTypesController < ApplicationController
     end
   end
 
+  def destroy
+    @forum_type = ForumType.find(params[:id])
+    @forum_type.destroy
+    redirect_to forum_types_url
+  end
+
   private
   def set_forum_type
     @forum_type = ForumType.find(params[:id])

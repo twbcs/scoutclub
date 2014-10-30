@@ -13,12 +13,12 @@
   <%= f.label :public_at %>
   <%= f.hidden_field :forum_type_id %>
   <div class="btn-group" data-toggle="buttons">
-    <% @forum.public_at.present? ? (at, bt = '','active') : (at, bt = 'active','') %>
+    <% @forum.public_at? ? (at, bt = '','active') : (at, bt = 'active','') %>
     <label class="btn btn-default <%=raw at %>">
-      <%= @forum.public_at.present? ? f.radio_button( :public_at, 'false' ) : f.radio_button( :public_at, 'false', checked: true )  %> 隱私
+      <%= @forum.public_at? ? f.radio_button( :public_at, 'false' ) : f.radio_button( :public_at, 'false', checked: true )  %> 隱私
     </label>
     <label class="btn btn-default <%=raw bt %>">
-      <%= @forum.public_at.present? ? f.radio_button( :public_at, 'true', checked: true ) : f.radio_button( :public_at, 'true' ) %> 公開
+      <%= @forum.public_at? ? f.radio_button( :public_at, 'true', checked: true ) : f.radio_button( :public_at, 'true' ) %> 公開
     </label>
   </div>
   <div class="form-inline">
