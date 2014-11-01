@@ -7,16 +7,18 @@
 <%= @article.title %>
 <%= @article.user.name %>
 <%= @article.content %>
-
-<% if @comments %>
-  <% @comments.each do |co| %>
-    <%= co.content %>
-    <%= co.user.name %>
-    <%= time_ago_in_words(co.created_at) %>
+<div class="comments">
+  <% if @comments %>
+    <% @comments.each do |co| %>
+      <%= co.content %>
+      <%= co.user.name %>
+      <%= time_ago_in_words(co.created_at) %><br/>
+    <% end %>
   <% end %>
-<% end %>
+</div>
 
-<%= form_for @comment do |f| %>
+<%= form_for(@comment, url: articles_append_path, remote: true) do |f| %>
   <%= f.text_area :content, class: "form-control" %>
-  <%= f.submit "回應", class: "btn btn-success" %>
+  <%= f.hidden_field :article_id %>
+  <%= f.submit "回應", :disable_with => "傳送中...", method: :post, class: "btn btn-success" %>
 <% end %>

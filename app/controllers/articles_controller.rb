@@ -1,6 +1,11 @@
 class ArticlesController < ApplicationController
   def index
-    @articles = Article.all.includes(:user, :art_type)
+    if params[:art_type_id]
+      @articles = Article.where(art_type_id: params[:art_type_id])
+    else
+      @articles = Article.all.includes(:user, :art_type)
+    end
+      @art_type = ArtType.all
   end
 
   def new
@@ -33,7 +38,14 @@ class ArticlesController < ApplicationController
   def show
     @article  = Article.where(id: params[:id]).includes(:user, :art_type).first
     @comments = Comment.where(article_id: params[:id]).includes(:user)
-    @comment = Comment.new
+    @comment = Comment.new(article_id: @article.id)
+  end
+
+  def append
+    @comment = Comment.new(comment_params)
+    @comment.set_user(current_user.id)
+    @comment.save
+    respond_to(:js)
   end
 
   def destroy
@@ -45,5 +57,9 @@ class ArticlesController < ApplicationController
   private
   def art_params
     params.require(:article).permit(:title, :content, :user_id, :art_type_id)
+  end
+
+  def comment_params
+    params.require(:comment).permit(:content, :article_id, :user_id)
   end
 end

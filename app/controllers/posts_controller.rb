@@ -11,9 +11,8 @@ class PostsController < ApplicationController
   end
 
   def new
-    @post = Post.new
+    @post = Post.new(forum_id: params[:forum_id])
     @post.reply_id = params[:reply_id] if params[:reply_id]
-    @post.forum_id = params[:forum_id]
     @forum = Forum.find_by(id: params[:forum_id])
     @posts = Post.where("id = ? OR reply_id = ?", params[:reply_id], params[:reply_id])
             .includes(:user) if params[:reply_id]

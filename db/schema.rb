@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141029060457) do
+ActiveRecord::Schema.define(version: 20141031025539) do
 
   create_table "art_types", force: true do |t|
     t.string   "name"
@@ -27,6 +27,9 @@ ActiveRecord::Schema.define(version: 20141029060457) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "articles", ["art_type_id"], name: "index_articles_on_art_type_id", using: :btree
+  add_index "articles", ["user_id"], name: "index_articles_on_user_id", using: :btree
 
   create_table "boards", force: true do |t|
     t.integer  "user_id"
@@ -45,6 +48,9 @@ ActiveRecord::Schema.define(version: 20141029060457) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "comments", ["article_id"], name: "index_comments_on_article_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "doing_types", force: true do |t|
     t.string   "title",      null: false

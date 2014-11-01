@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   :passwords     => "users/passwords",
   :omniauth_callbacks => "users/omniauth_callbacks"
   }
+  post 'articles/append'
   resources :articles do
     resources :comments, except: [:show, :index]
   end
