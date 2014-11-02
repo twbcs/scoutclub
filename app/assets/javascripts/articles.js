@@ -4,9 +4,9 @@ $("#comment").on("click",function(){
 $(function(){
   $('#comment_content').keyup(function(){
     if ($(this).val().length < 10 ) {
-      $('#comment').attr('disabled', 'disabled');
+      $('#comment').addClass("disabled");
     } else {
-      $('#comment').removeAttr('disabled');
+      $('#comment').removeClass("disabled");
     }
   });
 });
