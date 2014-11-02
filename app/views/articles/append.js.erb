@@ -1,2 +1,4 @@
-var link = $(<%= @comment.content + @comment.user.name + time_ago_in_words(@comment.created_at) %>);
-$(".comments").hide();
+var link = "<%= @comment.content + @comment.user.name + time_ago_in_words(@comment.created_at) %><br/>";
+$(".comments").append(link);
+$("#comment_content").val('');
+$("#comment").removeClass('disabled').val('回應');
