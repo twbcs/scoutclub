@@ -25,7 +25,7 @@
 </head>
 <body>
 <span id='top'> </span>
-  <%= render 'nav'%>
+  <%= render 'admnav'%>
   <div class='container'>
 
       <% if notice %>
@@ -37,7 +37,6 @@
 
         <%= yield %>
   </div>
-  <%= link_to "admin", dashboard_admin_root_path %>
   <div class='container'>
   <%= render 'footer' %>
   </div>

@@ -5,7 +5,7 @@
   <li class="active">新增權限</li>
 </ol>
 
-<%= form_for @group_forum do |f| %>
+<%= form_for [@group,@group_forum] do |f| %>
   <%= f.hidden_field :group_id %>
   <div class="form-inline">
     <%= f.label :forum_id %>

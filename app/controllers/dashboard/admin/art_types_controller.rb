@@ -1,4 +1,4 @@
-class ArtTypesController < ApplicationController
+class Dashboard::Admin::ArtTypesController < Dashboard::Admin::AdminController
   def index
     @art_types = ArtType.all
   end
@@ -11,7 +11,7 @@ class ArtTypesController < ApplicationController
     @art_type = ArtType.new(art_params)
 
     if @art_type.save
-      redirect_to art_types_url
+      redirect_to dashboard_admin_art_types_url
     else
       render :new
     end
@@ -25,7 +25,7 @@ class ArtTypesController < ApplicationController
     @art_type = ArtType.find(params[:id])
 
     if @art_type.update(art_params)
-      redirect_to art_types_url
+      redirect_to dashboard_admin_art_types_url
     else
       render :edit
     end
@@ -33,8 +33,8 @@ class ArtTypesController < ApplicationController
 
   def destroy
     @art_type = ArtType.find(params[:id])
-
     @art_type.destroy
+    redirect_to dashboard_admin_art_types_url
   end
 
   private

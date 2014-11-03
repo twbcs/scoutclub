@@ -12,10 +12,10 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new(forum_id: params[:forum_id])
-    @post.reply_id = params[:reply_id] if params[:reply_id]
+    @post.reply_id = params[:id] if params[:id]
     @forum = Forum.find_by(id: params[:forum_id])
-    @posts = Post.where("id = ? OR reply_id = ?", params[:reply_id], params[:reply_id])
-            .includes(:user) if params[:reply_id]
+    @posts = Post.where("id = ? OR reply_id = ?", params[:id], params[:id])
+            .includes(:user) if params[:id]
   end
 
   def create
@@ -84,9 +84,7 @@ class PostsController < ApplicationController
 
   def view_add
     view = Post.find(params[:id])
-    x = view.view_count
-    x !=nil ? x = x + 1 : x = 1
-    view.update_column(:view_count, x)
+    view.update_column(:view_count, view.view_count + 1)
   end
 
   def login

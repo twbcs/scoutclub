@@ -1,6 +1,6 @@
 <ol class="breadcrumb">
-  <li><%= link_to "首頁", root_path %></li>
-  <li><%= link_to "文章總覽", articles_path %></li>
+  <li><%= link_to "首頁", dashboard_admin_root_path %></li>
+  <li><%= link_to "文章總覽", dashboard_admin_articles_path %></li>
   <li class="active">文章：<%= @article.title %></li>
 </ol>
 
@@ -17,7 +17,7 @@
   <% end %>
 </div>
 
-<%= form_for(@comment, url: append_article_path, remote: true) do |f| %>
+<%= form_for(@comment, url: append_dashboard_admin_article_path, remote: true) do |f| %>
   <%= f.text_area :content, class: "form-control", placeholder: "請最少輸入十個字"%>
   <%= f.hidden_field :article_id %>
   <%= f.submit "回應", :disable_with => "傳送中...", method: :post,

@@ -36,7 +36,7 @@
           新增於：<%= m.created_at.strftime("%Y %m.%d %H:%M ")  %>
         <% end %>
         <%= link_to "修改", edit_forum_post_path(forum_id: m.forum_id, id: m.id), class: "btn btn-success btn-sm" if user || edit %>
-        <%= link_to "回文", new_forum_post_path(forum_id: m.forum_id, reply_id: @posts.first.id), class: "btn btn-success btn-sm" if reply %>
+        <%= link_to "回文", new_forum_post_path(forum_id: m.forum_id, id: @posts.first.id), class: "btn btn-success btn-sm" if reply %>
         <%= link_to "刪除", forum_post_path(forum_id: m.forum_id, id: m.id), :method => :delete, class: "btn btn-danger btn-sm" if delete %><br/>
       </div>
     </div>

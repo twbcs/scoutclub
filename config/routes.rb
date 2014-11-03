@@ -5,39 +5,81 @@ Rails.application.routes.draw do
   :passwords     => "users/passwords",
   :omniauth_callbacks => "users/omniauth_callbacks"
   }
-  post 'articles/append'
-  resources :articles do
-    resources :comments, except: [:show, :index]
+
+  namespace :dashboard do
+    resources :articles do
+        post :append, :on => :member
+    end
+    resources :forums do
+      resources :posts, except: [:index]
+    end
+    resources :posts, except: [:index]
+    root 'welcomes#index'
+
+    namespace :admin do  #, :path => "sekret" 改路徑名
+      resources :members
+      resources :titles
+      resources :title_ths, only: [:index]
+      resources :schedules
+      resources :musics
+      resources :albums
+      resources :boards
+      resources :art_types, except: [:show]
+      resources :groups do
+        resources :group_forums, except: [:show, :index]
+      end
+      resources :user_groups, except: [:show]
+      resources :articles do
+          post :append, :on => :member
+      end
+      resources :forums do
+        resources :posts, except: [:index]
+      end
+      resources :forum_types do
+        resources :forums
+      end
+      resources :doing_types, except: [:show]
+      root 'welcomes#index'
+    end
   end
-  resources :comments, except: [:show, :index]
-  resources :art_types, except: [:show]
-  resources :user_groups, except: [:show]
+
+  resources :articles do
+      post :append, :on => :member
+  end
+
+  resources :art_types, except: [:show]  #admin
+  resources :user_groups, except: [:show] #admin
+  resources :doing_types, except: [:show] #admin
+
   resources :members
   resources :titles
   resources :title_ths, only: [:index]
+
   resources :boards
   resources :forums do
     resources :posts, except: [:index]
   end
-  resources :posts, except: [:index]
   resources :forum_types do
     resources :forums
   end
+
   resources :groups do
     resources :group_forums, except: [:show, :index]
   end
-  resources :group_forums, except: [:show, :index]
-  resources :schedule_attends
   resources :schedules
-  resources :doing_types, except: [:show]
   resources :musics
   resources :albums
+
   root 'welcomes#index'
 
   #if ::Rails.env.production?
   #  match '*path', via: :all, to: 'welcomes#error_404'
   #end
 
+#resources :posts do
+#  resources :comments, only: [:index, :new, :create]
+#end
+#resources :comments, only: [:show, :edit, :update, :destroy]
 
   # Example resource route with concerns:
   #   concern :toggleable do

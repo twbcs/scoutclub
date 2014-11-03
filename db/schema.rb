@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141102125953) do
+ActiveRecord::Schema.define(version: 20141103122941) do
 
   create_table "albums", force: true do |t|
     t.string   "title"
     t.text     "description"
-    t.integer  "view_count"
+    t.integer  "view_count",   default: 0, null: false
     t.datetime "public_at"
     t.datetime "add_photo_to"
     t.datetime "created_at"
@@ -149,16 +149,16 @@ ActiveRecord::Schema.define(version: 20141102125953) do
   add_index "photos", ["user_id"], name: "index_photos_on_user_id", using: :btree
 
   create_table "posts", force: true do |t|
-    t.integer  "forum_id",    null: false
-    t.string   "subject",     null: false
-    t.text     "body",        null: false
+    t.integer  "forum_id",                null: false
+    t.string   "subject",                 null: false
+    t.text     "body",                    null: false
     t.integer  "reply_id"
     t.integer  "user_id"
     t.datetime "lock_at"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "type"
-    t.integer  "view_count"
+    t.integer  "view_count",  default: 0, null: false
     t.datetime "update_post"
     t.boolean  "first_post"
   end
