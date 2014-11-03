@@ -1,4 +1,5 @@
 class Post < ActiveRecord::Base
+	include Right
 	after_create :update_first
 	belongs_to :forum
 	belongs_to :user
@@ -9,10 +10,6 @@ class Post < ActiveRecord::Base
 	scope :find_reply_count, -> { find_by_sql("select po.id, po.forum_id, count(rep.reply_id)
 		 		as reply_id FROM (select * from posts where reply_id IS NULL AND first_post)
 				 AS po join posts as rep ON po.id = rep.reply_id group by rep.reply_id")}
-
-	def set_user(user)
-		self.user_id = user
-	end
 
 	private
 	def update_first

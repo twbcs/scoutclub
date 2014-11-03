@@ -42,9 +42,14 @@ class ArticlesController < ApplicationController
   end
 
   def append
-    @comment = Comment.new(comment_params)
-    @comment.set_user(current_user.id)
-    @comment.save
+    check = Comment.last.created_at
+    @save = false
+    if (Time.now - check)  > 10
+      @comment = Comment.new(comment_params)
+      @comment.set_user(current_user.id)
+      @comment.save
+      @save = true
+    end
     respond_to(:js)
   end
 

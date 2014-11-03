@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'welcomes/index'
-
   devise_for :users, :controllers => {
   :registrations => "users/registrations",
   :passwords     => "users/passwords",
@@ -32,7 +30,8 @@ Rails.application.routes.draw do
   resources :schedule_attends
   resources :schedules
   resources :doing_types, except: [:show]
-
+  resources :musics
+  resources :albums
   root 'welcomes#index'
 
   #if ::Rails.env.production?

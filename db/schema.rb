@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141031025539) do
+ActiveRecord::Schema.define(version: 20141102125953) do
+
+  create_table "albums", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "view_count"
+    t.datetime "public_at"
+    t.datetime "add_photo_to"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "art_types", force: true do |t|
     t.string   "name"
@@ -116,6 +126,27 @@ ActiveRecord::Schema.define(version: 20141031025539) do
   end
 
   add_index "modifies", ["user_id"], name: "index_modifies_on_user_id", using: :btree
+
+  create_table "musics", force: true do |t|
+    t.string   "file"
+    t.string   "title"
+    t.text     "description"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "musics", ["user_id"], name: "index_musics_on_user_id", using: :btree
+
+  create_table "photos", force: true do |t|
+    t.string   "file"
+    t.string   "title"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "photos", ["user_id"], name: "index_photos_on_user_id", using: :btree
 
   create_table "posts", force: true do |t|
     t.integer  "forum_id",    null: false

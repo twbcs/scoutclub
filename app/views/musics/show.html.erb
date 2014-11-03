@@ -1,0 +1,10 @@
+<ol class="breadcrumb">
+  <li><%= link_to "首頁", root_path %></li>
+  <li><%= link_to "團康音樂", musics_path %></li>
+  <li class="active"><%= @music.title %></li>
+</ol>
+
+<%= @music.title %>
+<%= @music.file %>
+<%= @music.description %>
+<%= link_to "刪除", music_path(@music.id), method: :delete %>
