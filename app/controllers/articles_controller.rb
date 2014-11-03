@@ -42,9 +42,9 @@ class ArticlesController < ApplicationController
   end
 
   def append
-    check = Comment.last.created_at
+    check = Comment.where(user_id: current_user.id).last.created_at
     @save = false
-    if (Time.now - check)  > 10
+    if (Time.now - check)  > 5 #避免因JS問題重複回應
       @comment = Comment.new(comment_params)
       @comment.set_user(current_user.id)
       @comment.save

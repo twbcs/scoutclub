@@ -33,7 +33,6 @@ class User < ActiveRecord::Base
     SecureRandom.uuid
   end
 
-
   def self.new_with_session(params, session)
     super.tap do |user|
       if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
@@ -47,9 +46,11 @@ class User < ActiveRecord::Base
     user_count = User.all.count
     if user_count == 1
       user = User.first
-      user_rule = Modify.new(:user_id => user.id, :user_rule => 63)
-      user_rule.save
+      user_rule = Modify.create(user_id: user.id, user_rule: 63)
+      forum_rule = UserGroup.create(user_id: user.id, group_id: 1 )
+    else
+      user = User.last
+      forum_rule = UserGroup.create(user_id: user.id, group_id: 6 )
     end
   end
-
 end

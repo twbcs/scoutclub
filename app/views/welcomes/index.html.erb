@@ -11,14 +11,14 @@
             <strong>近期授課</strong>
           </td>
           <td align="right">
-            更多...
+            <%= link_to "更多...", schedules_path %>
           </td>
         </tr>
       </thead>
       <tbody>
         <% @training_list.each do |train| %>
         <tr>
-          <td><%= train.title %></td>
+          <td><%= link_to train.title, schedule_path(train.id) %></td>
           <td align="right">
             <%= train.start_date > Time.now ? '還有' + time_ago_in_words(train.start_date) : '經過' + time_ago_in_words(train.start_date) %>
           </td>
@@ -37,14 +37,14 @@
             <strong>近期活動</strong>
           </td>
           <td align="right">
-            更多...
+            <%= link_to "更多...", schedules_path %>
           </td>
         </tr>
       </thead>
       <tbody>
         <% @schedule_list.each do |doing| %>
         <tr>
-          <td><%= doing.title %></td>
+          <td><%= link_to doing.title, schedule_path(doing.id) %></td>
           <td align="right">
             <%= doing.start_date > Time.now ? '還有' + time_ago_in_words(doing.start_date) : '經過' + time_ago_in_words(doing.start_date) %>
           </td>
@@ -63,14 +63,14 @@
             <strong>討論區最新主題</strong>
           </td>
           <td align="right">
-            更多...
+            <%= link_to "更多...", forums_path %>
           </td>
         </tr>
       </thead>
       <tbody>
         <% @post_list.each do |post| %>
         <tr>
-          <td><%= post.subject %></td>
+          <td><%= link_to post.subject, forum_post_path(forum_id: post.forum_id, id: post.id) %></td>
           <td align="right">
             <%= time_ago_in_words(post.update_post) %>
           </td>
@@ -82,7 +82,28 @@
 </div>
 <div class="col-md-6">
   <div id="books" class="list">
-    近期文章
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <td>
+            <strong>近期文章</strong>
+          </td>
+          <td align="right">
+            <%= link_to "更多...", articles_path %>
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <% @articles_list.each do |art| %>
+        <tr>
+          <td><%= link_to art.title, article_path(art.id) %></td>
+          <td align="right">
+            <%= time_ago_in_words(art.created_at) %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 </div>
 <div class="col-md-6">
