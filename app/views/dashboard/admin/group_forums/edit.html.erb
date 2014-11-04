@@ -1,0 +1,19 @@
+<ol class="breadcrumb">
+  <li><%= link_to "首頁", dashboard_admin_root_path %></li>
+  <li><%= link_to "權限群組", dashboard_admin_groups_path %></li>
+  <li><%= link_to @group.name, dashboard_admin_group_path(@group) %></li>
+  <li class="active">修改權限</li>
+</ol>
+
+<%= form_for [:dashboard,:admin,@group,@group_forum] do |f| %>
+  <%= f.hidden_field :group_id %>
+  <div class="form-inline">
+    <%= f.label :forum_id %>
+    <%= f.select(:forum_id, Forum.all.order_by_forum_type.collect {|u| [u.title, u.id]}, { :prompt => '請選擇'}, :class => 'form-control' ) %>
+  </div>
+  <div class="form-inline">
+  <%= f.label :level %>
+  <%= f.select(:level, forum_ability, { :prompt => '請選擇'}, :class => 'form-control' )  %>
+</div>
+  <%= f.submit "確認", :disable_with => '處理中...' %>
+<% end %>

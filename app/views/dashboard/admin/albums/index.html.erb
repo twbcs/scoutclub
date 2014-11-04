@@ -1,0 +1,10 @@
+<ol class="breadcrumb">
+  <li><%= link_to "首頁", dashboard_admin_root_path %></li>
+  <li class="active">相簿</li>
+</ol>
+
+<% @albums.each do |m|%>
+  <%= m.title %>
+  <%= m.description %>
+  <%= m.view_count %>
+<% end  %>

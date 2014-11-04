@@ -39,7 +39,7 @@ gem 'spring',        group: :development
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
-
+gem "dalli"
 gem "devise"
 gem "omniauth"
 gem 'omniauth-facebook'

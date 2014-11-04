@@ -1,0 +1,17 @@
+<ol class="breadcrumb">
+  <li><%= link_to "首頁", dashboard_admin_root_path %></li>
+  <li class="active">權限群組</li>
+</ol>
+<div class="list">
+  <% @groups.each do |f| %>
+    <%= f.name %>
+    <%= f.admin ? '管理者' : '' %>
+    <%= link_to "權限管理", dashboard_admin_group_path(f), class: "btn btn-sm btn-success" %>
+    <%= link_to "修改", edit_dashboard_admin_group_path(f), class: "btn btn-sm btn-success" %>
+    <%= link_to "刪除", dashboard_admin_group_path(f), method: :delete, class: "btn btn-sm btn-danger" %><br/>
+    <% f.users.each do |u| %>
+      <%= u.name %>
+    <% end %><br/>
+  <% end %>
+</div>
+<%= link_to "新增", new_dashboard_admin_group_path, class: "btn btn-success" %>

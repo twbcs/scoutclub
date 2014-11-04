@@ -1,6 +1,0 @@
-<% if @save %>
-  var link = "<%= @comment.content + @comment.user.name + time_ago_in_words(@comment.created_at) %><br/>";
-  $(".comments").append(link);
-<% end %>
-$("#comment_content").val('');
-$("#comment").val('回應');

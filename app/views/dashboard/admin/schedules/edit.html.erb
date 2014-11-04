@@ -1,0 +1,56 @@
+<ol class="breadcrumb">
+  <li><%= link_to "首頁", dashboard_admin_root_path %></li>
+  <li><%= link_to "活動行事曆", dashboard_admin_schedules_path %></li>
+  <li class="active">修改</li>
+</ol>
+
+<%= form_for [:dashboard,:admin,@schedule] do |f| -%>
+  <div class="form-inline">
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+  <div class="form-inline">
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </div>
+  <div class="form-inline">
+    <%= f.label :number	%>
+    <%= f.text_field :number %>
+  </div>
+  <div class="form-group col-md-7">
+    <%= f.label :start_date %>
+    <div class='input-group date' id='datetimepicker1'>
+      <%= f.text_field :start_date, class: "form-control", 'data-date-format' => "YYYY/MM/DD HH:mm",
+           value: @schedule.start_date.strftime("%Y/%m/%d %H:%M") %>
+      <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+      </span>
+    </div>
+  </div>
+  <div class="form-group col-md-7">
+    <%= f.label :end_date %>
+    <div class='input-group date' id='datetimepicker2'>
+      <%= f.text_field :end_date, class: "form-control", 'data-date-format' => "YYYY/MM/DD HH:mm",
+           value: (@schedule.end_date.strftime("%Y/%m/%d %H:%M") if @schedule.end_date) %>
+      <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+      </span>
+    </div>
+  </div>
+  <div class="form-group col-md-7">
+    <%= f.label :public_at %>
+    <div class='input-group date' id='datetimepicker3'>
+      <%= f.text_field :public_at, class: "form-control", 'data-date-format' => "YYYY/MM/DD HH:mm",
+           value: (@schedule.public_at.strftime("%Y/%m/%d %H:%M") if @schedule.public_at) %>
+      <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+      </span>
+    </div>
+  </div>
+  <div class="form">
+    <%= f.label :local %>
+    <%= f.text_field :local %>
+  </div>
+  <div class="form col-md-7">
+    <%= f.label :doing_type_id %>
+    <%= f.select(:doing_type_id, DoingType.all.collect {|u| [u.title, u.id]}, { :prompt => '請選擇'}, :class => 'form-control' ) %>
+  </div>
+  <%= f.submit "確認", :disable_with => '處理中...', class: "btn btn-success" %>
+<% end -%>

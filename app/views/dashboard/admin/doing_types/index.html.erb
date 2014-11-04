@@ -1,0 +1,14 @@
+<ol class="breadcrumb">
+  <li><%= link_to "首頁", dashboard_admin_root_path %></li>
+  <li class="active">活動類型</li>
+</ol>
+<div class="list">
+  <% @doing_types.each do |doing_type| %>
+    <%= doing_type.id %>
+    <%= doing_type.title %>
+    <%= link_to "修改", edit_dashboard_admin_doing_type_path(doing_type), class: "btn btn-sm btn-success" %>
+    <%= link_to "刪除", dashboard_admin_doing_type_path(doing_type) , method: :delete, class: "btn btn-sm btn-danger"%><br/>
+  <% end %>
+</div>
+
+<%= link_to "新增", new_dashboard_admin_doing_type_path, class: "btn btn-success"  %>

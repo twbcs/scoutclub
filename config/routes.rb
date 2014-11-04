@@ -19,7 +19,6 @@ Rails.application.routes.draw do
     namespace :admin do  #, :path => "sekret" 改路徑名
       resources :members
       resources :titles
-      resources :title_ths, only: [:index]
       resources :schedules
       resources :musics
       resources :albums
@@ -43,43 +42,23 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :articles do
-      post :append, :on => :member
+  resources :articles,  only: [:index, :show]
+  resources :forums,    only: [:index, :show] do
+    resources :posts,   only: [:show]
   end
-
-  resources :art_types, except: [:show]  #admin
-  resources :user_groups, except: [:show] #admin
-  resources :doing_types, except: [:show] #admin
-
-  resources :members
-  resources :titles
-  resources :title_ths, only: [:index]
-
-  resources :boards
-  resources :forums do
-    resources :posts, except: [:index]
-  end
-  resources :forum_types do
-    resources :forums
-  end
-
-  resources :groups do
-    resources :group_forums, except: [:show, :index]
-  end
-  resources :schedules
-  resources :musics
-  resources :albums
+  resources :boards,    only: [:index]
+  resources :schedules, only: [:index, :show]
+  resources :musics,    only: [:index, :show]
+  resources :albums,    only: [:index, :show]
+  resources :members,   only: [:index]
+  resources :titles,    only: [:index]
+  resources :title_ths, only: [:index] # not admin
 
   root 'welcomes#index'
 
   #if ::Rails.env.production?
   #  match '*path', via: :all, to: 'welcomes#error_404'
   #end
-
-#resources :posts do
-#  resources :comments, only: [:index, :new, :create]
-#end
-#resources :comments, only: [:show, :edit, :update, :destroy]
 
   # Example resource route with concerns:
   #   concern :toggleable do

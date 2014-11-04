@@ -1,0 +1,17 @@
+<ol class="breadcrumb">
+  <li><%= link_to "首頁", dashboard_admin_root_path %></li>
+  <li class="active">活動行事曆</li>
+</ol>
+<% @schedules.each do |t| %>
+  <%= link_to t.title, dashboard_admin_schedule_path(t) %>
+  <%= t.start_date.strftime("%Y %m %d %H:%M") %>
+  <%= t.end_date.strftime("%Y %m %d %H:%M") %>
+  <%= t.public_at.strftime("%Y %m %d %H:%M") if t.public_at %>
+  <%= t.local %>
+  <%= t.number %>
+  <%= t.description %>
+  <%= t.type_title %>
+  <%= link_to "修改", edit_dashboard_admin_schedule_path(t), class: "btn btn-sm btn-success" %>
+  <%= link_to "刪除", dashboard_admin_schedule_path(t), method: :delete, class: "btn btn-sm btn-danger" %><br/>
+<% end %>
+<%= link_to "新增", new_dashboard_admin_schedule_path, class: "btn btn-success" %>

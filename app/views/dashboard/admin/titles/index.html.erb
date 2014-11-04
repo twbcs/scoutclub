@@ -1,0 +1,15 @@
+<ol class="breadcrumb">
+  <li><%= link_to "首頁", dashboard_admin_root_path %></li>
+  <li class="active">職務職掌</li>
+</ol>
+<div class="list">
+  <% @titles.each do |t| %>
+    <%= t.title %>
+    <%= t.description %>
+    <%= t.level %>
+    <%= link_to "修改", edit_dashboard_admin_title_path(t), class: "btn btn-sm btn-success"  %>
+    <%= link_to "刪除", dashboard_admin_title_path(t), :method => :delete, class: "btn btn-sm btn-danger"  %><br/>
+  <% end %>
+</div>
+
+<%= link_to "新增", new_dashboard_admin_title_path, class: "btn btn-success" %>

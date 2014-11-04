@@ -1,0 +1,12 @@
+<ol class="breadcrumb">
+  <li><%= link_to "首頁", dashboard_admin_root_path %></li>
+  <li class="active">團康音樂</li>
+</ol>
+
+<%= link_to "新增", new_dashboard_admin_music_path %>
+
+<% @musics.each do |m|%>
+  <%= link_to m.title, dashboard_admin_music_path(m.id) %>
+  <%= m.file %>
+  <%= m.user.name %>
+<% end %>

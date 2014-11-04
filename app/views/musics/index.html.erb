@@ -3,8 +3,6 @@
   <li class="active">團康音樂</li>
 </ol>
 
-<%= link_to "新增", new_music_path %>
-
 <% @musics.each do |m|%>
   <%= link_to m.title, music_path(m.id) %>
   <%= m.file %>

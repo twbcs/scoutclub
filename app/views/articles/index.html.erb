@@ -2,7 +2,7 @@
   <li><%= link_to "首頁", root_path %></li>
   <li class="active">文章總覽</li>
 </ol>
-<%= link_to "新增文章", new_article_path, class: "btn btn-success" %>
+
 <div>
   <div class="col-md-2">
     <div class="list">
@@ -18,8 +18,7 @@
         <%= art.content %>
         <%= art.user.name %>
         <%= art.art_type.name %>
-        <%= time_ago_in_words(art.created_at) %>
-        <%= link_to "修改", edit_article_path(art.id), class: "btn btn-sm btn-success" %><br/>
+        <%= time_ago_in_words(art.created_at) %><br/>
       <% end %>
     </div>
   </div>

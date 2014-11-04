@@ -1,0 +1,12 @@
+<ol class="breadcrumb">
+  <li><%= link_to "首頁", dashboard_admin_root_path %></li>
+  <li><%= link_to "團康音樂", dashboard_admin_musics_path %></li>
+  <li class="active">新增音樂</li>
+</ol>
+
+<%= form_for [:dashboard,:admin,@music] do |f| %>
+  <%= f.text_field :title, class: "form-control" %>
+  <%= f.file_field :file, class: "form-control" %>
+  <%= f.text_area :description, class: "form-control" %>
+  <%= f.submit "確認", class: "btn btn-success" %>
+<% end %>

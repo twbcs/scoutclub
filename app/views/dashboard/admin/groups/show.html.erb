@@ -1,0 +1,15 @@
+<ol class="breadcrumb">
+  <li><%= link_to "首頁", dashboard_admin_root_path %></li>
+  <li><%= link_to "權限群組", dashboard_admin_groups_path %></li>
+  <li class="active">權限管理</li>
+</ol>
+
+<%= @group.name %>
+<%= @group.admin ? '管理者' : '' %><br/>
+<% @group_forums.each do |g| %>
+  <%= g.title %>
+  <%= ability(g.level)  %>
+  <%= link_to "修改", edit_dashboard_admin_group_group_forum_path(@group, g.id), class: "btn btn-sm btn-success" %>
+  <%= link_to "刪除", dashboard_admin_group_group_forum_path(@group, g.id), method: :delete, class: "btn btn-sm btn-danger" %><br/>
+<% end %>
+<%= link_to "新增權限", new_dashboard_admin_group_group_forum_path(@group), class: "btn btn-success" %>

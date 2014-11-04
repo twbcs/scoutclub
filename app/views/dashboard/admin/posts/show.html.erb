@@ -1,0 +1,44 @@
+<ol class="breadcrumb">
+  <li><%= link_to "首頁", dashboard_admin_root_path %></li>
+  <li><%= link_to "討論區", dashboard_admin_forums_path %></li>
+  <li><%= link_to @forum.title, dashboard_admin_forum_path(@forum) %></li>
+  <li class="active" ><%= @posts.first.subject %></li>
+</ol>
+<% if @post_view
+    view = @post_view.first == @forum.id
+    reply = @post_view.last >= 3
+    edit = @post_view.last >= 7
+    delete = @post_view.last >= 15
+  end %>
+
+<% if @forum.public_at || view %>
+  <% @posts.each do |m| %>
+    <% user = m.user_id == current_user.id if current_user %>
+    <div class="col-md-2">
+      <div class="user">
+        <img src="http://graph.facebook.com/<%= m.user.uid %>/picture?type=normal"/><br/>
+        <%= link_to m.post_name, "http://www.facebook.com/#{m.user.uid}" %><br/>
+        加入時間：<%= m.user.created_at.strftime("%Y %m.%d") %><br/>
+        上次登入：<%= m.user.last_sign_in_at.strftime("%Y %m.%d") %>
+      </div>
+    </div>
+    <div  class="col-md-10 post">
+      <div class="subject">
+        <strong><%= m.subject %></strong>
+      </div>
+      <div class="content">
+        <%= markdown(m.body) %>
+      </div>
+      <div class="controller">
+        <% if m.updated_at %>
+          修改於：<%= m.updated_at.strftime("%Y %m.%d %H:%M ")  %>
+        <% else %>
+          新增於：<%= m.created_at.strftime("%Y %m.%d %H:%M ")  %>
+        <% end %>
+        <%= link_to "修改", edit_dashboard_admin_forum_post_path(forum_id: m.forum_id, id: m.id), class: "btn btn-success btn-sm" if user || edit %>
+        <%= link_to "回文", new_dashboard_admin_forum_post_path(forum_id: m.forum_id, id: @posts.first.id), class: "btn btn-success btn-sm" if reply %>
+        <%= link_to "刪除", dashboard_admin_forum_post_path(forum_id: m.forum_id, id: m.id), :method => :delete, class: "btn btn-danger btn-sm" if delete %><br/>
+      </div>
+    </div>
+  <% end %>
+<% end %>

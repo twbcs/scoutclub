@@ -1,0 +1,14 @@
+<ol class="breadcrumb">
+  <li><%= link_to "首頁", root_path %></li>
+  <li><%= link_to "活動行事曆", schedules_path %></li>
+  <li class="active"><%= @schedule.title %></li>
+</ol>
+
+<%= @schedule.title %>
+<%= @schedule.start_date.strftime("%Y %m %d %H:%M") %>
+<%= @schedule.end_date.strftime("%Y %m %d %H:%M") %>
+<%= @schedule.public_at.strftime("%Y %m %d %H:%M") if @schedule.public_at %>
+<%= @schedule.local %>
+<%= @schedule.number %>
+<%= @schedule.description %>
+<%= @schedule.type_title %>
