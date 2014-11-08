@@ -1,0 +1,63 @@
+<ol class="breadcrumb">
+  <li><%= link_to "首頁", dashboard_root_path %></li>
+  <li class="active">討論區</li>
+</ol>
+<div id="forum-list">
+  <table class="table  table-hover">
+    <thead>
+      <tr>
+        <td>討論區</td>
+        <td>最新發表</td>
+        <td>回應數</td>
+        <td>主題數</td>
+        <td>文章數</td>
+      </tr>
+    </thead>
+    <tbody>
+      <% @forum_types.each do |f| %>
+        <tr>
+          <td colspan="5">
+            <strong><%= f.title %></strong>
+            <%= f.description %>
+          </td>
+        </tr>
+        <% @forums.each do |forum| %>
+          <% view = @forum_view.include?(forum.id) if @forum_view %>
+          <% if forum.public_at || view  %>
+            <% if forum.forum_type_id == f.id %>
+              <tr>
+                <td>
+                  <%= link_to forum.title, dashboard_forum_path(forum) %><br/>
+                  <%= forum.description %>
+                  <%= forum.public_at ? '公開' : '隱私' %>
+                </td>
+                <td>
+                  <% have = false %>
+                  <% @posts.each do |po| %>
+                    <% if po.forum_id == forum.id  %>
+                      <%= link_to po.subject, dashboard_forum_post_path(po.forum_id,po.id) %><br/>
+                      <%= po.post_name %>
+                      <% have = true %>
+                    <% end %>
+                  <% end %>
+                  <% if have.blank? %>
+                    <%= '無文章' %>
+                  <% end %>
+                </td>
+                <td>
+                  <%= @reply.include?(forum.id) ? @reply[forum.id] : '0'%>
+                </td>
+                <td>
+                  <%= @post_count.include?(forum.id) ? @post_count[forum.id] : '0' %>
+                </td>
+                <td>
+                  <%= @reply_count.include?(forum.id) ? @reply_count[forum.id] : '0' %>
+                </td>
+              </tr>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>

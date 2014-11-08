@@ -1,5 +1,6 @@
 class Article < ActiveRecord::Base
   belongs_to :user
+  delegate :name, to: :user, prefix: "user"
   belongs_to :art_type
   has_many :comments
 

@@ -1,0 +1,50 @@
+<ol class="breadcrumb">
+  <li><%= link_to "首頁", dashboard_root_path %></li>
+  <li><%= link_to "討論區", dashboard_forums_path %></li>
+  <li class="active"><%= @forum.title %></li>
+</ol>
+
+<% if @post_view
+    view = @post_view.first == @forum.id
+    reply = @post_view.last >= 3
+    delete = @post_view.last >= 15
+  end %>
+<%= link_to "發表文章", new_dashboard_forum_post_path(forum_id: @forum.id), class: "btn btn-success" if reply %><br/>
+<% if @forum.public_at || view %>
+<div id="forum-list">
+  <table class="table">
+    <thead>
+      <tr>
+        <td>主題</td>
+        <td>發布者</td>
+        <td>瀏覽數</td>
+        <td>發布日期</td>
+        <td>更新日期</td>
+      </tr>
+    </thead>
+    <tbody>
+        <% @posts.each do |m| %>
+        <tr>
+          <td>
+            <%= link_to m.subject, dashboard_forum_post_path(@forum,m.id) %>
+            <%= link_to " 刪除討論串", dashboard_forum_post_path(forum_id: m.forum_id, id: m.id),
+                    :method => :delete, class: "btn btn-sm btn-danger" if delete %>
+          </td>
+          <td>
+            <%= m.post_name %>
+          </td>
+          <td>
+            <%= m.view_count %>
+          </td>
+          <td>
+            <%= m.created_at.strftime("%Y %m.%d %H:%M") %>
+          </td>
+          <td>
+            <%= m.update_post.strftime("%Y %m.%d %H:%M") if m.created_at != m.update_post %>
+          </td>
+        </tr>
+        <% end %>
+    </tbody>
+  </table>
+</div>
+<% end %>

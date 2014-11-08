@@ -1,0 +1,25 @@
+<ol class="breadcrumb">
+  <li><%= link_to "首頁", dashboard_root_path %></li>
+  <li><%= link_to "職務職掌", dashboard_titles_path %></li>
+  <li class="active">新增</li>
+</ol>
+
+<%= form_for [:dashboard,@title] do |f| %>
+
+  <div class="form-inline">
+  	<%= f.label :title %>
+    <%= f.text_field :title, :placeholder => "輸入職務", :class => "form-control" %>
+  </div>
+  <div class="form-inline">
+  	<%= f.label :level %>
+    <%= f.text_field :level, :placeholder => "輸入層級", :class => "form-control" %>
+  </div>
+
+  <div class="form-inline">
+  	<%= f.label :description %>
+    <%= f.text_area :description, :placeholder => "輸入職掌說明", :class => "form-control" %>
+  </div>
+
+<%= f.submit "確認", :disable_with => '處理中...' %>
+
+<% end %>

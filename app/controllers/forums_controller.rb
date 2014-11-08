@@ -4,7 +4,7 @@ class ForumsController < ApplicationController
 
   def index
     @forum_types = ForumType.all
-    @forums = Forum.all.order_by_forum_type.includes(:posts)
+    @forums = Forum.all.order_by_forum_type.includes(:posts).where(public_at: true)
     @posts = Post.includes(:user).find_first_post
     @reply = Post.find_reply_count.inject({}) do |result, reply|
       result.merge(reply[:forum_id] => reply[:reply_id])

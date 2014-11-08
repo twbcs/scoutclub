@@ -1,0 +1,15 @@
+<ol class="breadcrumb">
+  <li><%= link_to "首頁", dashboard_root_path %></li>
+  <li class="active">團員資料</li>
+</ol>
+
+<% @members.each do |member| %>
+  <%= member.th %>
+	<%= member.year %>
+	<%= member.name %>
+	<%= member.nname %>
+	<%= member.sex ? '男' : '女' %>
+	<%= link_to "修改", edit_dashboard_member_path(member), class: "btn btn-sm btn-success" %>
+	<%= link_to "刪除", dashboard_member_path(member), :method => :delete, class: "btn btn-sm btn-danger" %><br/>
+<% end %>
+<p><%= link_to '新增', new_dashboard_member_path, class: "btn btn-success" %></p>

@@ -22,11 +22,7 @@ class Dashboard::Admin::PostsController < Dashboard::Admin::AdminController
     @post = Post.new(post_params)
     @post.set_user(current_user.id)
     if @post.save
-      if @post.reply_id
-        redirect_to dashboard_admin_forum_post_path(@post.forum_id, @post.reply_id)
-      else
-        redirect_to dashboard_admin_forum_post_path(@post.forum_id, @post)
-      end
+      have_reply_id(@post)
     else
       render :new
     end
@@ -38,11 +34,7 @@ class Dashboard::Admin::PostsController < Dashboard::Admin::AdminController
 
   def update
     if @post.update(post_params)
-      if @post.reply_id
-        redirect_to dashboard_admin_forum_post_path(@post.forum_id, @post.reply_id)
-      else
-        redirect_to dashboard_admin_forum_post_path(@post.forum_id, @post)
-      end
+      have_reply_id(@post)
     else
       render :edit
     end
@@ -89,5 +81,13 @@ class Dashboard::Admin::PostsController < Dashboard::Admin::AdminController
 
   def login
     redirect_to(dashboard_admin_forums_path, alert: '子版錯誤或無權限進入') unless current_user
+  end
+
+  def have_reply_id(post)
+    if post.reply_id
+      redirect_to dashboard_admin_forum_post_path(post.forum_id, post.reply_id)
+    else
+      redirect_to dashboard_admin_forum_post_path(post.forum_id, post)
+    end
   end
 end

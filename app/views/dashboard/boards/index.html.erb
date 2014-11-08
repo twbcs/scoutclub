@@ -1,0 +1,22 @@
+<ol class="breadcrumb">
+  <li><%= link_to "首頁", dashboard_root_path %></li>
+  <li class="active">留言板</li>
+</ol>
+
+<% require "rails_autolink" %>
+<h1>留言板 <%= link_to '留 言', new_dashboard_board_path, :class => 'btn btn-primary colorbox' if current_user %></h1>
+
+<%= will_paginate @collection, renderer: BootstrapPagination::Rails %>
+<% @boards.each do |board| %>
+<div class='panel panel-primary'>
+  <div class='panel-heading'>
+    <h3 class="panel-title">編號：<%= board.id %> | 主題：<%= board.subject %> </h3></div>
+  <div class='panel-body'><%= simple_format(auto_link(board.content)) %></div>
+  <div class='panel-heading' style=' padding-top: 5px; padding-bottom: 5px;'>
+    <h8 class="panel-title"> 發布者：<%= board.user.name %>
+    <%= link_to '修改', edit_dashboard_board_path(board), :class => 'btn btn-sm btn-warning colorbox' %>
+    <%= link_to '刪除', dashboard_board_path(board), method: :delete, data: { confirm: '確認刪除?' }, :class => 'btn btn-sm btn-danger'  %>
+    | 發布時間：<%= board.created_at.strftime('%Y年%m月%d日 %H:%S') %></h8></div>
+</div>
+<% end %>
+<%= will_paginate @collection, renderer: BootstrapPagination::Rails %>

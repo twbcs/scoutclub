@@ -9,7 +9,6 @@ class Dashboard::Admin::BoardsController < Dashboard::Admin::AdminController
                       .order('created_at DESC')
   end
 
-
   # GET /boards/new
   def new
     @board = Board.new

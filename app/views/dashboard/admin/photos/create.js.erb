@@ -1,0 +1,5 @@
+<% if @photo.new_record?%>
+ alert("")
+<% else %>
+ $("#photo").append( "<%= @photo.file %>")
+<% end %>

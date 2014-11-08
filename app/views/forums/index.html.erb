@@ -34,7 +34,7 @@
                 <td>
                   <% have = false %>
                   <% @posts.each do |po| %>
-                    <% if po.forum_id == forum.id  %>
+                    <% if po.forum_id == forum.id %>
                       <%= link_to po.subject, forum_post_path(po.forum_id,po.id) %><br/>
                       <%= po.post_name %>
                       <% have = true %>

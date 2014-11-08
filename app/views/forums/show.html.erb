@@ -3,11 +3,8 @@
   <li><%= link_to "討論區", forums_path %></li>
   <li class="active"><%= @forum.title %></li>
 </ol>
+<% view = @post_view.first == @forum.id if @post_view %>
 
-<% if @post_view
-    view = @post_view.first == @forum.id
-  end %>
-  
 <% if @forum.public_at || view %>
 <div id="forum-list">
   <table class="table">

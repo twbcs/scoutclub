@@ -1,2 +1,55 @@
-<h1>Albums#show</h1>
-<p>Find me in app/views/albums/show.html.erb</p>
+<ol class="breadcrumb">
+  <li><%= link_to "首頁", dashboard_admin_root_path %></li>
+  <li><%= link_to "相簿", dashboard_admin_albums_path %></li>
+  <li class="active"><%= @album.title %></li>
+</ol>
+
+<%= @album.title %>
+<%= @album.description %>
+<%= @album.add_photo_to %>
+<%= link_to "修改", edit_dashboard_admin_album_path(@album) %>
+<div id="photo">
+
+</div>
+
+<%= form_for [:dashboard,:admin,@album,@photo] do |f| %>
+  <% if @photo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@photo.errors.count, "error") %> prohibited this photo from being saved:</h2>
+
+      <ul>
+      <% @photo.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row drop">
+    <div id="dropzone" class="fade well col-md-12">Drop files here</div>
+    <div class="col-md-12">
+      <span class="btn btn-success fileinput-button">
+          <i class="glyphicon glyphicon-plus"></i>
+          <span>Select files...</span>
+          <!-- The file input field used as target for the file upload widget -->
+          <%= f.file_field :file %>
+      </span>
+    </div>
+  </div>
+  <br>
+  <div id="progress" class="progress">
+      <div class="progress-bar progress-bar-success"></div>
+  </div>
+  <div id="preview" class="row">
+    <div class="media hide">
+      <a class="pull-left" href="#">
+        <img class="media-object" data-src="holder.js/64x64" src="" alt="">
+      </a>
+      <div class="media-body">
+        <h4 class="media-heading"></h4>
+        <a href="#" class="btn btn-danger delete" role="button">Delete</a>
+      </div>
+    </div>
+  </div>
+<% end %>
+<%= javascript_include_tag 'photos' %>

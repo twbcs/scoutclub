@@ -7,7 +7,7 @@
   <div class="col-md-2">
     <div class="list">
       <% @art_type.each do |at| %>
-        <%= link_to at.name, articles_path(art_type_id: at.id) %><br/>
+        <%= link_to at.name, dashboard_admin_articles_path(art_type_id: at.id) %><br/>
       <% end %>
     </div>
   </div>
@@ -16,7 +16,7 @@
       <% @articles.each do |art| %>
         <%= link_to art.title, dashboard_admin_article_path(art.id) %>
         <%= art.content %>
-        <%= art.user.name %>
+        <%= art.user_name %>
         <%= art.art_type.name %>
         <%= time_ago_in_words(art.created_at) %>
         <%= link_to "修改", edit_dashboard_admin_article_path(art.id), class: "btn btn-sm btn-success" %><br/>

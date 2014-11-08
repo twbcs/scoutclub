@@ -32,6 +32,7 @@ class Dashboard::Admin::AlbumsController < Dashboard::Admin::AdminController
 
   def show
     @album = Album.find(params[:id])
+    @photo = Photo.new
   end
 
   def destroy
@@ -40,9 +41,24 @@ class Dashboard::Admin::AlbumsController < Dashboard::Admin::AdminController
     redirect_to dashboard_admin_albums_path
   end
 
+  def new_photo
+    @photo = Photo.new
+  end
+
+  def create_photo
+    @photo = Photo.new(photo_params)
+    @photo.set_user(current_user)
+    @photo.save
+    respond_to(:js)
+  end
+
   private
   def album_params
     params.require(:album).permit(:title,:description,:add_photo_to,:public_at)
+  end
+
+  def photo_params
+    params.require(:photo).permit(:file, :user_id, :album_id, :name)
   end
 
   def view_add

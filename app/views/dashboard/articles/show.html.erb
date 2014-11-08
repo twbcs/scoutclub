@@ -1,0 +1,25 @@
+<ol class="breadcrumb">
+  <li><%= link_to "首頁", dashboard_root_path %></li>
+  <li><%= link_to "文章總覽", dashboard_articles_path %></li>
+  <li class="active">文章：<%= @article.title %></li>
+</ol>
+
+<%= @article.title %>
+<%= @article.user_name %>
+<%= @article.content %>
+<div class="comments">
+  <% if @comments %>
+    <% @comments.each do |co| %>
+      <%= co.content %>
+      <%= co.user_name %>
+      <%= time_ago_in_words(co.created_at) %><br/>
+    <% end %>
+  <% end %>
+</div>
+
+<%= form_for(@comment, url: append_dashboard_article_path, remote: true) do |f| %>
+  <%= f.text_area :content, class: "form-control", placeholder: "請最少輸入十個字"%>
+  <%= f.hidden_field :article_id %>
+  <%= f.submit "回應", :disable_with => "傳送中...", method: :post,
+                  class: "btn btn-success disabled", id: "comment" %>
+<% end %>

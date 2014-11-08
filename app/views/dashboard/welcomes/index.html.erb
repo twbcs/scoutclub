@@ -1,0 +1,118 @@
+<ol class="breadcrumb">
+  <li>首頁</li>
+</ol>
+
+<div class="col-md-6">
+  <div id="training" class="list">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <td>
+            <strong>近期授課</strong>
+          </td>
+          <td align="right">
+            <%= link_to "更多...", dashboard_schedules_path %>
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <% @training_list.each do |train| %>
+        <tr>
+          <td><%= link_to train.title, dashboard_schedule_path(train.id) %></td>
+          <td align="right">
+            <%= train.start_date > Time.now ? '還有' + time_ago_in_words(train.start_date) : '經過' + time_ago_in_words(train.start_date) %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="col-md-6">
+  <div id="schedules" class="list">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <td>
+            <strong>近期活動</strong>
+          </td>
+          <td align="right">
+            <%= link_to "更多...", dashboard_schedules_path %>
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <% @schedule_list.each do |doing| %>
+        <tr>
+          <td><%= link_to doing.title, dashboard_schedule_path(doing.id) %></td>
+          <td align="right">
+            <%= doing.start_date > Time.now ? '還有' + time_ago_in_words(doing.start_date) : '經過' + time_ago_in_words(doing.start_date) %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="col-md-6">
+  <div id="forums" class="list">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <td>
+            <strong>討論區最新主題</strong>
+          </td>
+          <td align="right">
+            <%= link_to "更多...", dashboard_forums_path %>
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <% @post_list.each do |post| %>
+        <tr>
+          <td><%= link_to post.subject, dashboard_forum_post_path(forum_id: post.forum_id, id: post.id) %></td>
+          <td align="right">
+            <%= time_ago_in_words(post.update_post) %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="col-md-6">
+  <div id="books" class="list">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <td>
+            <strong>近期文章</strong>
+          </td>
+          <td align="right">
+            <%= link_to "更多...", dashboard_articles_path %>
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <% @articles_list.each do |art| %>
+        <tr>
+          <td><%= link_to art.title, dashboard_article_path(art.id) %></td>
+          <td align="right">
+            <%= time_ago_in_words(art.created_at) %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="col-md-6">
+  <div id="photos" class="list">
+    最新相片
+  </div>
+</div>
+<div class="col-md-6">
+  <div id="movies" class="list">
+    近期影片
+  </div>
+</div>

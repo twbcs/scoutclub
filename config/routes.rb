@@ -6,14 +6,20 @@ Rails.application.routes.draw do
   :omniauth_callbacks => "users/omniauth_callbacks"
   }
 
-  namespace :dashboard do
+  namespace :dashboard do #登入後的網頁
+    resources :title_ths, only: [:index] # not admin
+    resources :members
+    resources :titles
+    resources :schedules
+    resources :musics
+    resources :albums
+    resources :boards, except: [:show]
     resources :articles do
         post :append, :on => :member
     end
-    resources :forums do
+    resources :forums , only: [:index, :show] do
       resources :posts, except: [:index]
     end
-    resources :posts, except: [:index]
     root 'welcomes#index'
 
     namespace :admin do  #, :path => "sekret" 改路徑名
@@ -21,23 +27,26 @@ Rails.application.routes.draw do
       resources :titles
       resources :schedules
       resources :musics
-      resources :albums
-      resources :boards
-      resources :art_types, except: [:show]
-      resources :groups do
-        resources :group_forums, except: [:show, :index]
+      resources :albums do
+        resources :photos
       end
-      resources :user_groups, except: [:show]
+      resources :boards, except: [:show]
       resources :articles do
-          post :append, :on => :member
+        post :append, :on => :member
       end
       resources :forums do
         resources :posts, except: [:index]
       end
-      resources :forum_types do
+      resources :groups do #admin only
+        resources :group_forums, except: [:show, :index]
+      end
+      resources :user_groups, except: [:show] #admin only
+
+      resources :forum_types, except: [:show] do #admin only
         resources :forums
       end
-      resources :doing_types, except: [:show]
+      resources :art_types, except: [:show] #admin only
+      resources :doing_types, except: [:show] #admin only
       root 'welcomes#index'
     end
   end
@@ -56,9 +65,9 @@ Rails.application.routes.draw do
 
   root 'welcomes#index'
 
-  #if ::Rails.env.production?
-  #  match '*path', via: :all, to: 'welcomes#error_404'
-  #end
+  if ::Rails.env.development? # production 需要改設定
+    match '*path', via: :all, to: 'welcomes#error_404'
+  end
 
   # Example resource route with concerns:
   #   concern :toggleable do

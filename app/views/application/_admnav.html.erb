@@ -73,7 +73,7 @@
             <li><%#= link_to " 權限變更", users_path, :class => 'icon-key' if admin_with? %></li>
             <li class="divider"></li>
             <li><%= link_to " 登出", destroy_user_session_path, :method => :delete, :class => 'icon-exit' %></li>
-            <li><%= link_to " 離開管理者介面", dashboard_root_path, :method => :delete, :class => 'icon-exit' %></li>
+            <li><%= link_to " 離開管理者介面", dashboard_root_path, :class => 'icon-exit' %></li>
           </ul>
         </li>
       </ul>

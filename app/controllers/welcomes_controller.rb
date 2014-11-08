@@ -1,4 +1,6 @@
 class WelcomesController < ApplicationController
+  before_action :login_in
+
   def index
     @post_list     = Post.where(first_post: true).order_by_update_post.limit(5).includes(:forum)
     @schedule_list = Schedule.where.not(doing_type_id: 2).order_by_time.limit(5)
@@ -10,4 +12,10 @@ class WelcomesController < ApplicationController
     render file: "#{Rails.root}/public/404.html", status: 404, layout: false
   end
 
+  private
+  def login_in
+    if current_user
+      redirect_to dashboard_root_path
+    end
+  end
 end
