@@ -3,8 +3,8 @@ class Dashboard::ForumsController < Dashboard::DashboardController
   before_action :post_list_power, only: [:show]
 
   def index
-    @forum_types = ForumType.all
-    @forums = Forum.all.order_by_forum_type.includes(:posts)
+    @forum_kinds = ForumKind.all
+    @forums = Forum.all.order_by_forum_kind.includes(:posts)
     @posts = Post.includes(:user).find_first_post
     @reply = Post.find_reply_count.inject({}) do |result, reply|
       result.merge(reply[:forum_id] => reply[:reply_id])
@@ -15,13 +15,13 @@ class Dashboard::ForumsController < Dashboard::DashboardController
 
   def new
     @forum = Forum.new
-    @forum.forum_type_id = params[:forum_type_id]
+    @forum.forum_kind_id = params[:forum_kind_id]
   end
 
   def create
     @forum = Forum.new(forum_params)
     if @forum.save
-      redirect_to(dashboard_forum_types_url, notice: '新增討論板完成')
+      redirect_to(dashboard_forum_kinds_url, notice: '新增討論板完成')
     else
       render :new
     end
@@ -40,7 +40,7 @@ class Dashboard::ForumsController < Dashboard::DashboardController
   def update
     @forum = Forum.find(params[:id])
     if @forum.update(forum_params)
-      redirect_to(dashboard_forum_types_url, notice: '修改討論板完成')
+      redirect_to(dashboard_forum_kinds_url, notice: '修改討論板完成')
     else
       render :edit
     end
@@ -53,16 +53,16 @@ class Dashboard::ForumsController < Dashboard::DashboardController
       @group_forums = GroupForum.where(forum_id: params[:id])
       @group_forums.each{|x| x.destroy} if @group_forums
       @forum.destroy
-      redirect_to(dashboard_forum_types_url, notice: '討論板已刪除')
+      redirect_to(dashboard_forum_kinds_url, notice: '討論板已刪除')
     else
-      redirect_to(dashboard_forum_types_url, alert: '板內有文章，無法進行刪除作業')
+      redirect_to(dashboard_forum_kinds_url, alert: '板內有文章，無法進行刪除作業')
     end
   end
 
   private
 
   def forum_params
-    params.require(:forum).permit(:forum_type_id, :title, :description, :public_at, :closing_date )
+    params.require(:forum).permit(:forum_kind_id, :title, :description, :public_at, :closing_date )
   end
 
   def post_list_power

@@ -1,0 +1,2 @@
+module ArtKindsHelper
+end

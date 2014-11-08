@@ -1,10 +1,10 @@
 <ol class="breadcrumb">
   <li><%= link_to "首頁", dashboard_admin_root_path %></li>
-  <li><%= link_to "討論分區", dashboard_admin_forum_types_path %></li>
-  <li class="active">新增</li>
+  <li><%= link_to "討論分區", dashboard_admin_forum_kinds_path %></li>
+  <li class="active">修改</li>
 </ol>
 
-<%= form_for [:dashboard,:admin,@forum_type] do |f| %>
+<%= form_for [:dashboard,:admin,@forum_kind] do |f| %>
   <%= f.text_field :title %>
   <%= f.text_area  :description %>
   <%= f.submit "確認", class: " btn btn-success" %>

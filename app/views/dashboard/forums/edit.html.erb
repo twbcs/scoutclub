@@ -1,7 +1,7 @@
 <ol class="breadcrumb">
   <li><%= link_to "首頁", dashboard_root_path %></li>
-  <li><%= link_to "討論分區", dashboard_forum_types_path %></li>
-  <li><%=  @forum.forum_type_title %></li>
+  <li><%= link_to "討論分區", dashboard_forum_kinds_path %></li>
+  <li><%=  @forum.forum_kind_title %></li>
   <li class="active">修改子板</li>
 </ol>
 
@@ -11,7 +11,7 @@
   <%= f.label :description %>
   <%= f.text_area  :description %><br/>
   <%= f.label :public_at %>
-  <%= f.hidden_field :forum_type_id %>
+  <%= f.hidden_field :forum_kind_id %>
   <div class="btn-group" data-toggle="buttons">
     <% @forum.public_at? ? (at, bt = '','active') : (at, bt = 'active','') %>
     <label class="btn btn-default <%=raw at %>">

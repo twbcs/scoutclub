@@ -46,8 +46,8 @@
   	<%= f.text_field :local %>
   </div>
   <div class="form col-md-7">
-  	<%= f.label :doing_type_id %>
-	  <%= f.select(:doing_type_id, DoingType.all.collect {|u| [u.title, u.id]}, { :prompt => '請選擇'}, :class => 'form-control' ) %>
+  	<%= f.label :doing_kind_id %>
+	  <%= f.select(:doing_kind_id, DoingKind.all.collect {|u| [u.title, u.id]}, { :prompt => '請選擇'}, :class => 'form-control' ) %>
   </div>
   <%= f.submit "確認", :disable_with => '處理中...', class: "btn btn-success" %>
 <% end -%>

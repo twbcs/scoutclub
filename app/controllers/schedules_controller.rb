@@ -1,6 +1,6 @@
 class SchedulesController < ApplicationController
   def index
-  	@schedules = Schedule.all.includes(:doing_type).order_by_time
+  	@schedules = Schedule.all.includes(:doing_kind).order_by_time
   end
 
   def show

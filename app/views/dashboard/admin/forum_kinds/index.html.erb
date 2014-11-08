@@ -3,16 +3,16 @@
   <li class="active">討論分區</li>
 </ol>
 
-<% @forum_types.each do |f| %>
+<% @forum_kinds.each do |f| %>
 <div id="forum-list">
   <strong><%= f.title %></strong>
   <%= f.description %>
-  <%= link_to "修改", edit_dashboard_admin_forum_type_path(f), :class => 'btn btn-sm btn-success' %>
-  <%= link_to "新增子板", new_dashboard_admin_forum_type_forum_path(f), :class => 'btn btn-sm btn-success' %>
-  <%= link_to "刪除", dashboard_admin_forum_type_path(f), :method => :delete, :class => 'btn btn-sm btn-danger' %><br/>
+  <%= link_to "修改", edit_dashboard_admin_forum_kind_path(f), :class => 'btn btn-sm btn-success' %>
+  <%= link_to "新增子板", new_dashboard_admin_forum_kind_forum_path(f), :class => 'btn btn-sm btn-success' %>
+  <%= link_to "刪除", dashboard_admin_forum_kind_path(f), :method => :delete, :class => 'btn btn-sm btn-danger' %><br/>
 
   <% @forums.each do |x| %>
-    <% if x.forum_type_id == f.id %>
+    <% if x.forum_kind_id == f.id %>
       <%= x.title %>
       <%= x.description %>
       <%= x.public_at ? '公開' : '隱私' %>
@@ -23,4 +23,4 @@
   <% end %>
 </div>
 <% end %>
-<%= link_to "新增", new_dashboard_admin_forum_type_path, :class => 'btn btn-success' %>
+<%= link_to "新增", new_dashboard_admin_forum_kind_path, :class => 'btn btn-success' %>

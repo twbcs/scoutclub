@@ -13,7 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-fileupload/basic
-//= require jquery-knob
+//= require jquery.inview
 //= require to-markdown
 //= require markdown
 //= require bootstrap

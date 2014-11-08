@@ -14,7 +14,7 @@
       </tr>
     </thead>
     <tbody>
-      <% @forum_types.each do |f| %>
+      <% @forum_kinds.each do |f| %>
         <tr>
           <td colspan="5">
             <strong><%= f.title %></strong>
@@ -24,7 +24,7 @@
         <% @forums.each do |forum| %>
           <% view = @forum_view.include?(forum.id) if @forum_view %>
           <% if forum.public_at || view  %>
-            <% if forum.forum_type_id == f.id %>
+            <% if forum.forum_kind_id == f.id %>
               <tr>
                 <td>
                   <%= link_to forum.title, dashboard_admin_forum_path(forum) %><br/>

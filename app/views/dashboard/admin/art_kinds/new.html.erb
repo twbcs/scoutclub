@@ -1,10 +1,10 @@
 <ol class="breadcrumb">
   <li><%= link_to "首頁", dashboard_admin_root_path %></li>
-  <li><%= link_to "文章分類", dashboard_admin_art_types_path %></li>
+  <li><%= link_to "文章分類", dashboard_admin_art_kinds_path %></li>
   <li class="active">新增文章分類</li>
 </ol>
 
-<%= form_for [:dashboard,:admin,@art_type] do |f| %>
+<%= form_for [:dashboard,:admin,@art_kind] do |f| %>
   <%= f.text_field :name, class: "form-control" %>
   <%= f.submit "確認", :disable_with => '處理中...', class: "btn btn-success" %>
 <% end %>

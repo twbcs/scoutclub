@@ -11,10 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141107162708) do
+ActiveRecord::Schema.define(version: 20141108181153) do
 
   create_table "albums", force: true do |t|
-    t.string   "title"
+    t.string   "title",                    null: false
     t.text     "description"
     t.integer  "view_count",   default: 0, null: false
     t.datetime "public_at"
@@ -23,28 +23,26 @@ ActiveRecord::Schema.define(version: 20141107162708) do
     t.datetime "updated_at"
   end
 
-  create_table "art_types", force: true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table "art_kinds", force: true do |t|
+    t.string "name"
   end
 
   create_table "articles", force: true do |t|
-    t.string   "title"
-    t.text     "content"
+    t.string   "title",                        null: false
+    t.text     "content",     limit: 16777215, null: false
     t.integer  "user_id"
-    t.integer  "art_type_id"
+    t.integer  "art_kind_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "articles", ["art_type_id"], name: "index_articles_on_art_type_id", using: :btree
+  add_index "articles", ["art_kind_id"], name: "index_articles_on_art_kind_id", using: :btree
   add_index "articles", ["user_id"], name: "index_articles_on_user_id", using: :btree
 
   create_table "boards", force: true do |t|
     t.integer  "user_id"
     t.string   "subject"
-    t.text     "content"
+    t.text     "content",    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -52,7 +50,7 @@ ActiveRecord::Schema.define(version: 20141107162708) do
   add_index "boards", ["user_id"], name: "index_boards_on_user_id", using: :btree
 
   create_table "comments", force: true do |t|
-    t.string   "content"
+    t.text     "content",    null: false
     t.integer  "user_id"
     t.integer  "article_id"
     t.datetime "created_at"
@@ -62,23 +60,19 @@ ActiveRecord::Schema.define(version: 20141107162708) do
   add_index "comments", ["article_id"], name: "index_comments_on_article_id", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
-  create_table "doing_types", force: true do |t|
-    t.string   "title",      null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table "doing_kinds", force: true do |t|
+    t.string "title", null: false
   end
 
-  create_table "forum_types", force: true do |t|
-    t.string   "title",       null: false
-    t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table "forum_kinds", force: true do |t|
+    t.string "title",       null: false
+    t.text   "description"
   end
 
   create_table "forums", force: true do |t|
     t.string   "title",                        null: false
     t.text     "description"
-    t.integer  "forum_type_id"
+    t.integer  "forum_kind_id"
     t.boolean  "lock"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -86,7 +80,7 @@ ActiveRecord::Schema.define(version: 20141107162708) do
     t.date     "closing_date"
   end
 
-  add_index "forums", ["forum_type_id"], name: "index_forums_on_forum_type_id", using: :btree
+  add_index "forums", ["forum_kind_id"], name: "index_forums_on_forum_kind_id", using: :btree
 
   create_table "group_forums", force: true do |t|
     t.integer  "group_id"
@@ -100,7 +94,7 @@ ActiveRecord::Schema.define(version: 20141107162708) do
   add_index "group_forums", ["group_id"], name: "index_group_forums_on_group_id", using: :btree
 
   create_table "groups", force: true do |t|
-    t.string  "name"
+    t.string  "name",  null: false
     t.boolean "admin"
   end
 
@@ -147,6 +141,7 @@ ActiveRecord::Schema.define(version: 20141107162708) do
     t.integer  "album_id"
   end
 
+  add_index "photos", ["album_id"], name: "index_photos_on_album_id", using: :btree
   add_index "photos", ["user_id"], name: "index_photos_on_user_id", using: :btree
 
   create_table "posts", force: true do |t|
@@ -185,13 +180,13 @@ ActiveRecord::Schema.define(version: 20141107162708) do
     t.datetime "public_at"
     t.string   "local"
     t.integer  "number",        limit: 2, unsigned: true
-    t.integer  "doing_type_id"
-    t.text     "description"
+    t.integer  "doing_kind_id"
+    t.text     "description",                             null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "schedules", ["doing_type_id"], name: "index_schedules_on_doing_type_id", using: :btree
+  add_index "schedules", ["doing_kind_id"], name: "index_schedules_on_doing_kind_id", using: :btree
 
   create_table "title_ths", force: true do |t|
     t.integer  "member_id",  null: false
@@ -205,9 +200,9 @@ ActiveRecord::Schema.define(version: 20141107162708) do
   add_index "title_ths", ["title_id"], name: "index_title_ths_on_title_id", using: :btree
 
   create_table "titles", force: true do |t|
-    t.string   "title",                                 null: false
-    t.text     "description"
-    t.integer  "level",       limit: 1, unsigned: true
+    t.string   "title",                                        null: false
+    t.text     "description", limit: 16777215
+    t.integer  "level",       limit: 1,        unsigned: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end

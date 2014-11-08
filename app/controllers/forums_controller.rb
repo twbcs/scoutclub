@@ -3,8 +3,8 @@ class ForumsController < ApplicationController
   before_action :post_list_power, only: [:show]
 
   def index
-    @forum_types = ForumType.all
-    @forums = Forum.all.order_by_forum_type.includes(:posts).where(public_at: true)
+    @forum_kinds = ForumKind.all
+    @forums = Forum.all.order_by_forum_kind.includes(:posts).where(public_at: true)
     @posts = Post.includes(:user).find_first_post
     @reply = Post.find_reply_count.inject({}) do |result, reply|
       result.merge(reply[:forum_id] => reply[:reply_id])

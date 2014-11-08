@@ -1,0 +1,14 @@
+<ol class="breadcrumb">
+  <li><%= link_to "首頁", dashboard_admin_root_path %></li>
+  <li class="active">文章分類</li>
+</ol>
+
+<div class="list">
+  <% @art_kinds.each do |art| %>
+    <%= art.name %>
+    <%= link_to "修改", edit_dashboard_admin_art_kind_path(art), class: "btn btn-sm btn-success" %>
+    <%= link_to "刪除", dashboard_admin_art_kind_path(art), method: :delete, class: "btn btn-sm btn-danger" %><br/>
+  <% end %>
+</div>
+
+<%= link_to "新增", new_dashboard_admin_art_kind_path, class: "btn btn-success" %>

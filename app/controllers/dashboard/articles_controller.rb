@@ -1,11 +1,11 @@
 class Dashboard::ArticlesController < Dashboard::DashboardController
   def index
-    if params[:art_type_id]
-      @articles = Article.where(art_type_id: params[:art_type_id])
+    if params[:art_kind_id]
+      @articles = Article.where(art_kind_id: params[:art_kind_id])
     else
-      @articles = Article.all.includes(:user, :art_type)
+      @articles = Article.all.includes(:user, :art_kind)
     end
-      @art_type = ArtType.all
+      @art_kind = ArtKind.all
   end
 
   def new
@@ -36,7 +36,7 @@ class Dashboard::ArticlesController < Dashboard::DashboardController
   end
 
   def show
-    @article  = Article.where(id: params[:id]).includes(:user, :art_type).first
+    @article  = Article.where(id: params[:id]).includes(:user, :art_kind).first
     @comments = Comment.where(article_id: params[:id]).includes(:user)
     @comment = Comment.new(article_id: @article.id)
   end
@@ -61,7 +61,7 @@ class Dashboard::ArticlesController < Dashboard::DashboardController
 
   private
   def art_params
-    params.require(:article).permit(:title, :content, :user_id, :art_type_id)
+    params.require(:article).permit(:title, :content, :user_id, :art_kind_id)
   end
 
   def comment_params

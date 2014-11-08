@@ -42,11 +42,11 @@ Rails.application.routes.draw do
       end
       resources :user_groups, except: [:show] #admin only
 
-      resources :forum_types, except: [:show] do #admin only
+      resources :forum_kinds, except: [:show] do #admin only
         resources :forums
       end
-      resources :art_types, except: [:show] #admin only
-      resources :doing_types, except: [:show] #admin only
+      resources :art_kinds, except: [:show] #admin only
+      resources :doing_kinds, except: [:show] #admin only
       root 'welcomes#index'
     end
   end

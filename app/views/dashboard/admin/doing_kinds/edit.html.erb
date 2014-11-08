@@ -1,10 +1,10 @@
 <ol class="breadcrumb">
   <li><%= link_to "首頁", dashboard_admin_root_path %></li>
-  <li ><%= link_to "活動類型", dashboard_admin_doing_types_url %></li>
+  <li ><%= link_to "活動類型", dashboard_admin_doing_kinds_url %></li>
   <li class="active">修改</li>
 </ol>
 
-<%= form_for [:dashboard,:admin,@doing_type]  do |f| %>
+<%= form_for [:dashboard,:admin,@doing_kind]  do |f| %>
 
 <%= f.text_field :title %>
 <%= f.submit "確認", :disable_with => '處理中...' %>

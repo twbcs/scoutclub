@@ -1,7 +1,7 @@
 <ol class="breadcrumb">
   <li><%= link_to "首頁", dashboard_admin_root_path %></li>
-  <li><%= link_to "討論分區", dashboard_admin_forum_types_path %></li>
-  <li><%=  @forum.forum_type_title %></li>
+  <li><%= link_to "討論分區", dashboard_admin_forum_kinds_path %></li>
+  <li><%=  @forum.forum_kind_title %></li>
   <li class="active">新增子板</li>
 </ol>
 
@@ -10,7 +10,7 @@
   <%= f.text_field :title %><br/>
   <%= f.label :description %>
   <%= f.text_area  :description %><br/>
-  <%= f.hidden_field :forum_type_id %>
+  <%= f.hidden_field :forum_kind_id %>
   <%= f.label :public_at %>
   <div class="btn-group" data-toggle="buttons">
     <label class="btn btn-default">

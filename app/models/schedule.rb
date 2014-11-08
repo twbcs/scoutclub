@@ -1,6 +1,6 @@
 class Schedule < ActiveRecord::Base
-	belongs_to :doing_type
-	delegate :title, to: :doing_type, prefix: "type"
+	belongs_to :doing_kind
+	delegate :title, to: :doing_kind, prefix: "kind"
 	has_many :schedule_attends
 	has_many :users, :through => :schedule_attends
 

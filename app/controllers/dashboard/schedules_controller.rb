@@ -1,7 +1,7 @@
 class Dashboard::SchedulesController < Dashboard::DashboardController
 	before_action :set_schedule, only: [:edit, :update, :destroy, :show]
   def index
-  	@schedules = Schedule.all.includes(:doing_type).order_by_time
+  	@schedules = Schedule.all.includes(:doing_kind).order_by_time
   end
 
   def new
@@ -43,6 +43,6 @@ class Dashboard::SchedulesController < Dashboard::DashboardController
 
 	def scheduls_params
   	params.require(:schedule).permit(:title, :start_date, :end_date, :public_at,
-		 :local, :number, :description, :doing_type_id)
+		 :local, :number, :description, :doing_kind_id)
   end
 end
