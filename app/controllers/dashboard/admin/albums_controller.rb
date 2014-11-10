@@ -32,6 +32,7 @@ class Dashboard::Admin::AlbumsController < Dashboard::Admin::AdminController
 
   def show
     @album = Album.find(params[:id])
+    @photos = Photo.where(album_id: params[:id])
     @photo = Photo.new
   end
 

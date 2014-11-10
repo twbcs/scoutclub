@@ -1,6 +1,6 @@
 $ ->
     $('#new_photo').fileupload
-        dataType: 'json'
+        dataType: 'script'
         done: (e, data)->
             $.each data.result.files, (index, file) ->
                 list = $('#preview > .hide').clone()

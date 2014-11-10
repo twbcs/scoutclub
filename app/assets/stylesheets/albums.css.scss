@@ -11,19 +11,33 @@ html {
     margin: 0;
 
     #dropzone {
-        position: absolute;
-        height: 80px;
+      position: absolute;
+      height: 80px;
     }
 
     #dropzone.in {
-        z-index: 1;
-        border: 5px dashed #e69;
-        text-align: center;
-        font-size: 2em;
+      z-index: 1;
+      border: 5px dashed #e69;
+      text-align: center;
+      font-size: 2em;
     }
 
     #dropzone.hover {
-        border: 5px dashed #FDD017;
-        background-color: #FFF380;
+      border: 5px dashed #FDD017;
+      background-color: #FFF380;
     }
+}
+
+.photo {
+  list-style-type: none;
+  display: list-item;
+  position: relative;
+  float: left;
+  padding: 0px 5px 5px 0px;
+  .delete {
+    position: absolute;
+    top: 95px;
+    left: 41px;
+    background: rgba(255,255,255,0.6);
+  }
 }

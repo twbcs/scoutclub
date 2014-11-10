@@ -9,9 +9,8 @@ class Dashboard::Admin::PhotosController < Dashboard::Admin::AdminController
     @photo.save
     respond_to do |format|
       if @photo.save
-        format.html { redirect_to @photo, notice: 'Upload photo was successfully created.' }
         # format.json { render action: 'show', status: :created, location: @upload_photo }
-        format.json { render json: {files: [@photo.to_jq_upload]}, status: :created, location: @photo }
+        format.js
       else
         format.html { render action: 'new' }
         format.json { render json: @photo.errors, status: :unprocessable_entity }
@@ -20,13 +19,17 @@ class Dashboard::Admin::PhotosController < Dashboard::Admin::AdminController
   end
 
   def destroy
+    @photo = Photo.where(album_id: params[:album_id], id: params[:id]).first
+    @photo.remove_file!
     @photo.destroy
     respond_to do |format|
-      format.html { redirect_to photos_url }
-      format.json
+      format.js
     end
   end
 
+  def show
+    @photo = Photo.where(album_id: params[:album_id], id: params[:id]).first
+  end
   private
   def photo_params
     params.require(:photo).permit(:file, :user_id, :album_id, :name)

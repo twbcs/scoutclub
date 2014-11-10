@@ -1,5 +1,2 @@
-<% if @photo.new_record?%>
- alert("")
-<% else %>
- $("#photo").append( "<%= @photo.file %>")
-<% end %>
+
+$("#photolist").append("<%=j render :partial => 'append', :locals => { :f => @photo }%>");
