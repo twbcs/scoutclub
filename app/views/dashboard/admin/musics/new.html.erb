@@ -7,6 +7,6 @@
 <%= form_for [:dashboard,:admin,@music] do |f| %>
   <%= f.text_field :title, class: "form-control" %>
   <%= f.file_field :file, class: "form-control" %>
-  <%= f.text_area :description, class: "form-control" %>
+  <%= f.text_area :description, class: "form-control", rows: "20", "data-provide" => "markdown" %>
   <%= f.submit "確認", class: "btn btn-success" %>
 <% end %>

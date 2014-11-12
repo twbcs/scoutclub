@@ -8,6 +8,6 @@
   <%= f.text_field :title, class: "form-control" %>
   <%= f.select(:art_kind_id, ArtKind.all.collect {|u| [u.name, u.id]},
       { :prompt => '請選擇'}, :class => 'form-control' ) %>
-  <%= f.text_area :content %>
+  <%= f.text_area :content, class: "form-control", rows: "20", "data-provide" => "markdown" %>
   <%= f.submit "確認", class: " btn btn-success" %>
 <% end %>

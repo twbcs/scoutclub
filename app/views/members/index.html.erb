@@ -2,11 +2,33 @@
   <li><%= link_to "首頁", root_path %></li>
   <li class="active">團員資料</li>
 </ol>
-
-<% @members.each do |member| %>
-  <%= member.th %>
-	<%= member.year %>
-	<%= member.name %>
-	<%= member.nname %>
-	<%= member.sex ? '男' : '女' %><br/>
-<% end %>
+<div class="col-md-1 list">
+  <%= link_to "全 部", members_path %>
+  <% @years.each do |y| %>
+    <%= link_to y.year, members_path(year: y.year) %>
+  <% end %>
+</div>
+<div class="col-md-10 list">
+  <table>
+    <thead>
+      <tr>
+        <td>學年度</td>
+        <td>屆數</td>
+        <td>姓名</td>
+        <td>綽號</td>
+        <td>性別</td>
+      </tr>
+    </thead>
+    <tbody>
+      <% @members.each do |member| %>
+      <tr>
+        <td><%= member.year %></td>
+        <td><%= member.th %></td>
+        <td><%= member.name %></td>
+        <td><%= member.nname %></td>
+        <td><%= member.sex ? '男' : '女' %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

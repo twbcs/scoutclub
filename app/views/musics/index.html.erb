@@ -5,6 +5,6 @@
 
 <% @musics.each do |m|%>
   <%= link_to m.title, music_path(m.id) %>
-  <%= m.file %>
+  <%= File.basename(m.file.path) %>
   <%= m.user.name %>
 <% end %>

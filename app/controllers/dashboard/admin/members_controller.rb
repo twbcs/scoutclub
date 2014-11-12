@@ -2,17 +2,27 @@ class Dashboard::Admin::MembersController < Dashboard::Admin::AdminController
 	before_action :set_member, only: [:edit, :update, :destroy]
 
   def index
-  	@members = Member.all.order_by_year
+		if params[:year]
+			@year = params[:year]
+			@members = Member.where(year: params[:year])
+		else
+			@members = Member.all.order_by_year
+		end
+		@years = Member.all.order_by_year.group(:year).select(:year)
   end
 
   def new
-  	@member = Member.new
+		if params[:year]
+			@member = Member.new(year: params[:year])
+		else
+			@member = Member.new
+		end
   end
 
   def create
   	@member = Member.new(member_params)
   	if @member.save
-  		redirect_to dashboard_admin_members_url, notice: '資料已新增'
+  		redirect_to dashboard_admin_members_url(year: @member.year), notice: '資料已新增'
   	else
   		render :new
   	end

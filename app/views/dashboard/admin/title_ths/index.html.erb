@@ -1,23 +1,21 @@
 <ol class="breadcrumb">
-  <li><%= link_to "首頁", root_path %></li>
+  <li><%= link_to "首頁", dashboard_admin_root_path %></li>
   <li class="active">各屆幹部</li>
 </ol>
 
-<div>
-  <% @title_ths.each do |m| %>
-    <% unless @year %>
-      <%= m.title_year %>
-      <br/>
-    <% end %>
-    <% @year ||= m.title_year %>
-    <% unless @year == m.title_year %>
-      <% @year = m.title_year %>
-      <br/>
-      <%= m.title_year %>
-      <br/>
-    <% end %>
-    <%= m.member_th %>
-    <%= m.title_title %>
-    <%= m.member_name %>
+<div class="list clearfix">
+  <% @year.each do |y| %>
+    <div class="col-xs-12"><%= y.title_year %></div>
+    <div>
+      <% @title_ths.each do |m| %>
+        <% if y.title_year == m.title_year %>
+          <div class="item">
+            <%= m.member_th %>
+            <%= m.title_title %>
+            <%= m.member_name %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
   <% end %>
 </div>

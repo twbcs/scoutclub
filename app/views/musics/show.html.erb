@@ -5,5 +5,7 @@
 </ol>
 
 <%= @music.title %>
-<%= @music.file %>
-<%= @music.description %>
+File.basename(m.file.path)
+<div class="content">
+  <%= markdown(@music.description) %>
+</div>

@@ -5,7 +5,10 @@
 </ol>
 
 <%= @music.title %>
-<%= @music.file %>
-<%= @music.description %>
+<%= link_to File.basename(@music.file.path), "#{@music.file}" %>
+<div class="content">
+  <%= markdown(@music.description) %>
+</div>
+<%= markdown(@music.description) %>
 <%= link_to "修改", edit_dashboard_music_path(@music.id), class: "btn btn-sm btn-success" %>
 <%= link_to "刪除", dashboard_music_path(@music.id), method: :delete, class: "btn btn-sm btn-danger" %>

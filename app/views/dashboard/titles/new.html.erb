@@ -17,7 +17,7 @@
 
   <div class="form-inline">
   	<%= f.label :description %>
-    <%= f.text_area :description, :placeholder => "輸入職掌說明", :class => "form-control" %>
+    <%= f.text_area :description, class: "form-control", rows: "20", "data-provide" => "markdown", :placeholder => "輸入職掌說明" %>
   </div>
 
 <%= f.submit "確認", :disable_with => '處理中...' %>

@@ -61,6 +61,7 @@ group  :development do
   gem 'pry'
   gem 'pry-rails'
   gem 'pry-nav'
+  gem 'awesome_print', '~> 1.0.2'
   gem 'traceroute'
   gem "better_errors"
 	gem "binding_of_caller"

@@ -10,3 +10,4 @@ $(function(){
     }
   });
 });
+$("#article_content").markdown({language:'tw'})

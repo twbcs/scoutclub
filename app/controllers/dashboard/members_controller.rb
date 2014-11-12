@@ -2,8 +2,14 @@ class Dashboard::MembersController < Dashboard::DashboardController
 	before_action :set_member, only: [:edit, :update, :destroy]
 
   def index
-  	@members = Member.all.order_by_year
-  end
+		if params[:year]
+			@year = params[:year]
+			@members = Member.where(year: params[:year])
+		else
+			@members = Member.all.order_by_year
+		end
+		@years = Member.all.order_by_year.group(:year).select(:year)
+	end
 
   def new
   	@member = Member.new

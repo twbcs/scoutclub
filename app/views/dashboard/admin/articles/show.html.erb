@@ -6,7 +6,9 @@
 
 <%= @article.title %>
 <%= @article.user_name %>
-<%= @article.content %>
+<div class="content">
+  <%= markdown(@article.content) %>
+</div>
 <div class="comments">
   <% if @comments %>
     <% @comments.each do |co| %>

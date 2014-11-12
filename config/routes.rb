@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   namespace :dashboard do #登入後的網頁
     resources :title_ths, only: [:index] # not admin
-    resources :members
+    resources :members, except: [:show]
     resources :titles
     resources :schedules
     resources :musics
@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     root 'welcomes#index'
 
     namespace :admin do  #, :path => "sekret" 改路徑名
-      resources :members
+      resources :members, except: [:show]
       resources :titles
       resources :schedules
       resources :musics
@@ -47,6 +47,8 @@ Rails.application.routes.draw do
       end
       resources :art_kinds, except: [:show] #admin only
       resources :doing_kinds, except: [:show] #admin only
+      resources :title_ths, only: [:index] # not admin
+
       root 'welcomes#index'
     end
   end

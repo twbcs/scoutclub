@@ -1,8 +1,14 @@
+<ol class="breadcrumb">
+	<li><%= link_to "首頁", dashboard_admin_root_path %></li>
+	<li><%= link_to "留言板", dashboard_admin_boards_path %></li>
+	<li class="active">修改留言</li>
+</ol>
+
 <div class="panel panel-primary">
 	<div class="panel-heading">
     <h3 class="panel-title">修改留言</h3>
   </div>
   <div class="panel-body">
-		<%= render 'form' %>
+		<%= render 'form', board: @board  %>
   </div>
 </div>

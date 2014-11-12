@@ -1,3 +1,13 @@
 // Place all the styles related to the title_ths controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.item {
+  list-style-type: none;
+  display: list-item;
+  position: relative;
+  float: left;
+  padding: 0px 3px 0px 3px;
+  margin: 0px 0px 2px 6px;
+  background-color: #f5fedd;
+  border-radius: 3px;
+}
