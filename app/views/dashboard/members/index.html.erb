@@ -3,38 +3,42 @@
   <li class="active">團員資料</li>
 </ol>
  <p><%= new_btn %></p>
-<div class="col-md-1 list">
-  <%= link_to "全 部", dashboard_members_path %>
-  <% @years.each do |y| %>
-    <%= link_to y.year, dashboard_members_path(year: y.year) %>
-  <% end %>
+<div class="col-md-1">
+  <div class="list sidebar">
+    <%= link_to "全 部", dashboard_members_path %>
+    <% @years.each do |y| %>
+      <%= link_to y.year, dashboard_members_path(year: y.year) %>
+    <% end %>
+  </div>
 </div>
-<div class="col-md-10 list">
-  <table>
-    <thead>
-      <tr>
-        <td>學年度</td>
-        <td>屆數</td>
-        <td>姓名</td>
-        <td>綽號</td>
-        <td>性別</td>
-        <td>功能</td>
-      </tr>
-    </thead>
-    <tbody>
-      <% @members.each do |member| %>
-      <tr>
-        <td><%= member.year %></td>
-        <td><%= member.th %></td>
-        <td><%= member.name %></td>
-        <td><%= member.nname %></td>
-        <td><%= member.sex ? '男' : '女' %></td>
-        <td>
-          <%= link_to "修改", edit_dashboard_member_path(member), class: "btn btn-sm btn-success" %>
-          <%= link_to "刪除", dashboard_member_path(member), :method => :delete, class: "btn btn-sm btn-danger" %>
-        </td>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
+<div class="col-md-10">
+  <div class="list">
+    <table>
+      <thead>
+        <tr>
+          <td>學年度</td>
+          <td>屆數</td>
+          <td>姓名</td>
+          <td>綽號</td>
+          <td>性別</td>
+          <td>功能</td>
+        </tr>
+      </thead>
+      <tbody>
+        <% @members.each do |member| %>
+        <tr>
+          <td><%= member.year %></td>
+          <td><%= member.th %></td>
+          <td><%= member.name %></td>
+          <td><%= member.nname %></td>
+          <td><%= member.sex ? '男' : '女' %></td>
+          <td>
+            <%= link_to "修改", edit_dashboard_member_path(member), class: "btn btn-sm btn-success" %>
+            <%= link_to "刪除", dashboard_member_path(member), :method => :delete, class: "btn btn-sm btn-danger" %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>

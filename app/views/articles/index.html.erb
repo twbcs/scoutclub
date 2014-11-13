@@ -5,7 +5,7 @@
 
 <div>
   <div class="col-md-2">
-    <div class="list">
+    <div class="list sidebar">
       <% @art_kind.each do |at| %>
         <%= link_to at.name, articles_path(art_kind_id: at.id) %><br/>
       <% end %>

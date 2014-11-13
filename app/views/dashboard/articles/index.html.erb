@@ -5,7 +5,7 @@
 <%= link_to "新增文章", new_dashboard_article_path, class: "btn btn-success" %>
 <div>
   <div class="col-md-2">
-    <div class="list">
+    <div class="list sidebar">
       <% @art_kind.each do |at| %>
         <%= link_to at.name, dashboard_articles_path(art_kind_id: at.id) %><br/>
       <% end %>

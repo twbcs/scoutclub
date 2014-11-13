@@ -112,7 +112,29 @@
 </div>
 <div class="col-md-6">
   <div id="photos" class="list">
-    最新相片
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <td>
+            <strong>最新相片</strong>
+          </td>
+          <td align="right">
+            <%= link_to "更多...", dashboard_albums_path %>
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <% @album_list.each do |album| %>
+        <tr>
+          <td><%= link_to album.title, dashboard_album_path(album.id) %></td>
+          <td align="right">
+            <%= '還有' if album.created_at > Time.now %>
+            <%= timeago_tag album.created_at, :nojs => true, :limit => 30.days.ago, :lang => 'zh-TW' %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 </div>
 <div class="col-md-6">
