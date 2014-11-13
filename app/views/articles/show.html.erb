@@ -14,7 +14,7 @@
     <% @comments.each do |co| %>
       <%= co.content %>
       <%= co.user_name %>
-      <%= time_ago_in_words(co.created_at) %><br/>
+      <%= timeago_tag co.created_at, :nojs => true, :limit => 30.days.ago, :lang => 'zh-TW' %><br/>
     <% end %>
   <% end %>
 </div>

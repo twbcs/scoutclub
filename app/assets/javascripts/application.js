@@ -14,6 +14,9 @@
 //= require jquery_ujs
 //= require jquery-fileupload/basic
 //= require jquery.inview
+//= require rails-timeago
+//= require rails-timeago-all
+//= require locales/jquery.timeago.zh-TW.js
 //= require to-markdown
 //= require markdown
 //= require bootstrap

@@ -20,7 +20,8 @@
         <tr>
           <td><%= link_to train.title, dashboard_schedule_path(train.id) %></td>
           <td align="right">
-            <%= train.start_date > Time.now ? '還有' + time_ago_in_words(train.start_date) : '經過' + time_ago_in_words(train.start_date) %>
+            <%= '還有' if train.start_date > Time.now %>
+            <%= timeago_tag train.start_date, :nojs => true, :limit => 30.days.ago, :lang => 'zh-TW' %>
           </td>
         </tr>
         <% end %>
@@ -46,7 +47,8 @@
         <tr>
           <td><%= link_to doing.title, dashboard_schedule_path(doing.id) %></td>
           <td align="right">
-            <%= doing.start_date > Time.now ? '還有' + time_ago_in_words(doing.start_date) : '經過' + time_ago_in_words(doing.start_date) %>
+            <%= '還有' if doing.start_date > Time.now %>
+            <%= timeago_tag doing.start_date, :nojs => true, :limit => 30.days.ago, :lang => 'zh-TW' %>
           </td>
         </tr>
         <% end %>
@@ -72,7 +74,8 @@
         <tr>
           <td><%= link_to post.subject, dashboard_forum_post_path(forum_id: post.forum_id, id: post.id) %></td>
           <td align="right">
-            <%= time_ago_in_words(post.update_post) %>
+            <%= '還有' if post.update_post > Time.now %>
+            <%= timeago_tag post.update_post, :nojs => true, :limit => 30.days.ago, :lang => 'zh-TW' %>
           </td>
         </tr>
         <% end %>
@@ -98,7 +101,8 @@
         <tr>
           <td><%= link_to art.title, dashboard_article_path(art.id) %></td>
           <td align="right">
-            <%= time_ago_in_words(art.created_at) %>
+            <%= '還有' if art.created_at > Time.now %>
+            <%= timeago_tag art.created_at, :nojs => true, :limit => 30.days.ago, :lang => 'zh-TW' %>
           </td>
         </tr>
         <% end %>
