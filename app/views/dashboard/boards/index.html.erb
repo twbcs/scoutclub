@@ -14,8 +14,8 @@
   <div class='panel-body'><%= simple_format(auto_link(board.content)) %></div>
   <div class='panel-heading' style=' padding-top: 5px; padding-bottom: 5px;'>
     <h8 class="panel-title"> 發布者：<%= board.user_name %>
-    <%= link_to '修改', edit_dashboard_board_path(board), :class => 'btn btn-sm btn-warning colorbox' %>
-    <%= link_to '刪除', dashboard_board_path(board), method: :delete, data: { confirm: '確認刪除?' }, :class => 'btn btn-sm btn-danger'  %>
+    <%= link_to '修改', edit_dashboard_board_path(board), :class => 'btn btn-xs btn-warning colorbox' %>
+    <%= link_to '刪除', dashboard_board_path(board), method: :delete, data: { confirm: '確認刪除?' }, :class => 'btn btn-xs btn-danger'  %>
     | 發布時間：<%= board.created_at.strftime('%Y年%m月%d日 %H:%S') %></h8></div>
 </div>
 <% end %>

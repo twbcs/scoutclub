@@ -6,9 +6,9 @@
   <% @groups.each do |f| %>
     <%= f.name %>
     <%= f.admin ? '管理者' : '' %>
-    <%= link_to "權限管理", dashboard_admin_group_path(f), class: "btn btn-sm btn-success" %>
-    <%= link_to "修改", edit_dashboard_admin_group_path(f), class: "btn btn-sm btn-success" %>
-    <%= link_to "刪除", dashboard_admin_group_path(f), method: :delete, class: "btn btn-sm btn-danger" %><br/>
+    <%= link_to "權限管理", dashboard_admin_group_path(f), class: "btn btn-xs btn-success" %>
+    <%= link_to "修改", edit_dashboard_admin_group_path(f), class: "btn btn-xs btn-success" %>
+    <%= link_to "刪除", dashboard_admin_group_path(f), method: :delete, class: "btn btn-xs btn-danger" %><br/>
     <% f.users.each do |u| %>
       <%= u.name %>
     <% end %><br/>

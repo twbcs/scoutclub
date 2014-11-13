@@ -36,7 +36,7 @@
   		<%= f.fields_for :title_ths do |title_th| %>
   			<%= render "title_th_fields", :f => title_th %>
   		<% end %>
-  		<p><%= link_to_add_association '新增職務', f, :title_ths, class: "btn btn-sm btn-success" %></p>
+  		<p><%= link_to_add_association '新增職務', f, :title_ths, class: "btn btn-xs btn-success" %></p>
   	<%= f.submit "確認", :disable_with => '處理中...', class: "btn btn-success" %>
   <% end %>
 </div>

@@ -33,8 +33,8 @@
           <td><%= member.nname %></td>
           <td><%= member.sex ? '男' : '女' %></td>
           <td>
-            <%= link_to "修改", edit_dashboard_member_path(member), class: "btn btn-sm btn-success" %>
-            <%= link_to "刪除", dashboard_member_path(member), :method => :delete, class: "btn btn-sm btn-danger" %>
+            <%= link_to "修改", edit_dashboard_member_path(member), class: "btn btn-xs btn-success" %>
+            <%= link_to "刪除", dashboard_member_path(member), :method => :delete, class: "btn btn-xs btn-danger" %>
           </td>
         </tr>
         <% end %>

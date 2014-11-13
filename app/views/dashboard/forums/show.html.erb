@@ -28,7 +28,7 @@
           <td>
             <%= link_to m.subject, dashboard_forum_post_path(@forum,m.id) %>
             <%= link_to " 刪除討論串", dashboard_forum_post_path(forum_id: m.forum_id, id: m.id),
-                    :method => :delete, class: "btn btn-sm btn-danger" if delete %>
+                    :method => :delete, class: "btn btn-xs btn-danger" if delete %>
           </td>
           <td>
             <%= m.post_name %>

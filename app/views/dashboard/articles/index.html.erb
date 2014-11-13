@@ -20,7 +20,7 @@
         <%= art.art_kind.name %>
         <%= '還有' if art.created_at > Time.now %>
         <%= timeago_tag art.created_at, :nojs => true, :limit => 30.days.ago, :lang => 'zh-TW' %>
-        <%= link_to "修改", edit_dashboard_article_path(art.id), class: "btn btn-sm btn-success" %><br/>
+        <%= link_to "修改", edit_dashboard_article_path(art.id), class: "btn btn-xs btn-success" %><br/>
       <% end %>
     </div>
   </div>

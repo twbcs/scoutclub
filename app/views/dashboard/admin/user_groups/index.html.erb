@@ -7,12 +7,12 @@
   <% @user_groups.each do |m| %>
     <%= m.name  %>
     <%= m.email %>
-    <%= link_to "新增權限", new_dashboard_admin_user_group_path(user_id: m.id), class: "btn btn-sm btn-success" %><br/>
+    <%= link_to "新增權限", new_dashboard_admin_user_group_path(user_id: m.id), class: "btn btn-xs btn-success" %><br/>
     <% m.groups.each do |g| %>
       <%= g.name %>
-      <%= link_to "修改權限", edit_dashboard_admin_user_group_path(id: m.id, user_id: m.id, group_id: g.id), class: "btn btn-sm btn-success" %>
+      <%= link_to "修改權限", edit_dashboard_admin_user_group_path(id: m.id, user_id: m.id, group_id: g.id), class: "btn btn-xs btn-success" %>
       <%= link_to "刪除權限", dashboard_admin_user_group_path(id: m.id, user_id: m.id, group_id: g.id),
-    :method => :delete, class: "btn btn-sm btn-danger"  %>
+    :method => :delete, class: "btn btn-xs btn-danger"  %>
     <% end %> <br/>
   <% end %>
 </div>

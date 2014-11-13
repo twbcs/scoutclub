@@ -6,8 +6,8 @@
   <% @doing_kinds.each do |doing_kind| %>
     <%= doing_kind.id %>
     <%= doing_kind.title %>
-    <%= link_to "修改", edit_dashboard_admin_doing_kind_path(doing_kind), class: "btn btn-sm btn-success" %>
-    <%= link_to "刪除", dashboard_admin_doing_kind_path(doing_kind) , method: :delete, class: "btn btn-sm btn-danger"%><br/>
+    <%= link_to "修改", edit_dashboard_admin_doing_kind_path(doing_kind), class: "btn btn-xs btn-success" %>
+    <%= link_to "刪除", dashboard_admin_doing_kind_path(doing_kind) , method: :delete, class: "btn btn-xs btn-danger"%><br/>
   <% end %>
 </div>
 
