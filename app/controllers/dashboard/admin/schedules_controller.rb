@@ -1,7 +1,12 @@
 class Dashboard::Admin::SchedulesController < Dashboard::Admin::AdminController
 	before_action :set_schedule, only: [:edit, :update, :destroy, :show]
   def index
-  	@schedules = Schedule.all.includes(:doing_kind).order_by_time
+  	if params[:doing_kind]
+				@schedules = Schedule.where(doing_kind: params[:doing_kind]).includes(:doing_kind).order_by_time
+			else
+				@schedules = Schedule.all.includes(:doing_kind).order_by_time
+			end
+			@kinds = DoingKind.all
   end
 
   def new

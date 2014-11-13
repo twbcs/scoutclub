@@ -2,16 +2,28 @@
   <li><%= link_to "首頁", dashboard_root_path %></li>
   <li class="active">活動行事曆</li>
 </ol>
-<% @schedules.each do |t| %>
-  <%= link_to t.title, dashboard_schedule_path(t) %>
-  <%= t.start_date.strftime("%Y %m %d %H:%M") %>
-  <%= t.end_date.strftime("%Y %m %d %H:%M") %>
-  <%= t.public_at.strftime("%Y %m %d %H:%M") if t.public_at %>
-  <%= t.local %>
-  <%= t.number %>
-  <%= t.description %>
-  <%= t.kind_title %>
-  <%= link_to "修改", edit_dashboard_schedule_path(t), class: "btn btn-xs btn-success" %>
-  <%= link_to "刪除", dashboard_schedule_path(t), method: :delete, class: "btn btn-xs btn-danger" %><br/>
-<% end %>
-<%= link_to "新增", new_dashboard_schedule_path, class: "btn btn-success" %>
+<p><%= link_to "新增", new_dashboard_schedule_path, class: "btn btn-success" %></p>
+<div class="col-md-2">
+  <div class="list sidebar">
+      <%= link_to "全部", dashboard_schedules_path %>
+    <% @kinds.each do |k| %>
+      <%= link_to k.title, dashboard_schedules_path(doing_kind_id: k.id) %>
+    <% end  %>
+  </div>
+</div>
+<div class="col-md-10">
+  <div class="list">
+    <% @schedules.each do |t| %>
+      <%= link_to t.title, dashboard_schedule_path(t) %>
+      <%= time_parser(t.start_date) %>
+      <%= time_parser(t.end_date) %>
+      <%= time_parser(t.public_at) if t.public_at %>
+      <%= t.local %>
+      <%= t.number %>
+      <%= t.description %>
+      <%= t.kind_title %>
+      <%= link_to "修改", edit_dashboard_schedule_path(t), class: "btn btn-xs btn-success" %>
+      <%= link_to "刪除", dashboard_schedule_path(t), method: :delete, class: "btn btn-xs btn-danger" %><br/>
+    <% end %>
+  </div>
+</div>

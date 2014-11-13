@@ -2,7 +2,12 @@ class Dashboard::Admin::TitlesController < Dashboard::Admin::AdminController
 	before_action :set_title, only: [:edit, :update, :destroy]
 
   def index
-  	@titles = Title.all.order_by_level
+  	if params[:id]
+			@title = Title.find(params[:id])
+		else
+			@title = Title.where(level: 1).first
+		end
+		@titles = Title.all.order_by_level.select(:id, :title, :level)
   end
 
   def new

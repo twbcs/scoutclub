@@ -31,9 +31,9 @@
       </div>
       <div class="controller">
         <% if m.updated_at %>
-          修改於：<%= m.updated_at.strftime("%Y %m.%d %H:%M ")  %>
+          修改於：<%= time_parser(m.updated_at) %>
         <% else %>
-          新增於：<%= m.created_at.strftime("%Y %m.%d %H:%M ")  %>
+          新增於：<%= time_parser(m.created_at) %>
         <% end %>
         <%= link_to "修改", edit_dashboard_forum_post_path(forum_id: m.forum_id, id: m.id), class: "btn btn-success btn-xs" if user || edit %>
         <%= link_to "回文", new_dashboard_forum_post_path(forum_id: m.forum_id, id: @posts.first.id), class: "btn btn-success btn-xs" if reply %>

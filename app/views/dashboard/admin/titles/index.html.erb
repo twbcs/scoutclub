@@ -2,14 +2,35 @@
   <li><%= link_to "首頁", dashboard_admin_root_path %></li>
   <li class="active">職務職掌</li>
 </ol>
-<div class="list">
-  <% @titles.each do |t| %>
-    <%= t.title %>
-    <%= t.description %>
-    <%= t.level %>
-    <%= link_to "修改", edit_dashboard_admin_title_path(t), class: "btn btn-xs btn-success"  %>
-    <%= link_to "刪除", dashboard_admin_title_path(t), :method => :delete, class: "btn btn-xs btn-danger"  %><br/>
-  <% end %>
+<div class="col-sx-12">
+  <%= link_to "新增", new_dashboard_admin_title_path, class: "btn btn-success" %>
 </div>
-
-<%= link_to "新增", new_dashboard_admin_title_path, class: "btn btn-success" %>
+<div class="col-md-2">
+  <div class="list">
+    <table class="table table-hover">
+      <tbody>
+        <% @titles.each do |t| %>
+        <tr>
+          <td>
+            <%= link_to t.title, dashboard_admin_titles_path(id: t.id) %>
+            <%= t.level %>
+          </td>
+          <td>
+            <%= link_to "修改", edit_dashboard_admin_title_path(t), class: "btn btn-xs btn-success"  %>
+            <%= link_to "刪除", dashboard_admin_title_path(t), :method => :delete, class: "btn btn-xs btn-danger"  %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="col-md-10">
+  <div id="title" class="list">
+    <p class="title-title"><%= @title.title %></p>
+    <div>
+      <%= markdown(@title.description) %>
+    </div>
+  </div>
+  <div class="right"><%= "修訂於 " + time_parser(@title.updated_at) %></div>
+</div>

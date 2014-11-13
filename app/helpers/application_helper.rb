@@ -6,4 +6,8 @@ module ApplicationHelper
             strikethrough: true, tables: true, superscript: true )
     @markdown.render(content).html_safe
   end
+
+  def time_parser(time)
+    time.strftime("%Y %m %d %H:%M")
+  end
 end

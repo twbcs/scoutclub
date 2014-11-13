@@ -37,10 +37,10 @@
             <%= m.view_count %>
           </td>
           <td>
-            <%= m.created_at.strftime("%Y %m.%d %H:%M") %>
+            <%= time_parser(m.created_at) %>
           </td>
           <td>
-            <%= m.update_post.strftime("%Y %m.%d %H:%M") if m.created_at != m.update_post %>
+            <%= time_parser(m.update_post) if m.created_at != m.update_post %>
           </td>
         </tr>
         <% end %>

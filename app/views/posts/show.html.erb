@@ -27,10 +27,10 @@
         <%= markdown(m.body) %>
       </div>
       <div class="controller">
-        <% if m.updated_at > m.created_at %>
-          修改於：<%= m.updated_at.strftime("%Y %m.%d %H:%M ")  %>
+        <% if m.updated_at %>
+          修改於：<%= time_parser(m.updated_at) %>
         <% else %>
-          新增於：<%= m.created_at.strftime("%Y %m.%d %H:%M ")  %>
+          新增於：<%= time_parser(m.created_at) %>
         <% end %>
       </div>
     </div>

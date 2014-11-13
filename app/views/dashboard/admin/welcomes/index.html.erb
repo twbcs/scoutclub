@@ -74,7 +74,6 @@
         <tr>
           <td><%= link_to post.subject, dashboard_admin_forum_post_path(forum_id: post.forum_id, id: post.id) %></td>
           <td align="right">
-            <%= '還有' if post.update_post > Time.now %>
             <%= timeago_tag post.update_post, :nojs => true, :limit => 30.days.ago, :lang => 'zh-TW' %>
           </td>
         </tr>
@@ -101,7 +100,6 @@
         <tr>
           <td><%= link_to art.title, dashboard_admin_article_path(art.id) %></td>
           <td align="right">
-            <%= '還有' if art.created_at > Time.now %>
             <%= timeago_tag art.created_at, :nojs => true, :limit => 30.days.ago, :lang => 'zh-TW' %>
           </td>
         </tr>
@@ -128,7 +126,6 @@
         <tr>
           <td><%= link_to album.title, dashboard_admin_album_path(album.id) %></td>
           <td align="right">
-            <%= '還有' if album.created_at > Time.now %>
             <%= timeago_tag album.created_at, :nojs => true, :limit => 30.days.ago, :lang => 'zh-TW' %>
           </td>
         </tr>

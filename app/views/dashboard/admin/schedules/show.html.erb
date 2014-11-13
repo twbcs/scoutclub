@@ -5,9 +5,9 @@
 </ol>
 
 <%= @schedule.title %>
-<%= @schedule.start_date.strftime("%Y %m %d %H:%M") %>
-<%= @schedule.end_date.strftime("%Y %m %d %H:%M") %>
-<%= @schedule.public_at.strftime("%Y %m %d %H:%M") if @schedule.public_at %>
+<%= time_parser(@schedule.start_date) %>
+<%= time_parser(@schedule.end_date) %>
+<%= time_parser(@schedule.public_at) if @schedule.public_at %>
 <%= @schedule.local %>
 <%= @schedule.number %>
 <%= @schedule.description %>

@@ -5,6 +5,7 @@ class Schedule < ActiveRecord::Base
 	has_many :users, :through => :schedule_attends
 
 	validates :title, presence: true
+	validates :doing_kind_id, presence: true
 
 	scope :order_by_time, -> { order(start_date: :desc) }
 end
