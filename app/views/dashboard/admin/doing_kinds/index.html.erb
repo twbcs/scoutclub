@@ -2,6 +2,9 @@
   <li><%= link_to "首頁", dashboard_admin_root_path %></li>
   <li class="active">活動類型</li>
 </ol>
+<div class="col-xs-12 new">
+  <%= link_to '新增', new_dashboard_admin_doing_kind_path, :class => 'btn btn-success' if current_user %>
+</div>
 <div class="list">
   <% @doing_kinds.each do |doing_kind| %>
     <%= doing_kind.id %>
@@ -10,5 +13,3 @@
     <%= link_to "刪除", dashboard_admin_doing_kind_path(doing_kind) , method: :delete, class: "btn btn-xs btn-danger"%><br/>
   <% end %>
 </div>
-
-<%= link_to "新增", new_dashboard_admin_doing_kind_path, class: "btn btn-success"  %>

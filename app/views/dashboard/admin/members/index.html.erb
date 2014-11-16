@@ -2,7 +2,9 @@
   <li><%= link_to "首頁", dashboard_admin_root_path %></li>
   <li class="active">團員資料</li>
 </ol>
- <p><%= new_btn %></p>
+<div class="col-xs-12 new">
+  <%= new_btn %>
+</div>
 <div class="col-md-1">
   <div class="list sidebar">
     <%= link_to "全 部", dashboard_admin_members_path %>

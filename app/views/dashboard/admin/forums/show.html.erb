@@ -9,7 +9,9 @@
     reply = @post_view.last >= 3
     delete = @post_view.last >= 15
   end %>
-<%= link_to "發表文章", new_dashboard_admin_forum_post_path(forum_id: @forum.id), class: "btn btn-success" if reply %><br/>
+<div class="col-xs-12 new">
+  <%= link_to '發表文章', new_dashboard_admin_forum_post_path(forum_id: @forum.id), :class => 'btn btn-success' if reply %>
+</div>
 <% if @forum.public_at || view %>
 <div id="forum-list">
   <table class="table">

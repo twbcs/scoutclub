@@ -2,7 +2,9 @@
   <li><%= link_to "首頁", dashboard_admin_root_path %></li>
   <li class="active">相簿</li>
 </ol>
-<%= link_to "新增", new_dashboard_admin_album_path, class: "btn btn-success" %>
+<div class="col-xs-12 new">
+  <%= link_to '新增', new_dashboard_admin_album_path, :class => 'btn btn-success' if current_user %>
+</div>
 <% @albums.each do |m|%>
   <%= link_to m.title, dashboard_admin_album_path(m) %>
   <%= m.description %>
