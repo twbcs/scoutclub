@@ -10,8 +10,6 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require bootstrap
- *= require bootstrap-theme
  *= require bootstrap-markdown
  *= require bootstrap-datetimepicker
  *= require jquery.fileupload-ui
@@ -19,8 +17,9 @@
  *= require_tree .
  *= require_self
  */
+@import "bootstrap-sprockets";
+@import "bootstrap";
 @import 'base';
-
 
 body{
   position: relative;
