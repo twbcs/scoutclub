@@ -46,33 +46,18 @@ padding-bottom : 2px;
   @include gap(bottom, 0px);
   }
 
+  #user-dropdown{
+    padding-top    : 4px;
+    padding-bottom : 4px;
+  }
+
 .panel-body { padding: 5px 5px 5px 5px;}
 
-.right {
-	float:right;
-}
-.center {
-	text-align:center;
-}
+.right { float:right; }
 
-footer {
-	border-top  : 1px solid #cccccc;
-	color       : #dddddd;
-	padding-top : 20px;
-	@include gap(top, 30px);
-	@include gap(bottom, 20px);
-	.icon-html5{ color : #f89c78; }
-  .icon-css3{ color : #6aa5f2; }
-}
+.center {	text-align:center; }
 
-.font-set{
-	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-
-#user-dropdown{
-  padding-top    : 4px;
-  padding-bottom : 4px;
-}
+.font-set{ font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
 
 .list{
   background-color: #fbfbfb ;
@@ -81,6 +66,17 @@ footer {
   margin: 10px 0px 10px 0px;
   min-height: 222px;
 }
+
 .sidebar {
   padding: 3px 0px 0px 5px;
+}
+
+footer {
+  border-top  : 1px solid #cccccc;
+  color       : #dddddd;
+  padding-top : 20px;
+  @include gap(top, 30px);
+  @include gap(bottom, 20px);
+  .icon-html5{ color : #f89c78; }
+  .icon-css3{ color : #6aa5f2; }
 }
