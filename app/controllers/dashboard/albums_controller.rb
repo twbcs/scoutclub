@@ -30,9 +30,11 @@ class Dashboard::AlbumsController < Dashboard::DashboardController
     end
   end
 
-  def show
-    @album = Album.find(params[:id])
-  end
+def show
+  @album = Album.find(params[:id])
+  @photos = Photo.where(album_id: params[:id])
+  @photo = Photo.new
+end
 
   def destroy
     @album = Album.find(params[:id])

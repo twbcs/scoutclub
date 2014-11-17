@@ -12,7 +12,9 @@ Rails.application.routes.draw do
     resources :titles, except: [:show]
     resources :schedules
     resources :musics
-    resources :albums
+    resources :albums do
+      resources :photos
+    end
     resources :boards, except: [:show]
     resources :articles do
         post :append, :on => :member

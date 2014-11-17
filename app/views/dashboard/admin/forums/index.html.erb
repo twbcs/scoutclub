@@ -17,8 +17,7 @@
       <% @forum_kinds.each do |f| %>
         <tr>
           <td colspan="5">
-            <strong><%= f.title %></strong>
-            <%= f.description %>
+            <strong><%= f.title %></strong><%= f.description %>
           </td>
         </tr>
         <% @forums.each do |forum| %>
@@ -40,19 +39,11 @@
                       <% have = true %>
                     <% end %>
                   <% end %>
-                  <% if have.blank? %>
-                    <%= '無文章' %>
-                  <% end %>
+                  <%= '無文章' if have.blank? %>
                 </td>
-                <td>
-                  <%= @reply.include?(forum.id) ? @reply[forum.id] : '0'%>
-                </td>
-                <td>
-                  <%= @post_count.include?(forum.id) ? @post_count[forum.id] : '0' %>
-                </td>
-                <td>
-                  <%= @reply_count.include?(forum.id) ? @reply_count[forum.id] : '0' %>
-                </td>
+                <td><%= @reply.include?(forum.id) ? @reply[forum.id] : '0'%></td>
+                <td><%= @post_count.include?(forum.id) ? @post_count[forum.id] : '0' %></td>
+                <td><%= @reply_count.include?(forum.id) ? @reply_count[forum.id] : '0' %></td>
               </tr>
             <% end %>
           <% end %>

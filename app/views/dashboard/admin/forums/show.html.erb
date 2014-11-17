@@ -32,18 +32,10 @@
             <%= link_to " 刪除討論串", dashboard_admin_forum_post_path(forum_id: m.forum_id, id: m.id),
                     :method => :delete, class: "btn btn-xs btn-danger" if delete %>
           </td>
-          <td>
-            <%= m.post_name %>
-          </td>
-          <td>
-            <%= m.view_count %>
-          </td>
-          <td>
-            <%= time_parser(m.created_at) %>
-          </td>
-          <td>
-            <%= time_parser(m.update_post) if m.created_at != m.update_post %>
-          </td>
+          <td><%= m.post_name %></td>
+          <td><%= m.view_count %></td>
+          <td><%= time_parser(m.created_at) %></td>
+          <td><%= time_parser(m.update_post) if m.created_at != m.update_post %></td>
         </tr>
         <% end %>
     </tbody>
