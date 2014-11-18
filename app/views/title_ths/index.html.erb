@@ -1,7 +1,6 @@
-<ol class="breadcrumb">
-  <li><%= link_to "首頁", root_path %></li>
+<% content_for :breadcrumb do %>
   <li class="active">各屆幹部</li>
-</ol>
+<% end %>
 
 <div class="list clearfix">
   <% @year.each do |y| %>

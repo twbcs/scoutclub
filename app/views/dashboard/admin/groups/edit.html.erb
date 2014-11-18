@@ -1,8 +1,7 @@
-<ol class="breadcrumb">
-  <li><%= link_to "首頁", dashboard_admin_root_path %></li>
+<% content_for :breadcrumb do %>
   <li><%= link_to "權限群組", dashboard_admin_groups_path %></li>
-  <li class="active">修改群組</li>
-</ol>
+  <li class="active">修改群組 | <%= @group.name %></li>
+<% end %>
 
 <%= form_for [:dashboard,:admin,@group] do |f| %>
   <%= f.label :name %>

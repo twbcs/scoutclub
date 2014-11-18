@@ -1,9 +1,8 @@
-<ol class="breadcrumb">
-  <li><%= link_to "首頁", dashboard_admin_root_path %></li>
+<% content_for :breadcrumb do %>
   <li><%= link_to "討論區", dashboard_admin_forums_path %></li>
   <li><%= link_to @forum.title, dashboard_admin_forum_path(@forum) %></li>
   <li class="active" >修改</li>
-</ol>
+<% end %>
 
 <%= form_for [:dashboard,:admin,@forum,@post] do |f| %>
   <%= f.text_field :subject, class: "form-control", placeholder: "標題"%><br/>
@@ -16,8 +15,8 @@
 <% if @posts %>
   <% @posts.each do |m| %>
     <div class="col-md-2 user">
-      <img src="http://graph.facebook.com/<%= m.user.uid %>/picture?type=normal"/><br/>
-      <%= link_to m.post_name, "http://www.facebook.com/#{m.user.uid}" %><br/>
+      <img src="http://graph.facebook.com/<%= m.user_uid %>/picture?type=normal"/><br/>
+      <%= link_to m.user_name, "http://www.facebook.com/#{m.user_uid}" %><br/>
       加入時間：<%= m.user.created_at.strftime("%Y %m.%d") %><br/>
       上次登入：<%= m.user.last_sign_in_at.strftime("%Y %m.%d") %>
     </div>

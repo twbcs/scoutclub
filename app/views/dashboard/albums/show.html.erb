@@ -1,8 +1,7 @@
-<ol class="breadcrumb">
-  <li><%= link_to "首頁", dashboard_root_path %></li>
+<% content_for :breadcrumb do %>
   <li><%= link_to "相簿", dashboard_albums_path %></li>
   <li class="active"><%= @album.title %></li>
-</ol>
+<% end %>
 
 <%= @album.title %>
 <%= @album.description %>

@@ -1,8 +1,7 @@
-<ol class="breadcrumb">
-	<li><%= link_to "首頁", dashboard_admin_root_path %></li>
+<% content_for :breadcrumb do %>
 	<li><%= link_to "留言板", dashboard_admin_boards_path %></li>
 	<li class="active">修改留言</li>
-</ol>
+<% end %>
 
 <div class="panel panel-primary">
 	<div class="panel-heading">

@@ -1,8 +1,7 @@
-<ol class="breadcrumb">
-  <li><%= link_to "首頁", dashboard_root_path %></li>
+<% content_for :breadcrumb do %>
   <li><%= link_to "職務職掌", dashboard_titles_path %></li>
   <li class="active">新增</li>
-</ol>
+<% end %>
 
 <%= form_for [:dashboard,@title] do |f| %>
 

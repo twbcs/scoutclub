@@ -1,7 +1,7 @@
-<ol class="breadcrumb">
-  <li><%= link_to "首頁", dashboard_root_path %></li>
+<% content_for :breadcrumb do %>
   <li class="active">活動行事曆</li>
-</ol>
+<% end %>
+
 <div class="col-xs-12 new">
   <%= link_to '新增', new_dashboard_schedule_path, :class => 'btn btn-success' if current_user %>
 </div>

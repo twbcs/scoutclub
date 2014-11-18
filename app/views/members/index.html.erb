@@ -1,7 +1,7 @@
-<ol class="breadcrumb">
-  <li><%= link_to "首頁", root_path %></li>
+<% content_for :breadcrumb do %>
   <li class="active">團員資料</li>
-</ol>
+<% end %>
+
 <div class="col-md-1">
   <div class="list sidebar">
     <%= link_to "全 部", members_path %>

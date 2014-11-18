@@ -3,7 +3,7 @@ class Post < ActiveRecord::Base
 	after_create :update_first
 	belongs_to :forum
 	belongs_to :user
-	delegate :name, to: :user, prefix: "post"
+	delegate :name, :uid, :created_at, :last_sign_in_at, to: :user, prefix: "user"
 
 	scope :order_by_update_post, -> { order(update_post: :desc) }
 	scope :find_first_post, -> { where(first_post: true, reply_id: nil) }

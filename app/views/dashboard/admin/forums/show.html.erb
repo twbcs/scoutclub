@@ -1,8 +1,7 @@
-<ol class="breadcrumb">
-  <li><%= link_to "首頁", dashboard_admin_root_path %></li>
+<% content_for :breadcrumb do %>
   <li><%= link_to "討論區", dashboard_admin_forums_path %></li>
   <li class="active"><%= @forum.title %></li>
-</ol>
+<% end %>
 
 <% if @post_view
     view = @post_view.first == @forum.id
@@ -13,7 +12,7 @@
   <%= link_to '發表文章', new_dashboard_admin_forum_post_path(forum_id: @forum.id), :class => 'btn btn-success' if reply %>
 </div>
 <% if @forum.public_at || view %>
-<div id="forum-list">
+<div id="forum-list" class="col-xs-12">
   <table class="table">
     <thead>
       <tr>
@@ -32,7 +31,7 @@
             <%= link_to " 刪除討論串", dashboard_admin_forum_post_path(forum_id: m.forum_id, id: m.id),
                     :method => :delete, class: "btn btn-xs btn-danger" if delete %>
           </td>
-          <td><%= m.post_name %></td>
+          <td><%= m.user_name %></td>
           <td><%= m.view_count %></td>
           <td><%= time_parser(m.created_at) %></td>
           <td><%= time_parser(m.update_post) if m.created_at != m.update_post %></td>

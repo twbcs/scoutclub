@@ -1,7 +1,7 @@
-<ol class="breadcrumb">
-  <li><%= link_to "首頁", dashboard_root_path %></li>
+<% content_for :breadcrumb do %>
   <li class="active">團員資料</li>
-</ol>
+<% end %>
+
 <div class="col-xs-12 new">
   <%= new_btn if current_user %>
 </div>

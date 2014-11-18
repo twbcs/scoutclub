@@ -1,8 +1,7 @@
-<ol class="breadcrumb">
-  <li><%= link_to "首頁", dashboard_admin_root_path %></li>
+<% content_for :breadcrumb do %>
   <li><%= link_to "活動行事曆", dashboard_admin_schedules_path %></li>
   <li class="active"><%= @schedule.title %></li>
-</ol>
+<% end %>
 
 <%= @schedule.title %>
 <%= time_parser(@schedule.start_date) %>

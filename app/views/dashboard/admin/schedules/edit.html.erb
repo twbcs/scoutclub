@@ -1,56 +1,54 @@
-<ol class="breadcrumb">
-  <li><%= link_to "首頁", dashboard_admin_root_path %></li>
+<% content_for :breadcrumb do %>
   <li><%= link_to "活動行事曆", dashboard_admin_schedules_path %></li>
-  <li class="active">修改</li>
-</ol>
+  <li class="active">修改 | <%= @schedule.title %></li>
+<% end %>
 
-<%= form_for [:dashboard,:admin,@schedule] do |f| -%>
-  <div class="form-inline">
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-  </div>
-  <div class="form-inline">
-    <%= f.label :description %>
-    <%= f.text_area :description %>
-  </div>
-  <div class="form-inline">
-    <%= f.label :number	%>
-    <%= f.text_field :number %>
-  </div>
-  <div class="form-group col-md-7">
-    <%= f.label :start_date %>
-    <div class='input-group date' id='datetimepicker1'>
-      <%= f.text_field :start_date, class: "form-control", 'data-date-format' => "YYYY/MM/DD HH:mm",
-           value: @schedule.start_date.strftime("%Y/%m/%d %H:%M") %>
-      <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
-      </span>
+<div class="list">
+  <%= form_for [:dashboard,:admin,@schedule] do |f| -%>
+    <div class="form-group">
+      <%= f.label :title %>
+      <%= f.text_field :title %>
     </div>
-  </div>
-  <div class="form-group col-md-7">
-    <%= f.label :end_date %>
-    <div class='input-group date' id='datetimepicker2'>
-      <%= f.text_field :end_date, class: "form-control", 'data-date-format' => "YYYY/MM/DD HH:mm",
-           value: (@schedule.end_date.strftime("%Y/%m/%d %H:%M") if @schedule.end_date) %>
-      <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
-      </span>
+    <div class="form-group">
+      <%= f.label :number	%>
+      <%= f.text_field :number %>
     </div>
-  </div>
-  <div class="form-group col-md-7">
-    <%= f.label :public_at %>
-    <div class='input-group date' id='datetimepicker3'>
-      <%= f.text_field :public_at, class: "form-control", 'data-date-format' => "YYYY/MM/DD HH:mm",
-           value: (@schedule.public_at.strftime("%Y/%m/%d %H:%M") if @schedule.public_at) %>
-      <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
-      </span>
+    <div class="form-group">
+      <%= f.label :start_date %>
+      <div class='input-group date' id='datetimepicker1'>
+        <%= f.text_field :start_date, class: "form-control", 'data-date-format' => "YYYY/MM/DD HH:mm"%>
+        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+        </span>
+      </div>
     </div>
-  </div>
-  <div class="form">
-    <%= f.label :local %>
-    <%= f.text_field :local %>
-  </div>
-  <div class="form col-md-7">
-    <%= f.label :doing_kind_id %>
-    <%= f.select(:doing_kind_id, DoingKind.all.collect {|u| [u.title, u.id]}, { :prompt => '請選擇'}, :class => 'form-control' ) %>
-  </div>
-  <%= f.submit "確認", :disable_with => '處理中...', class: "btn btn-success" %>
-<% end -%>
+    <div class="form-group">
+      <%= f.label :end_date %>
+      <div class='input-group date' id='datetimepicker2' >
+        <%= f.text_field :end_date, class: "form-control", 'data-date-format' => "YYYY/MM/DD HH:mm"%>
+        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+        </span>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :public_at %>
+      <div class='input-group date' id='datetimepicker3'>
+        <%= f.text_field :public_at, class: "form-control", 'data-date-format' => "YYYY/MM/DD HH:mm"%>
+        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+        </span>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :local %>
+      <%= f.text_field :local %>
+    </div>
+    <div class="form-group">
+      <%= f.label :doing_kind_id %>
+      <%= f.select(:doing_kind_id, DoingKind.all.collect {|u| [u.title, u.id]}, { :prompt => '請選擇'}, :class => 'form-control' ) %>
+    </div>
+    <div class="form-group">
+      <%= f.label :description %>
+      <%= f.text_area :description, class: "form-control", rows: "20", "data-provide" => "markdown" %>
+    </div>
+    <%= f.submit "確認", :disable_with => '處理中...', class: "btn btn-success" %>
+  <% end %>
+</div>

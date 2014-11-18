@@ -1,8 +1,7 @@
-<ol class="breadcrumb">
-  <li><%= link_to "首頁", dashboard_root_path %></li>
+<% content_for :breadcrumb do %>
   <li><%= link_to "討論區", dashboard_forums_path %></li>
   <li class="active"><%= @forum.title %></li>
-</ol>
+<% end %>
 
 <% if @post_view
     view = @post_view.first == @forum.id
@@ -33,7 +32,7 @@
                     :method => :delete, class: "btn btn-xs btn-danger" if delete %>
           </td>
           <td>
-            <%= m.post_name %>
+            <%= m.user_name %>
           </td>
           <td>
             <%= m.view_count %>

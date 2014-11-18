@@ -1,20 +1,32 @@
-<ol class="breadcrumb">
-  <li><%= link_to "首頁", root_path %></li>
-  <li class="active">留言板</li>
-</ol>
-
 <% require "rails_autolink" %>
-<h1>留言板</h1>
+<% content_for :breadcrumb do %>
+  <li class="active">留言板</li>
+<% end %>
 
 <%= will_paginate @collection, renderer: BootstrapPagination::Rails %>
+
 <% @boards.each do |board| %>
-<div class='panel panel-primary'>
-  <div class='panel-heading'>
-    <h3 class="panel-title">編號：<%= board.id %> | 主題：<%= board.subject %> </h3></div>
-  <div class='panel-body'><%= simple_format(auto_link(board.content)) %></div>
-  <div class='panel-heading' style=' padding-top: 5px; padding-bottom: 5px;'>
-    <h8 class="panel-title"> 發布者：<%= board.user_name %>
-    | 發布時間：<%= board.created_at.strftime('%Y年%m月%d日 %H:%S') %></h8></div>
+<div class="col-md-2 user">
+    <img src="http://graph.facebook.com/<%= board.user_uid %>/picture?type=normal"/><br/>
+    <%= link_to board.user_name, "http://www.facebook.com/#{board.user_uid}" %><br/>
+    加入時間：<%= board.user_created_at.strftime("%Y %m.%d") %><br/>
+    上次登入：<%= board.user_last_sign_in_at.strftime("%Y %m.%d") %>
+</div>
+<div  class="col-md-10 post">
+  <div class="subject">
+    <strong>編號：<%= board.id %> | 主題：<%= board.subject %></strong>
+  </div>
+  <div class="content">
+    <%= simple_format(auto_link(board.content)) %>
+  </div>
+  <div class="controller">
+    <% if board.updated_at == board.created_at %>
+      新增於：<%= time_parser(board.created_at) %>
+    <% else %>
+      修改於：<%= time_parser(board.updated_at) %>
+    <% end %>
+  </div>
 </div>
 <% end %>
+
 <%= will_paginate @collection, renderer: BootstrapPagination::Rails %>

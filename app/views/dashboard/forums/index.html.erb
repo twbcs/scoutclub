@@ -1,7 +1,7 @@
-<ol class="breadcrumb">
-  <li><%= link_to "首頁", dashboard_root_path %></li>
+<% content_for :breadcrumb do %>
   <li class="active">討論區</li>
-</ol>
+<% end %>
+
 <div id="forum-list">
   <table class="table  table-hover">
     <thead>
@@ -36,7 +36,7 @@
                   <% @posts.each do |po| %>
                     <% if po.forum_id == forum.id  %>
                       <%= link_to po.subject, dashboard_forum_post_path(po.forum_id,po.id) %><br/>
-                      <%= po.post_name %>
+                      <%= po.user_name %>
                       <% have = true %>
                     <% end %>
                   <% end %>

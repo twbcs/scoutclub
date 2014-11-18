@@ -1,7 +1,7 @@
 class Dashboard::Admin::ArticlesController < Dashboard::Admin::AdminController
   def index
     if params[:art_kind_id]
-      @articles = Article.where(art_kind_id: params[:art_kind_id])
+      @articles = Article.where(art_kind_id: params[:art_kind_id]).includes(:user, :art_kind)
     else
       @articles = Article.all.includes(:user, :art_kind)
     end

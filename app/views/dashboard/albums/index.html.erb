@@ -1,7 +1,7 @@
-<ol class="breadcrumb">
-  <li><%= link_to "首頁", dashboard_root_path %></li>
+<% content_for :breadcrumb do %>
   <li class="active">相簿</li>
-</ol>
+<% end %>
+
 <% @albums.each do |m|%>
   <%= link_to m.title, dashboard_album_path(m) %>
   <%= m.description %>

@@ -1,8 +1,8 @@
-<ol class="breadcrumb">
-  <li><%= link_to "首頁", dashboard_admin_root_path %></li>
+<% content_for :breadcrumb do %>
   <li><%= link_to "團員資料", dashboard_admin_members_path %></li>
-  <li class="active">修改</li>
-</ol>
+  <li class="active">修改 | <%= @member.name %></li>
+<% end %>
+
 <div class="list">
   <%= form_for [:dashboard,:admin,@member] do |f| %>
     <div class="form-inline">

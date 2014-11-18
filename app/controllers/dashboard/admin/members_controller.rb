@@ -41,7 +41,6 @@ class Dashboard::Admin::MembersController < Dashboard::Admin::AdminController
 
   def destroy
 		@member.destroy
-
     redirect_to dashboard_admin_members_url
   end
 

@@ -1,8 +1,7 @@
-<ol class="breadcrumb">
-  <li><%= link_to "首頁", dashboard_admin_root_path %></li>
+<% content_for :breadcrumb do %>
   <li><%= link_to "討論區權限", dashboard_admin_user_groups_path %></li>
   <li class="active">新增使用者權限</li>
-</ol>
+<% end %>
 
 <%= form_for [:dashboard,:admin,@user_group] do |f| %>
 <%= f.hidden_field :user_id %>

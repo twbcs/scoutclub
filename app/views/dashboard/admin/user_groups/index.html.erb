@@ -1,7 +1,6 @@
-<ol class="breadcrumb">
-  <li><%= link_to "首頁", dashboard_admin_root_path %></li>
+<% content_for :breadcrumb do %>
   <li class="active">討論區權限</li>
-</ol>
+<% end %>
 
 <div class="list">
   <% @user_groups.each do |m| %>

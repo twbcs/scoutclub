@@ -1,8 +1,7 @@
-<ol class="breadcrumb">
-  <li><%= link_to "首頁", root_path %></li>
+<% content_for :breadcrumb do %>
   <li><%= link_to "團康音樂", musics_path %></li>
   <li class="active"><%= @music.title %></li>
-</ol>
+<% end %>
 
 <%= @music.title %>
 File.basename(m.file.path)

@@ -1,7 +1,6 @@
-<ol class="breadcrumb">
-  <li><%= link_to "首頁", dashboard_admin_root_path %></li>
+<% content_for :breadcrumb do %>
   <li class="active">討論分區</li>
-</ol>
+<% end %>
 
 <% @forum_kinds.each do |f| %>
 <div id="forum-list">
@@ -23,4 +22,4 @@
   <% end %>
 </div>
 <% end %>
-<%= link_to "新增", new_dashboard_admin_forum_kind_path, :class => 'btn btn-success' %>
+<%= link_to "新增分區", new_dashboard_admin_forum_kind_path, :class => 'btn btn-success' %>

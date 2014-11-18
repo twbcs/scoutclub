@@ -1,11 +1,9 @@
-<ol class="breadcrumb">
-  <li><%= link_to "首頁", dashboard_admin_root_path %></li>
+<% content_for :breadcrumb do %>
   <li><%= link_to "職務職掌", dashboard_admin_titles_path %></li>
-  <li class="active">修改</li>
-</ol>
+  <li class="active">修改 | <%= @title.title %></li>
+<% end %>
 
 <%= form_for [:dashboard,:admin,@title] do |f| %>
-
   <div class="form-inline">
   	<%= f.label :title %>
     <%= f.text_field :title, :placeholder => "輸入職務", :class => "form-control" %>
@@ -14,10 +12,7 @@
   	<%= f.label :level %>
     <%= f.text_field :level, :placeholder => "輸入層級", :class => "form-control" %>
   </div>
-
   <%= f.label :description %>
   <%= f.text_area :description, class: "form-control", rows: "20", "data-provide" => "markdown", :placeholder => "輸入職掌說明" %>
-
-<%= f.submit "確認", :disable_with => '處理中...' %>
-
+  <%= f.submit "確認", :disable_with => '處理中...' %>
 <% end %>

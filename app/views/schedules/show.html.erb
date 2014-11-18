@@ -1,8 +1,7 @@
-<ol class="breadcrumb">
-  <li><%= link_to "首頁", root_path %></li>
+<% content_for :breadcrumb do %>
   <li><%= link_to "活動行事曆", schedules_path %></li>
   <li class="active"><%= @schedule.title %></li>
-</ol>
+<% end %>
 
 <%= @schedule.title %>
 <%= @schedule.start_date.strftime("%Y %m %d %H:%M") %>

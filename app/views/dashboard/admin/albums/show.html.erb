@@ -1,13 +1,14 @@
-<ol class="breadcrumb">
-  <li><%= link_to "首頁", dashboard_admin_root_path %></li>
+<% content_for :breadcrumb do %>
   <li><%= link_to "相簿", dashboard_admin_albums_path %></li>
   <li class="active"><%= @album.title %></li>
-</ol>
+<% end %>
 
-<%= @album.title %>
-<%= @album.description %>
-<%= @album.add_photo_to %>
-<%= link_to "修改", edit_dashboard_admin_album_path(@album) %>
+<div class="">
+  <%= @album.title %>
+  <%= @album.description %>
+  <%= @album.add_photo_to %>
+  <%= link_to "修改", edit_dashboard_admin_album_path(@album) %>
+</div>
 
 <%= form_for [:dashboard,:admin,@album,@photo], remote: true do |f| %>
   <% if @photo.errors.any? %>
@@ -62,4 +63,6 @@
     </div>
   <% end  %>
 </div>
-<%#= javascript_include_tag 'photos' %>
+<% content_for :script do %>
+  <%= javascript_include_tag 'photos' %>
+<% end %>

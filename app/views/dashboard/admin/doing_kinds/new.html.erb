@@ -1,8 +1,7 @@
-<ol class="breadcrumb">
-  <li><%= link_to "首頁", dashboard_admin_root_path %></li>
+<% content_for :breadcrumb do %>
   <li ><%= link_to "活動類型", dashboard_admin_doing_kinds_url %></li>
   <li class="active">新增</li>
-</ol>
+<% end %>
 
 <%= form_for [:dashboard,:admin,@doing_kind] do |f| %>
 

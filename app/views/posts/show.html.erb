@@ -1,20 +1,19 @@
-<ol class="breadcrumb">
-  <li><%= link_to "首頁", root_path %></li>
+<% content_for :breadcrumb do %>
+  <li><%= link_to "團康音樂", musics_path %></li>
   <li><%= link_to "討論區", forums_path %></li>
   <li><%= link_to @forum.title, forum_path(@forum) %></li>
   <li class="active" ><%= @posts.first.subject %></li>
-</ol>
-<% if @post_view
-    view = @post_view.first == @forum.id
-  end %>
+<% end %>
+
+<% view = @post_view.first == @forum.id if @post_view %>
 
 <% if @forum.public_at || view %>
   <% @posts.each do |m| %>
     <% user = m.user_id == current_user.id if current_user %>
     <div class="col-md-2">
       <div class="user">
-        <img src="http://graph.facebook.com/<%= m.user.uid %>/picture?type=normal"/><br/>
-        <%= link_to m.post_name, "http://www.facebook.com/#{m.user.uid}" %><br/>
+        <img src="http://graph.facebook.com/<%= m.user_uid %>/picture?type=normal"/><br/>
+        <%= link_to m.user_name, "http://www.facebook.com/#{m.user_uid}" %><br/>
         加入時間：<%= m.user.created_at.strftime("%Y %m.%d") %><br/>
         上次登入：<%= m.user.last_sign_in_at.strftime("%Y %m.%d") %>
       </div>

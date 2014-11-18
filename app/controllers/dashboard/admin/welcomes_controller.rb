@@ -6,5 +6,4 @@ class Dashboard::Admin::WelcomesController < Dashboard::Admin::AdminController
     @articles_list = Article.all.order_by_time.limit(5)
     @album_list    = Album.all.order_by_time.limit(5)
   end
-
 end

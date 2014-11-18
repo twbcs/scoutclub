@@ -1,8 +1,7 @@
-<ol class="breadcrumb">
-  <li><%= link_to "首頁", dashboard_admin_root_path %></li>
+<% content_for :breadcrumb do %>
   <li><%= link_to "相簿", dashboard_admin_albums_path %></li>
   <li class="active">編輯：<%= @album.title %></li>
-</ol>
+<% end %>
 
 <%= form_for [:dashboard,:admin,@album] do |f| %>
   <%= f.text_field :title, class: "form-control" %>

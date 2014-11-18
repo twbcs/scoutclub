@@ -1,5 +1,6 @@
 class Dashboard::Admin::AlbumsController < Dashboard::Admin::AdminController
-  after_action :view_add , only: [:show]
+  before_action :set_album, only: [:show, :edit, :update, :destroy]
+  after_action :view_add, only: [:show]
   def index
     @albums = Album.all
   end
@@ -18,11 +19,9 @@ class Dashboard::Admin::AlbumsController < Dashboard::Admin::AdminController
   end
 
   def edit
-    @album = Album.find(params[:id])
   end
 
   def update
-    @album = Album.find(params[:id])
     if @album.update(album_params)
       redirect_to dashboard_admin_album_path(@album.id)
     else
@@ -31,13 +30,11 @@ class Dashboard::Admin::AlbumsController < Dashboard::Admin::AdminController
   end
 
   def show
-    @album = Album.find(params[:id])
     @photos = Photo.where(album_id: params[:id])
     @photo = Photo.new
   end
 
   def destroy
-    @album = Album.find(params[:id])
     @album.destroy
     redirect_to dashboard_admin_albums_path
   end
@@ -47,8 +44,8 @@ class Dashboard::Admin::AlbumsController < Dashboard::Admin::AdminController
     params.require(:album).permit(:title,:description,:add_photo_to,:public_at)
   end
 
-  def photo_params
-    params.require(:photo).permit(:file, :user_id, :album_id, :name)
+  def set_album
+    @album = Album.find(params[:id])
   end
 
   def view_add

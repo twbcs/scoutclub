@@ -1,4 +1,6 @@
 class Dashboard::Admin::ArtKindsController < Dashboard::Admin::AdminController
+  before_action :set_artkind, only: [:edit, :update, :destroy]
+
   def index
     @art_kinds = ArtKind.all
   end
@@ -18,12 +20,9 @@ class Dashboard::Admin::ArtKindsController < Dashboard::Admin::AdminController
   end
 
   def edit
-    @art_kind = ArtKind.find(params[:id])
   end
 
   def update
-    @art_kind = ArtKind.find(params[:id])
-
     if @art_kind.update(art_params)
       redirect_to dashboard_admin_art_kinds_url
     else
@@ -32,7 +31,6 @@ class Dashboard::Admin::ArtKindsController < Dashboard::Admin::AdminController
   end
 
   def destroy
-    @art_kind = ArtKind.find(params[:id])
     @art_kind.destroy
     redirect_to dashboard_admin_art_kinds_url
   end
@@ -40,5 +38,9 @@ class Dashboard::Admin::ArtKindsController < Dashboard::Admin::AdminController
   private
   def art_params
     params.require(:art_kind).permit(:name)
+  end
+
+  def set_artkind
+    @art_kind = ArtKind.find(params[:id])
   end
 end

@@ -1,9 +1,8 @@
-<ol class="breadcrumb">
-  <li><%= link_to "首頁", dashboard_admin_root_path %></li>
+<% content_for :breadcrumb do %>
   <li><%= link_to "討論分區", dashboard_admin_forum_kinds_path %></li>
   <li><%=  @forum.forum_kind_title %></li>
-  <li class="active">修改子板</li>
-</ol>
+  <li class="active">修改子板 | <%= @forum.title %></li>
+<% end %>
 
 <%= form_for [:dashboard,:admin,@forum] do |f| %>
   <%= f.label :title %>

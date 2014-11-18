@@ -1,8 +1,7 @@
-<ol class="breadcrumb">
-  <li><%= link_to "首頁", dashboard_admin_root_path %></li>
+<% content_for :breadcrumb do %>
   <li><%= link_to "文章總覽", dashboard_admin_articles_path %></li>
   <li class="active">文章：<%= @article.title %></li>
-</ol>
+<% end %>
 
 <%= @article.title %>
 <%= @article.user_name %>

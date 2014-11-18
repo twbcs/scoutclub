@@ -1,8 +1,7 @@
 <% require "rails_autolink" %>
-<ol class="breadcrumb">
-  <li><%= link_to "首頁", dashboard_admin_root_path %></li>
+<% content_for :breadcrumb do %>
   <li class="active">留言板</li>
-</ol>
+<% end %>
 <div class="col-xs-12 new">
   <%= link_to '留 言', new_dashboard_admin_board_path, :class => 'btn btn-success' if current_user %>
 </div>
@@ -11,10 +10,10 @@
 
 <% @boards.each do |board| %>
 <div class="col-md-2 user">
-    <img src="http://graph.facebook.com/<%= board.user.uid %>/picture?type=normal"/><br/>
-    <%= link_to board.user.name, "http://www.facebook.com/#{board.user.uid}" %><br/>
-    加入時間：<%= board.user.created_at.strftime("%Y %m.%d") %><br/>
-    上次登入：<%= board.user.last_sign_in_at.strftime("%Y %m.%d") %>
+    <img src="http://graph.facebook.com/<%= board.user_uid %>/picture?type=normal"/><br/>
+    <%= link_to board.user_name, "http://www.facebook.com/#{board.user_uid}" %><br/>
+    加入時間：<%= board.user_created_at.strftime("%Y %m.%d") %><br/>
+    上次登入：<%= board.user_last_sign_in_at.strftime("%Y %m.%d") %>
 </div>
 <div  class="col-md-10 post">
   <div class="subject">

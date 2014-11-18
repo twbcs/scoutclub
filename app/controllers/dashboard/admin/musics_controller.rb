@@ -1,4 +1,6 @@
 class Dashboard::Admin::MusicsController < Dashboard::Admin::AdminController
+  before_action :set_music, only: [:show, :edit, :update, :destroy]
+
   def index
     @musics = Music.all.includes(:user)
   end
@@ -18,12 +20,9 @@ class Dashboard::Admin::MusicsController < Dashboard::Admin::AdminController
   end
 
   def edit
-    @music = Music.find(params[:id])
   end
 
   def update
-    @music = Music.find(params[:id])
-
     if @music.update(music_params)
       redirect_to dashboard_admin_music_path(params[:id])
     else
@@ -32,11 +31,9 @@ class Dashboard::Admin::MusicsController < Dashboard::Admin::AdminController
   end
 
   def show
-    @music = Music.find(params[:id])
   end
 
   def destroy
-    @music = Music.find(params[:id])
     @music.remove_file!
     @music.destroy
     redirect_to dashboard_admin_musics_path
@@ -45,5 +42,9 @@ class Dashboard::Admin::MusicsController < Dashboard::Admin::AdminController
   private
   def music_params
     params.require(:music).permit(:file, :title, :description, :user_id)
+  end
+
+  def set_music
+    @music = Music.find(params[:id])
   end
 end

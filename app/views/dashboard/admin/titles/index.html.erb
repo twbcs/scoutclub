@@ -1,7 +1,7 @@
-<ol class="breadcrumb">
-  <li><%= link_to "首頁", dashboard_admin_root_path %></li>
+<% content_for :breadcrumb do %>
   <li class="active">職務職掌</li>
-</ol>
+<% end %>
+
 <div class="col-sx-12 new">
   <%= link_to "新增", new_dashboard_admin_title_path, class: "btn btn-success" %>
 </div>
@@ -11,11 +11,11 @@
       <tbody>
         <% @titles.each do |t| %>
         <tr>
-          <td>
+          <td style="padding: 3px">
             <%= link_to t.title, dashboard_admin_titles_path(id: t.id) %>
             <%= t.level %>
           </td>
-          <td>
+          <td style="padding: 3px">
             <%= link_to "修改", edit_dashboard_admin_title_path(t), class: "btn btn-xs btn-success"  %>
             <%= link_to "刪除", dashboard_admin_title_path(t), :method => :delete, class: "btn btn-xs btn-danger"  %>
           </td>
@@ -27,10 +27,12 @@
 </div>
 <div class="col-md-10">
   <div id="title" class="list">
-    <p class="title-title"><%= @title.title %></p>
-    <div>
-      <%= markdown(@title.description) %>
-    </div>
+    <% if @title %>
+      <p class="title-title"><%= @title.title %></p>
+      <div>
+        <%= markdown(@title.description) %>
+        <%= "修訂於 " + time_parser(@title.updated_at) if @title.updated_at != @title.created_at %>
+      </div>
+    <% end %>
   </div>
-  <div class="right"><%= "修訂於 " + time_parser(@title.updated_at) %></div>
 </div>
