@@ -3,17 +3,13 @@
   <li class="active">文章：<%= @article.title %></li>
 <% end %>
 
-<%= @article.title %>
-<%= @article.user_name %>
+<span class="head"><%= @article.title + ":" + @article.user_name%></span>
 <div class="content">
   <%= markdown(@article.content) %>
 </div>
 <div class="comments">
-  <% if @comments %>
-    <% @comments.each do |co| %>
-      <%= co.content %>
-      <%= co.user_name %>
-      <%= timeago_tag co.created_at, :nojs => true, :limit => 30.days.ago, :lang => 'zh-TW' %><br/>
-    <% end %>
+  <span class="head">回應</span>
+  <% @comments.each do |co| %>
+    <%= render 'comment', co: co %>
   <% end %>
 </div>

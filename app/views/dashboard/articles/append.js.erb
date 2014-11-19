@@ -1,5 +1,5 @@
 <% if @save %>
-  var link = "<%= @comment.content + @comment.user_name + time_ago_in_words(@comment.created_at) %><br/>";
+  var link = "<%=j render 'comment', co: @comment %>";
   $(".comments").append(link);
 <% end %>
 $("#comment_content").val('');

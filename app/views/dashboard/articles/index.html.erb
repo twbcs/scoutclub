@@ -1,29 +1,29 @@
 <% content_for :breadcrumb do %>
   <li class="active">文章總覽</li>
 <% end %>
-
 <div class="col-xs-12 new">
   <%= link_to '新增文章', new_dashboard_article_path, :class => 'btn btn-success' if current_user %>
 </div>
-<div>
-  <div class="col-md-2">
-    <div class="list sidebar">
-      <% @art_kind.each do |at| %>
-        <%= link_to at.name, dashboard_articles_path(art_kind_id: at.id) %><br/>
-      <% end %>
-    </div>
+<div class="col-md-2">
+  <div class="list sidebar">
+    <%= link_to "全部", dashboard_articles_path %><br/>
+    <% @art_kind.each do |at| %>
+      <%= link_to at.name, dashboard_articles_path(art_kind_id: at.id) %><br/>
+    <% end %>
   </div>
-  <div class="col-md-10">
-    <div class="list">
-      <% @articles.each do |art| %>
-        <%= link_to art.title, dashboard_article_path(art.id) %>
-        <%= art.content %>
-        <%= art.user_name %>
-        <%= art.art_kind.name %>
-        <%= '還有' if art.created_at > Time.now %>
-        <%= timeago_tag art.created_at, :nojs => true, :limit => 30.days.ago, :lang => 'zh-TW' %>
-        <%= link_to "修改", edit_dashboard_article_path(art.id), class: "btn btn-xs btn-success" %><br/>
-      <% end %>
-    </div>
+</div>
+<div class="col-md-10">
+  <div class="list">
+    <% @articles.each do |art| %>
+      <span class="article-title"><%= link_to art.title, dashboard_article_path(art.id) %></span>
+      <%= art.user_name %>
+      <%= art.art_kind.name %>
+      <%= timeago_tag art.created_at, :nojs => true, :limit => 30.days.ago, :lang => 'zh-TW' %>
+      <%= link_to "修改", edit_dashboard_article_path(art.id), class: "btn btn-xs btn-success" %><br/>
+      <div class="content">
+        <%= markdown(truncate(art.content, length: 200, omission: "")) %>
+        <%= link_to "內容", dashboard_article_path(art.id) %>
+      </div>
+    <% end %>
   </div>
 </div>

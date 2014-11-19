@@ -3,10 +3,6 @@
   <li class="active">新增文章</li>
 <% end %>
 
-<%= form_for [:dashboard,@article] do |f| %>
-  <%= f.text_field :title, class: "form-control" %>
-  <%= f.select(:art_kind_id, ArtKind.all.collect {|u| [u.name, u.id]},
-      { :prompt => '請選擇'}, :class => 'form-control' ) %>
-  <%= f.text_area :content %>
-  <%= f.submit "新增", class: " btn btn-success" %>
-<% end %>
+<div class="list">
+  <%= render 'form', article: @article %>
+</div>

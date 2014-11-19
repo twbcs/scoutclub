@@ -3,25 +3,26 @@
   <li><%=  @forum.forum_kind_title %></li>
   <li class="active">新增子板</li>
 <% end %>
-
-<%= form_for [:dashboard,:admin,@forum] do |f| %>
-  <%= f.label :title %>
-  <%= f.text_field :title %><br/>
-  <%= f.label :description %>
-  <%= f.text_area  :description %><br/>
-  <%= f.hidden_field :forum_kind_id %>
-  <%= f.label :public_at %>
-  <div class="btn-group" data-toggle="buttons">
-    <label class="btn btn-default">
-      <%= f.radio_button( :public_at, 'false' ) %> 隱私
-    </label>
-    <label class="btn btn-default active">
-      <%= f.radio_button( :public_at, 'true' , { :checked => true }) %> 公開
-    </label>
-  </div>
-  <div class="form-inline">
-    <%= f.label :closing_date %>
-    <%= f.date_field :closing_date %>
-  </div>
-  <%= f.submit "確認", class: " btn btn-success" %>
-<% end %>
+<div class="list">
+  <%= form_for [:dashboard,:admin,@forum] do |f| %>
+    <%= f.label :title %>
+    <%= f.text_field :title %><br/>
+    <%= f.label :description %>
+    <%= f.text_area  :description %><br/>
+    <%= f.hidden_field :forum_kind_id %>
+    <%= f.label :public_at %>
+    <div class="btn-group" data-toggle="buttons">
+      <label class="btn btn-default">
+        <%= f.radio_button( :public_at, 'false' ) %> 隱私
+      </label>
+      <label class="btn btn-default active">
+        <%= f.radio_button( :public_at, 'true' , { :checked => true }) %> 公開
+      </label>
+    </div>
+    <div class="form-inline">
+      <%= f.label :closing_date %>
+      <%= f.date_field :closing_date %>
+    </div>
+    <%= f.submit "確認", class: " btn btn-success" %>
+  <% end %>
+</div>

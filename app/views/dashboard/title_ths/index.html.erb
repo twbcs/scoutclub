@@ -4,7 +4,7 @@
 
 <div class="list clearfix">
   <% @year.each do |y| %>
-    <div class="col-xs-12"><%= y.title_year %></div>
+    <div class="col-xs-12 year"><%= y.title_year %></div>
     <div>
       <% @title_ths.each do |m| %>
         <% if y.title_year == m.title_year %>

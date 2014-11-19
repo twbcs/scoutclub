@@ -5,3 +5,24 @@
   font-weight: bold;
   font-size: 1.5em;
 }
+.comments {
+  background-color: rgba(255,255,255,0.85);
+  margin: 10px 0px 10px 0px;
+  padding-left: 10px;
+  border-radius: 4px;
+}
+
+.head {
+  margin: 5px;
+  padding: 0px 10px 0px 10px;
+  border-radius: 4px;
+  font-size: 1.2em;
+  color: #FFF;
+  background-color: rgba(106, 165, 242,0.85);
+  border-bottom: 1px solid #9197A3;
+}
+.comment-content { padding-bottom: 10px;}
+.comment-user {
+  color: #9197A3;
+  font-size: 0.8em;
+  }

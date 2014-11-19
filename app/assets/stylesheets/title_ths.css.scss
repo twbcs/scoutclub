@@ -11,3 +11,12 @@
   background-color: #f5fedd;
   border-radius: 3px;
 }
+.item:hover {
+  background-color: #bfff00;
+  color: #FFF;
+  text-shadow: 1px 1px 2px black, 0 0 1em blue, 0 0 0.2em blue;
+}
+.year {
+  text-shadow: 1px 1px 2px black, 0 0 1em #bfff00, 0 0 0.2em #bfff00;
+  color: #FFF;
+}

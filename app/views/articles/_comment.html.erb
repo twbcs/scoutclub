@@ -1,0 +1,7 @@
+<div class='comment-content'>
+  <%= co.content %>
+</div>
+<div class='comment-user'>
+  <%= co.user_name %>
+  <%= timeago_tag co.created_at, :nojs => true, :limit => 30.days.ago, :lang => 'zh-TW' %>
+</div>

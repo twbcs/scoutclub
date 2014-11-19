@@ -10,6 +10,7 @@ zh_TW:
       board: "留言"
       forum: "討論區"
       post: "文章"
+      article: "文章"
     attributes:
       member:
         year: "年份"
@@ -57,3 +58,7 @@ zh_TW:
         subject: "主題"
         body: "內容"
         view_count: "瀏覽數"
+      article:
+        title: "標題"
+        art_kind_id: "文章類型"
+        content: "內容"
