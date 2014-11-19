@@ -3,7 +3,7 @@
   <li class="active">留言板</li>
 <% end %>
 
-<%= will_paginate @collection, renderer: BootstrapPagination::Rails %>
+<%= will_paginate @boards, renderer: BootstrapPagination::Rails %>
 
 <% @boards.each do |board| %>
 <div class="col-md-2 user">
@@ -29,4 +29,4 @@
 </div>
 <% end %>
 
-<%= will_paginate @collection, renderer: BootstrapPagination::Rails %>
+<%= will_paginate @boards, renderer: BootstrapPagination::Rails %>

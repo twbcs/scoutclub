@@ -30,7 +30,7 @@ class Dashboard::Admin::ForumsController < Dashboard::Admin::AdminController
 
   def show
     @posts = Post.where(forum_id: params[:id], reply_id: nil).includes(:user)
-            .order_by_update_post
+            .paginate(:page => params[:page], :per_page => 20).order_by_update_post
   end
 
   def edit

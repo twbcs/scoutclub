@@ -5,6 +5,8 @@ class Post < ActiveRecord::Base
 	belongs_to :user
 	delegate :name, :uid, :created_at, :last_sign_in_at, to: :user, prefix: "user"
 
+	validates_presence_of :subject, :on => :create, :message => "不可為空"
+	validates_presence_of :body, :on => :create, :message => "不可為空"
 	scope :order_by_update_post, -> { order(update_post: :desc) }
 	scope :find_first_post, -> { where(first_post: true, reply_id: nil) }
 	scope :find_reply_count, -> { find_by_sql("select po.id, po.forum_id, count(rep.reply_id)

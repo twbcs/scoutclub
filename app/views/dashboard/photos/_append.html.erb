@@ -1,0 +1,6 @@
+<div id="p<%= f.id %>" class="photo">
+  <%= link_to(dashboard_album_photo_path(f.album_id, f)) do %>
+  <img src="<%= f.file.medium %>" />
+  <% end %>
+  <%= link_to "刪除", dashboard_album_photo_path(f.album_id, f), method: :delete, remote: true, class: "delete btn btn-xs btn-default" %>
+</div>

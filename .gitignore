@@ -15,3 +15,6 @@
 /log/*.log
 /tmp
 *.rdb
+
+# Ignore uploads temp file
+/public/uploads/*

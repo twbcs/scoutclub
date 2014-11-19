@@ -24,7 +24,8 @@
 body{
   position: relative;
   background-attachment: fixed;
-  background-image: image-url('DSC_9806.jpg');
+  background-color: #000;
+  //background-image: image-url('DSC_9806.jpg');
 }
 
 .page-header{ margin: 20px 0 10px; }
@@ -72,4 +73,10 @@ footer {
   @include gap(bottom, 20px);
   .icon-html5{ color : #f89c78; }
   .icon-css3{ color : #6aa5f2; }
+}
+
+div .table{
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 0px;
 }

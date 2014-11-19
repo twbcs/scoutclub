@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     resources :schedules
     resources :musics
     resources :albums do
-      resources :photos, only: [:create, :destroy]
+      resources :photos, only: [:create, :destroy, :show]
     end
     resources :boards, except: [:show]
     resources :articles do
@@ -30,7 +30,7 @@ Rails.application.routes.draw do
       resources :schedules
       resources :musics
       resources :albums do
-        resources :photos, only: [:create, :destroy]
+        resources :photos, only: [:create, :destroy, :show]
       end
       resources :boards, except: [:show]
       resources :articles do
@@ -62,7 +62,9 @@ Rails.application.routes.draw do
   resources :boards,    only: [:index]
   resources :schedules, only: [:index, :show]
   resources :musics,    only: [:index, :show]
-  resources :albums,    only: [:index, :show]
+  resources :albums,    only: [:index, :show] do
+    resources :photo, only: [:show]
+  end
   resources :members,   only: [:index]
   resources :titles,    only: [:index]
   resources :title_ths, only: [:index] # not admin

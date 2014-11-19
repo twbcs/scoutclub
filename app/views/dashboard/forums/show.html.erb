@@ -8,10 +8,12 @@
     reply = @post_view.last >= 3
     delete = @post_view.last >= 15
   end %>
+
+<% if @forum.public_at || view %>
 <div class="col-xs-12 new">
   <%= link_to '發表文章', new_dashboard_forum_post_path(forum_id: @forum.id), :class => 'btn btn-success' if reply %>
 </div>
-<% if @forum.public_at || view %>
+<%= will_paginate @posts, renderer: BootstrapPagination::Rails %>
 <div id="forum-list">
   <table class="table">
     <thead>
@@ -48,4 +50,5 @@
     </tbody>
   </table>
 </div>
+<%= will_paginate @posts, renderer: BootstrapPagination::Rails %>
 <% end %>

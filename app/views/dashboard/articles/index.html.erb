@@ -1,6 +1,7 @@
 <% content_for :breadcrumb do %>
   <li class="active">文章總覽</li>
 <% end %>
+
 <div class="col-xs-12 new">
   <%= link_to '新增文章', new_dashboard_article_path, :class => 'btn btn-success' if current_user %>
 </div>
@@ -13,6 +14,7 @@
   </div>
 </div>
 <div class="col-md-10">
+  <%= will_paginate @articles, renderer: BootstrapPagination::Rails %>
   <div class="list">
     <% @articles.each do |art| %>
       <span class="article-title"><%= link_to art.title, dashboard_article_path(art.id) %></span>
@@ -21,9 +23,10 @@
       <%= timeago_tag art.created_at, :nojs => true, :limit => 30.days.ago, :lang => 'zh-TW' %>
       <%= link_to "修改", edit_dashboard_article_path(art.id), class: "btn btn-xs btn-success" %><br/>
       <div class="content">
-        <%= markdown(truncate(art.content, length: 200, omission: "")) %>
+        <%= markdown(truncate(art.content, length: 100, omission: "")) %>
         <%= link_to "內容", dashboard_article_path(art.id) %>
       </div>
     <% end %>
   </div>
+  <%= will_paginate @articles, renderer: BootstrapPagination::Rails %>
 </div>

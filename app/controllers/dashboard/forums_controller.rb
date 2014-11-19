@@ -1,6 +1,7 @@
 class Dashboard::ForumsController < Dashboard::DashboardController
   before_action :forum_list_power, only: [:index]
   before_action :post_list_power, only: [:show]
+  before_action :set_forum, only: [:show, :edit, :update, :destroy]
 
   def index
     @forum_kinds = ForumKind.all
@@ -28,17 +29,14 @@ class Dashboard::ForumsController < Dashboard::DashboardController
   end
 
   def show
-    @forum = Forum.find(params[:id])
     @posts = Post.where(forum_id: params[:id], reply_id: nil).includes(:user)
-            .order_by_update_post
+            .paginate(:page => params[:page], :per_page => 20).order_by_update_post
   end
 
   def edit
-    @forum = Forum.find(params[:id])
   end
 
   def update
-    @forum = Forum.find(params[:id])
     if @forum.update(forum_params)
       redirect_to(dashboard_forum_kinds_url, notice: '修改討論板完成')
     else
@@ -47,7 +45,6 @@ class Dashboard::ForumsController < Dashboard::DashboardController
   end
 
   def destroy
-    @forum = Forum.find(params[:id])
     post = Post.where(forum_id: params[:id]).count
     if post < 1
       @group_forums = GroupForum.where(forum_id: params[:id])
@@ -76,6 +73,10 @@ class Dashboard::ForumsController < Dashboard::DashboardController
       @post_view = view.sort.last
       redirect_to(dashboard_forums_path, alert: '子版錯誤或無權限進入') unless @post_view
     end
+  end
+
+  def set_forum
+    @forum = Forum.find(params[:id])
   end
 
   def forum_list_power

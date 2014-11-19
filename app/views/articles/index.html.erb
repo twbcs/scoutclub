@@ -11,6 +11,7 @@
   </div>
 </div>
 <div class="col-md-10">
+  <%= will_paginate @articles, renderer: BootstrapPagination::Rails %>
   <div class="list">
     <% @articles.each do |art| %>
       <span class="article-title"><%= link_to art.title, article_path(art.id) %></span>
@@ -18,9 +19,10 @@
       <%= art.art_kind.name %>
       <%= timeago_tag art.created_at, :nojs => true, :limit => 30.days.ago, :lang => 'zh-TW' %><br/>
       <div class="content">
-        <%= markdown(truncate(art.content, length: 200, omission: "")) %>
+        <%= markdown(truncate(art.content, length: 100, omission: "")) %>
         <%= link_to "內容", article_path(art.id) %>
       </div>
     <% end %>
   </div>
+  <%= will_paginate @articles, renderer: BootstrapPagination::Rails %>
 </div>

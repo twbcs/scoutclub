@@ -13,6 +13,10 @@ class Dashboard::Admin::PhotosController < Dashboard::Admin::AdminController
     end
   end
 
+  def show
+    @photo = Photo.where(album_id: params[:album_id], id: params[:id]).first
+  end
+
   def destroy
     @photo = Photo.where(album_id: params[:album_id], id: params[:id]).first
     @photo.remove_file!
