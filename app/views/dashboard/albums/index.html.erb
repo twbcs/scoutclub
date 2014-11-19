@@ -2,8 +2,10 @@
   <li class="active">相簿</li>
 <% end %>
 
-<% @albums.each do |m|%>
-  <%= link_to m.title, dashboard_album_path(m) %>
-  <%= m.description %>
-  <%= m.view_count %>
-<% end  %>
+<div class="col-xs-12 list">
+  <% @albums.each do |m|%>
+    <%= link_to m.title, dashboard_album_path(m) %>
+    <%= m.description %>
+    <%= m.view_count %>
+  <% end %>
+</div>

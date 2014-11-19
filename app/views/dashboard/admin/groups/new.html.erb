@@ -2,18 +2,19 @@
   <li><%= link_to "權限群組", dashboard_admin_groups_path %></li>
   <li class="active">新增群組</li>
 <% end %>
-
-<%= form_for [:dashboard,:admin,@group] do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <%= f.label :admin %>
-  <div class="btn-group" data-toggle="buttons">
-    <label class="btn btn-default active">
-      <%= f.radio_button( :admin, 'false', { :checked => true } ) %> 使用者
-    </label>
-    <label class="btn btn-default">
-      <%= f.radio_button( :admin, 'true' ) %> 管理者
-    </label>
-  </div>
-  <%= f.submit "確認", class: " btn btn-success" %>
-<% end %>
+<div class="list">
+  <%= form_for [:dashboard,:admin,@group] do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <%= f.label :admin %>
+    <div class="btn-group" data-toggle="buttons">
+      <label class="btn btn-default active">
+        <%= f.radio_button( :admin, 'false', { :checked => true } ) %> 使用者
+      </label>
+      <label class="btn btn-default">
+        <%= f.radio_button( :admin, 'true' ) %> 管理者
+      </label>
+    </div>
+    <%= f.submit "確認", class: " btn btn-success" %>
+  <% end %>
+</div>

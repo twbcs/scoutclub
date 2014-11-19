@@ -2,12 +2,15 @@
   <li><%= link_to "活動行事曆", dashboard_admin_schedules_path %></li>
   <li class="active"><%= @schedule.title %></li>
 <% end %>
-
-<%= @schedule.title %>
-<%= time_parser(@schedule.start_date) %>
-<%= time_parser(@schedule.end_date) %>
-<%= time_parser(@schedule.public_at) if @schedule.public_at %>
-<%= @schedule.local %>
-<%= @schedule.number %>
-<%= @schedule.description %>
-<%= @schedule.kind_title %>
+<div class="list">
+  <span class="head"><%= @schedule.title %></span><br/>
+  活動時間：<%= time_parser(@schedule.start_date) %><br/>
+  結束結束：<%= time_parser(@schedule.end_date) %><br/>
+  <%= "公開時間：#{time_parser(@schedule.public_at)}" if @schedule.public_at %><br/>
+  活動地點：<%= @schedule.local %><br/>
+  參加人數：<%= @schedule.number %>
+  <div class="content">
+    <%= markdown(@schedule.description) %>
+  </div>
+  <%= @schedule.kind_title %>
+</div>

@@ -1,3 +1,20 @@
 <% content_for :breadcrumb do %>
-  <li class="active">相簿</li>
+  <li><%= link_to "相簿", albums_path %></li>
+  <li class="active"><%= @album.title %></li>
 <% end %>
+
+<div class="">
+  <%= @album.title %>
+  <%= @album.description %>
+  <%= @album.add_photo_to %>
+</div>
+
+<div id="photolist" class="clearfix">
+  <% @photos.each do |m| %>
+    <div id="p<%= m.id %>" class="photo">
+      <%= link_to(album_photo_path(@album, m)) do %>
+      <img src="<%= m.file.medium %>" />
+      <% end %>
+    </div>
+  <% end  %>
+</div>

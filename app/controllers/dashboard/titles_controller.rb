@@ -10,20 +10,6 @@ class Dashboard::TitlesController < Dashboard::DashboardController
 		@titles = Title.all.order_by_level.select(:id, :title, :level)
   end
 
-  def new
-  	@title = Title.new
-  end
-
-  def create
-  	@title = Title.new(title_params)
-
-  	if @title.save
-  		redirect_to dashboard_titles_url, notice: '資料已新增'
-  	else
-  		render :new
-  	end
-  end
-
   def edit
   end
 
@@ -33,11 +19,6 @@ class Dashboard::TitlesController < Dashboard::DashboardController
   	else
   		render :edit
   	end
-  end
-
-  def destroy
-  	@title.destroy
-  	redirect_to dashboard_titles_url
   end
 
   private

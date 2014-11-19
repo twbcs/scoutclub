@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   namespace :dashboard do #登入後的網頁
     resources :title_ths, only: [:index] # not admin
     resources :members, except: [:show]
-    resources :titles, except: [:show]
+    resources :titles, only: [:index, :edit, :update]
     resources :schedules
     resources :musics
     resources :albums do
@@ -63,7 +63,7 @@ Rails.application.routes.draw do
   resources :schedules, only: [:index, :show]
   resources :musics,    only: [:index, :show]
   resources :albums,    only: [:index, :show] do
-    resources :photo, only: [:show]
+    resources :photos, only: [:show]
   end
   resources :members,   only: [:index]
   resources :titles,    only: [:index]

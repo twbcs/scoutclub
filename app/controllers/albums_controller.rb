@@ -6,6 +6,7 @@ class AlbumsController < ApplicationController
 
   def show
     @album = Album.find(params[:id])
+    @photos = Photo.where(album_id: params[:id])
   end
 
   private

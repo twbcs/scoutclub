@@ -4,6 +4,10 @@ class Dashboard::Admin::GroupForumsController < Dashboard::Admin::AdminControlle
     @group_forum = GroupForum.new
     @group_forum.group_id = params[:group_id]
     @group = Group.find(params[:group_id])
+    forum = GroupForum.where(group_id: params[:group_id]).select(:id, :forum_id).inject({}) do |result, reply|
+      result.merge(reply[:id] => reply[:forum_id])
+    end
+    @forums = forum.values
   end
 
   def create
@@ -17,6 +21,10 @@ class Dashboard::Admin::GroupForumsController < Dashboard::Admin::AdminControlle
 
   def edit
     @group = Group.find(params[:group_id])
+    forum = GroupForum.where(group_id: params[:group_id]).select(:id, :forum_id).inject({}) do |result, reply|
+      result.merge(reply[:id] => reply[:forum_id])
+    end
+    @forums = forum.values - [@group_forum[:forum_id]]
   end
 
   def update

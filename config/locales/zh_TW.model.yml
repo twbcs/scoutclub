@@ -62,3 +62,10 @@ zh_TW:
         title: "標題"
         art_kind_id: "文章類型"
         content: "內容"
+      group:
+        name: "名稱"
+        admin: "管理者"
+      group_forum:
+        group_id: "群組"
+        forum_id: "子版"
+        level: "權限"

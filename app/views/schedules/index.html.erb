@@ -10,16 +10,50 @@
   </div>
 </div>
 <div class="col-md-10">
+  <%= will_paginate @articles, renderer: BootstrapPagination::Rails %>
   <div class="list">
-    <% @schedules.each do |t| %>
-      <%= t.title %>
-      <%= t.start_date.strftime("%Y %m %d %H:%M") %>
-      <%= t.end_date.strftime("%Y %m %d %H:%M") %>
-      <%= t.public_at.strftime("%Y %m %d %H:%M") if t.public_at %>
-      <%= t.local %>
-      <%= t.number %>
-      <%= t.description %>
-      <%= t.kind_title %><br/>
-    <% end %>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <td>活動名稱</td>
+          <td>活動時間</td>
+          <td>結束時間</td>
+          <td>公開時間</td>
+          <td>活動地點</td>
+          <td>人數   </td>
+          <td>活動類型</td>
+        </tr>
+      </thead>
+      <tbody>
+        <% @schedules.each do |t| %>
+        <tr>
+          <td>
+            <%= link_to t.title, schedule_path(t) %>
+          </td>
+          <td>
+            <%= time_parser(t.start_date) %>
+          </td>
+          <td>
+            <%= time_parser(t.end_date) %>
+          </td>
+          <td>
+            <%= time_parser(t.public_at) if t.public_at %>
+          </td>
+          <td>
+            <%= t.local %>
+          </td>
+          <td>
+            <%= t.number %>
+          </td>
+          <td>
+            <%= t.kind_title %>
+            <%= link_to "修改", edit_schedule_path(t), class: "btn btn-xs btn-success" %>
+            <%= link_to "刪除", schedule_path(t), method: :delete, class: "btn btn-xs btn-danger" %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
+  <%= will_paginate @articles, renderer: BootstrapPagination::Rails %>
 </div>

@@ -2,9 +2,6 @@
   <li class="active">職務職掌</li>
 <% end %>
 
-<div class="col-sx-12 new">
-  <%= link_to "新增", new_dashboard_title_path, class: "btn btn-success" %>
-</div>
 <div class="col-md-2">
   <div class="list">
     <table class="table table-hover">
@@ -17,7 +14,6 @@
           </td>
           <td>
             <%= link_to "修改", edit_dashboard_title_path(t), class: "btn btn-xs btn-success"  %>
-            <%= link_to "刪除", dashboard_title_path(t), :method => :delete, class: "btn btn-xs btn-danger"  %>
           </td>
         </tr>
         <% end %>
