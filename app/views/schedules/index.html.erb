@@ -3,7 +3,7 @@
 <% end %>
 
 <div class="col-md-2">
-  <div id="list sidebar">
+  <div class="list sidebar">
     <% @kinds.each do |k| %>
       <%= link_to k.title, schedules_path(doing_kind_id: k.id) %>
     <% end  %>
@@ -47,8 +47,6 @@
           </td>
           <td>
             <%= t.kind_title %>
-            <%= link_to "修改", edit_schedule_path(t), class: "btn btn-xs btn-success" %>
-            <%= link_to "刪除", schedule_path(t), method: :delete, class: "btn btn-xs btn-danger" %>
           </td>
         </tr>
         <% end %>

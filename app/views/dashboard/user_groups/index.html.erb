@@ -1,0 +1,19 @@
+<% content_for :breadcrumb do %>
+  <li class="active">討論區權限</li>
+<% end %>
+
+<div class="list">
+  <% @user_groups.each do |m| %>
+    <%= m.name  %>
+    <%= m.email %>
+    <%= link_to "新增權限", new_dashboard_user_group_path(user_id: m.id), class: "btn btn-xs btn-success" %><br/>
+    <% m.groups.each do |g| %>
+    <%= g.name %>
+     <% unless [1,5,7].include?(g.id) %>
+       <%= link_to "修改權限", edit_dashboard_user_group_path(id: m.id, user_id: m.id, group_id: g.id), class: "btn btn-xs btn-success" %>
+       <%= link_to "刪除權限", dashboard_user_group_path(id: m.id, user_id: m.id, group_id: g.id),
+        :method => :delete, class: "btn btn-xs btn-danger"  %>
+     <% end %>
+    <% end %> <br/>
+  <% end %>
+</div>

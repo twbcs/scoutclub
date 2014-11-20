@@ -25,7 +25,7 @@
 </head>
 <body>
 <span id='top'> </span>
-  <%= render 'dashnav'%>
+  <%= render 'dashnav', :admin => @admin, :superadmin => @superadmin%>
   <div class='container'>
     <ol class="breadcrumb">
       <li><%= link_to "首頁", dashboard_root_path %></li>

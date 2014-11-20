@@ -45,12 +45,10 @@ class User < ActiveRecord::Base
   def rules
     user_count = User.all.count
     if user_count == 1
-      user = User.first
-      user_rule = Modify.create(user_id: user.id, user_rule: 63)
-      forum_rule = UserGroup.create(user_id: user.id, group_id: 1 )
+      user_rule = Modify.create(user_id: self.id, user_rule: 63)
+      forum_rule = UserGroup.create(user_id: self.id, group_id: 1 )
     else
-      user = User.last
-      forum_rule = UserGroup.create(user_id: user.id, group_id: 6 )
+      forum_rule = UserGroup.create(user_id: self.id, group_id: 6 )
     end
   end
 end

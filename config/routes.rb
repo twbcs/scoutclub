@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     resources :articles do
         post :append, :on => :member
     end
+    resources :user_groups, except: [:show] #admin only
     resources :forums , only: [:index, :show] do
       resources :posts, except: [:index]
     end

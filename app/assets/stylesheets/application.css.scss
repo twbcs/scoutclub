@@ -28,19 +28,13 @@ body{
   //background-image: image-url('DSC_9806.jpg');
 }
 
-.page-header{ margin: 20px 0 10px; }
-
 .alert {
   position : relative;
   top      : 1px;
   @include gap(bottom, 2px);
 }
 
-.btn-sm {
-padding-top    : 2px;
-padding-bottom : 2px;
-@include gap;
-}
+.page-header{ margin: 20px 0 10px; }
 
 .navbar { @include gap(bottom, 0px); }
 
@@ -52,9 +46,13 @@ padding-bottom : 2px;
 
 .center {	text-align:center; }
 
+.block { display: block;}
+
 .font-set{ font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
 
 .new { margin: 0px 0px 10px 0px; }
+
+.sidebar { padding: 3px 0px 0px 5px; }
 
 .list{
   background-color: rgba(255,255,255,0.85);
@@ -62,8 +60,6 @@ padding-bottom : 2px;
   margin: 10px 0px 10px 0px;
   min-height: 222px;
 }
-
-.sidebar { padding: 3px 0px 0px 5px; }
 
 footer {
   border-top  : 1px solid #cccccc;
@@ -79,4 +75,10 @@ div .table{
   width: 100%;
   max-width: 100%;
   margin-bottom: 0px;
+}
+
+.btn-sm {
+  padding-top    : 2px;
+  padding-bottom : 2px;
+  @include gap;
 }

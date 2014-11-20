@@ -1,0 +1,8 @@
+<% content_for :breadcrumb do %>
+  <li><%= link_to "討論區權限", dashboard_user_groups_path %></li>
+  <li class="active">修改使用者權限</li>
+<% end %>
+
+<%= render 'form', :user_group => @user_group %>
+
+<%= @user_group.user_id %>
