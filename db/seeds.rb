@@ -72,3 +72,7 @@ GroupForum.create(group_id: 7,forum_id: 4,level: 7)
 GroupForum.create(group_id: 7,forum_id: 6,level: 7)
 GroupForum.create(group_id: 7,forum_id: 7,level: 7)
 GroupForum.create(group_id: 7,forum_id: 8,level: 7)
+
+
+DoingKind.create(title: "全國大露營")
+DoingKind.create(title: "授課")
