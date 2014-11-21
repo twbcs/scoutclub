@@ -1,5 +1,7 @@
 class Dashboard::MembersController < Dashboard::DashboardController
 	before_action :set_member, only: [:edit, :update, :destroy]
+	before_action :is_inside, except: [:index]
+	before_action :is_admin, only: [:destroy]
 
   def index
 		if params[:year]
@@ -37,7 +39,6 @@ class Dashboard::MembersController < Dashboard::DashboardController
 
   def destroy
 		@member.destroy
-
     redirect_to dashboard_members_url
   end
 
@@ -51,4 +52,15 @@ class Dashboard::MembersController < Dashboard::DashboardController
       :title_ths_attributes => [:id, :member_id, :title_id, :title_year, :_destroy])
   end
 
+	def is_inside
+		unless @inside
+			redirect_to root_path
+		end
+	end
+
+	def is_admin
+		unless @admin
+			redirect_to root_path
+		end
+	end
 end

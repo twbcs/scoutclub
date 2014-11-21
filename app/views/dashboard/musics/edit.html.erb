@@ -1,0 +1,15 @@
+<% content_for :breadcrumb do %>
+  <li><%= link_to "團康音樂", dashboard_musics_path %></li>
+  <li class="active">修改音樂 | <%= @music.title %></li>
+<% end %>
+
+<%= form_for [:dashboard,@music] do |f| %>
+  <%= f.text_field :title, class: "form-control" %>
+  <% if @music.file %>
+    <%= File.basename(@music.file.path) %>
+  <% else %>
+    <%= f.file_field :file, class: "form-control" %>
+  <% end %>
+  <%= f.text_area :description, class: "form-control", rows: "20", "data-provide" => "markdown" %>
+  <%= f.submit "確認", class: "btn btn-success" %>
+<% end %>

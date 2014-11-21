@@ -11,12 +11,10 @@ class Dashboard::BoardsController < Dashboard::DashboardController
   # GET /boards/new
   def new
     @board = Board.new
-    render(:new, :layout=>false)
   end
 
   # GET /boards/1/edit
   def edit
-    render(:edit, :layout=>false)
   end
 
   # POST /boards
@@ -26,7 +24,7 @@ class Dashboard::BoardsController < Dashboard::DashboardController
     if @board.save
       redirect_to dashboard_boards_url, notice: '留言已新增.'
     else
-      render(:new, :layout=>false)
+      render :new
     end
   end
 
@@ -36,7 +34,7 @@ class Dashboard::BoardsController < Dashboard::DashboardController
     if @board.update(params.require(:board).permit(:user_id, :subject, :content ))
       redirect_to dashboard_boards_url, notice: '修改完成.'
     else
-      render(:edit, :layout=>false)
+      render :edit
     end
   end
 

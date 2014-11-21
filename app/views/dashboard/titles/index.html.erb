@@ -13,7 +13,7 @@
             <%= t.level %>
           </td>
           <td>
-            <%= link_to "修改", edit_dashboard_title_path(t), class: "btn btn-xs btn-success"  %>
+            <%= link_to "修改", edit_dashboard_title_path(t), class: "btn btn-xs btn-success" if @inside %>
           </td>
         </tr>
         <% end %>

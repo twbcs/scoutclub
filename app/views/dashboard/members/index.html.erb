@@ -3,7 +3,7 @@
 <% end %>
 
 <div class="col-xs-12 new">
-  <%= new_btn if current_user %>
+  <%= new_btn if @inside %>
 </div>
 <div class="col-md-1">
   <div class="list sidebar">
@@ -35,8 +35,8 @@
           <td><%= member.nname %></td>
           <td><%= member.sex ? '男' : '女' %></td>
           <td>
-            <%= link_to "修改", edit_dashboard_member_path(member), class: "btn btn-xs btn-success" %>
-            <%= link_to "刪除", dashboard_member_path(member), :method => :delete, class: "btn btn-xs btn-danger" %>
+            <%= link_to "修改", edit_dashboard_member_path(member), class: "btn btn-xs btn-success" if @inside %>
+            <%= link_to "刪除", dashboard_member_path(member), :method => :delete, class: "btn btn-xs btn-danger" if @admin %>
           </td>
         </tr>
         <% end %>

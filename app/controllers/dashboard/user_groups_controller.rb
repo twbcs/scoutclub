@@ -1,4 +1,5 @@
 class Dashboard::UserGroupsController < Dashboard::DashboardController
+  before_action :is_admin
   def index
     @user_groups = User.all.includes(:groups)
   end
@@ -11,7 +12,7 @@ class Dashboard::UserGroupsController < Dashboard::DashboardController
   def create
     @user_group = UserGroup.new(user_group_params)
     if @user_group.save
-      redirect_to dashboard_admin_user_groups_path
+      redirect_to dashboard_user_groups_path
     else
       render :new
     end
@@ -24,7 +25,7 @@ class Dashboard::UserGroupsController < Dashboard::DashboardController
   def update
     @user_group = UserGroup.find(params[:id])
     if @user_group.update(user_group_params)
-      redirect_to dashboard_admin_user_groups_path
+      redirect_to dashboard_user_groups_path
     else
       render :edit
     end
@@ -33,7 +34,7 @@ class Dashboard::UserGroupsController < Dashboard::DashboardController
   def destroy
     @user_group = UserGroup.find_by(user_id: params[:user_id], group_id: params[:group_id])
     @user_group.destroy
-    redirect_to dashboard_admin_user_groups_path
+    redirect_to dashboard_user_groups_path
   end
 
   private

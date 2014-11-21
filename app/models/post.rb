@@ -1,5 +1,6 @@
 class Post < ActiveRecord::Base
 	include Right
+	before_create :val_subject
 	after_create :update_first
 	belongs_to :forum
 	belongs_to :user

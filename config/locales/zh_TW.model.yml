@@ -69,3 +69,8 @@ zh_TW:
         group_id: "群組"
         forum_id: "子版"
         level: "權限"
+      album:
+        title: "名稱"
+        description: "說明"
+        public_at: "公開日期"
+        add_photo_to: "新增相片期限"

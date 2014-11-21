@@ -2,6 +2,10 @@
   <li class="active">團康音樂</li>
 <% end %>
 
+<div class="col-xs-12 new">
+  <%= link_to '新增', new_dashboard_admin_music_path, :class => 'btn btn-success' if @inside %>
+</div>
+
 <% @musics.each do |m|%>
   <%= link_to m.title, dashboard_music_path(m.id) %>
   <%= File.basename(m.file.path) %>

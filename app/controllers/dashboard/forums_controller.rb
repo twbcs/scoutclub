@@ -14,53 +14,12 @@ class Dashboard::ForumsController < Dashboard::DashboardController
     @reply_count = Post.all.group(:forum_id).count
   end
 
-  def new
-    @forum = Forum.new
-    @forum.forum_kind_id = params[:forum_kind_id]
-  end
-
-  def create
-    @forum = Forum.new(forum_params)
-    if @forum.save
-      redirect_to(dashboard_forum_kinds_url, notice: '新增討論板完成')
-    else
-      render :new
-    end
-  end
-
   def show
     @posts = Post.where(forum_id: params[:id], reply_id: nil).includes(:user)
             .paginate(:page => params[:page], :per_page => 20).order_by_update_post
   end
 
-  def edit
-  end
-
-  def update
-    if @forum.update(forum_params)
-      redirect_to(dashboard_forum_kinds_url, notice: '修改討論板完成')
-    else
-      render :edit
-    end
-  end
-
-  def destroy
-    post = Post.where(forum_id: params[:id]).count
-    if post < 1
-      @group_forums = GroupForum.where(forum_id: params[:id])
-      @group_forums.each{|x| x.destroy} if @group_forums
-      @forum.destroy
-      redirect_to(dashboard_forum_kinds_url, notice: '討論板已刪除')
-    else
-      redirect_to(dashboard_forum_kinds_url, alert: '板內有文章，無法進行刪除作業')
-    end
-  end
-
   private
-
-  def forum_params
-    params.require(:forum).permit(:forum_kind_id, :title, :description, :public_at, :closing_date )
-  end
 
   def post_list_power
     if current_user

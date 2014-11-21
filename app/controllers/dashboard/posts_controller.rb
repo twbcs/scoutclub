@@ -21,9 +21,13 @@ class Dashboard::PostsController < Dashboard::DashboardController
   def create
     @post = Post.new(post_params)
     @post.set_user(current_user.id)
+    if @post.reply_id && @post.subject == ""
+      @post.subject = "回文"
+    end
     if @post.save
       have_reply_id(@post)
     else
+      @forum = Forum.find_by(id: params[:forum_id])
       render :new
     end
   end
@@ -36,6 +40,7 @@ class Dashboard::PostsController < Dashboard::DashboardController
     if @post.update(post_params)
       have_reply_id(@post)
     else
+      @forum = Forum.find_by(id: params[:forum_id])
       render :edit
     end
   end

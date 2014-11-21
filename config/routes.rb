@@ -16,8 +16,9 @@ Rails.application.routes.draw do
       resources :photos, only: [:create, :destroy, :show]
     end
     resources :boards, except: [:show]
-    resources :articles do
+    resources :articles, except: [:destroy] do
         post :append, :on => :member
+        delete 'comment_destroy', :on => :member
     end
     resources :user_groups, except: [:show] #admin only
     resources :forums , only: [:index, :show] do
@@ -35,7 +36,8 @@ Rails.application.routes.draw do
       end
       resources :boards, except: [:show]
       resources :articles do
-        post :append, :on => :member
+          post :append, :on => :member
+          delete 'comment_destroy', :on => :member
       end
       resources :forums do
         resources :posts, except: [:index]

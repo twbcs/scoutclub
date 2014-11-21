@@ -1,5 +1,6 @@
 class Dashboard::TitlesController < Dashboard::DashboardController
 	before_action :set_title, only: [:edit, :update, :destroy]
+	before_action :is_inside, except: [:index]
 
   def index
 		if params[:id]

@@ -43,14 +43,22 @@ class Dashboard::Admin::ArticlesController < Dashboard::Admin::AdminController
   end
 
   def append
-    check = Comment.where(user_id: current_user.id).last.created_at
+    if Comment.where(user_id: current_user.id).count > 0
+      check = Comment.where(user_id: current_user.id).last.created_at
+    end
     @save = false
-    if (Time.now - check)  > 5 #避免因JS問題重複回應
+    if check==nil || (Time.now - check)  > 5 #避免因JS問題重複回應
       @comment = Comment.new(comment_params)
       @comment.set_user(current_user.id)
       @comment.save
       @save = true
     end
+    respond_to(:js)
+  end
+
+  def comment_destroy
+    @comment = Comment.where(id: params[:comment_id], article_id: params[:article_id]).first
+    @comment.destroy
     respond_to(:js)
   end
 

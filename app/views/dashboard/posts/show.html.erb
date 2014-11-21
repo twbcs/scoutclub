@@ -7,20 +7,18 @@
 <% if @post_view
     view = @post_view.first == @forum.id
     reply = @post_view.last >= 3
-    edit = @post_view.last >= 7
+    edit = @post_view.last >= 15
     delete = @post_view.last >= 15
   end %>
 
 <% if @forum.public_at || view %>
   <% @posts.each do |m| %>
     <% user = m.user_id == current_user.id if current_user %>
-    <div class="col-md-2">
-      <div class="user">
-        <img src="http://graph.facebook.com/<%= m.user_uid %>/picture?type=normal"/><br/>
-        <%= link_to m.post_name, "http://www.facebook.com/#{m.user_uid}" %><br/>
-        加入時間：<%= m.user.created_at.strftime("%Y %m.%d") %><br/>
-        上次登入：<%= m.user.last_sign_in_at.strftime("%Y %m.%d") %>
-      </div>
+    <div class="col-md-2 user">
+      <img src="http://graph.facebook.com/<%= m.user_uid %>/picture?type=normal"/><br/>
+      <%= link_to m.user_name, "http://www.facebook.com/#{m.user_uid}" %><br/>
+      加入時間：<%= m.user.created_at.strftime("%Y %m.%d") %><br/>
+      上次登入：<%= m.user.last_sign_in_at.strftime("%Y %m.%d") %>
     </div>
     <div  class="col-md-10 post">
       <div class="subject">

@@ -1,5 +1,7 @@
 class Dashboard::SchedulesController < Dashboard::DashboardController
 	before_action :set_schedule, only: [:edit, :update, :destroy, :show]
+	before_action :is_inside, except: [:index, :show]
+
   def index
 		if params[:doing_kind_id]
 				@schedules = Schedule.where(doing_kind_id: params[:doing_kind_id]).includes(:doing_kind)

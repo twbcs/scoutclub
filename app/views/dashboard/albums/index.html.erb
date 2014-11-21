@@ -1,11 +1,16 @@
 <% content_for :breadcrumb do %>
   <li class="active">相簿</li>
 <% end %>
-
+<div class="col-xs-12 new">
+  <%= link_to '新增', new_dashboard_album_path, :class => 'btn btn-success' if @inside %>
+</div>
 <div class="col-xs-12 list">
   <% @albums.each do |m|%>
-    <%= link_to m.title, dashboard_album_path(m) %>
-    <%= m.description %>
-    <%= m.view_count %>
+    <% a =  m.public_at || Time.now %>
+    <% if a < Time.now || @admin %>
+      <%= link_to m.title, dashboard_album_path(m) %>
+      <%= m.description %>
+      <%= m.view_count %>
+    <% end %>
   <% end %>
 </div>

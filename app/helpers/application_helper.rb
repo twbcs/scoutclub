@@ -8,6 +8,8 @@ module ApplicationHelper
   end
 
   def time_parser(time)
-    time.strftime("%Y %m %d %H:%M")
+    if time
+      time.strftime("%Y %m %d %H:%M")
+    end
   end
 end

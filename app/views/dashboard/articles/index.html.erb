@@ -3,7 +3,7 @@
 <% end %>
 
 <div class="col-xs-12 new">
-  <%= link_to '新增文章', new_dashboard_article_path, :class => 'btn btn-success' if current_user %>
+  <%= link_to '新增文章', new_dashboard_article_path, :class => 'btn btn-success' if @inside %>
 </div>
 <div class="col-md-2">
   <div class="list sidebar">
@@ -21,7 +21,7 @@
       <span class="comment-user"><%= art.user_name %> | <%= art.art_kind.name %>
       <%= timeago_tag art.created_at, :nojs => true, :limit => 30.days.ago, :lang => 'zh-TW' %>
       </span>
-      <%= link_to "修改", edit_dashboard_article_path(art.id), class: "btn btn-xs btn-success" %><br/>
+      <%= link_to "修改", edit_dashboard_article_path(art.id), class: "btn btn-xs btn-success" if @inside %><br/>
       <div class="content">
         <%= markdown(truncate(art.content, length: 100, omission: "")) %>
         <%= link_to "更多內容..", dashboard_article_path(art.id), class: "center block" %>

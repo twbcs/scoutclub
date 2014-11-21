@@ -1,4 +1,6 @@
 class Dashboard::MusicsController < Dashboard::DashboardController
+  before_action :is_inside
+
   def index
     @musics = Music.all.includes(:user)
   end

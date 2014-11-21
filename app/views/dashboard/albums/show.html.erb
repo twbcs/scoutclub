@@ -3,51 +3,55 @@
   <li class="active"><%= @album.title %></li>
 <% end %>
 
-<%= @album.title %>
-<%= @album.description %>
-<%= @album.add_photo_to %>
+<div class="">
+  <%= @album.title %>
+  <%= @album.description %>
+  <%= time_parser(@album.add_photo_to) %>
+  <%= link_to "修改", edit_dashboard_album_path(@album) if @admin %>
+</div>
+<% a =  @album.add_photo_to || Time.now %>
+<% if a > Time.now %>
+  <%= form_for [:dashboard,@album,@photo], remote: true do |f| %>
+    <% if @photo.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@photo.errors.count, "error") %> prohibited this photo from being saved:</h2>
+        <ul>
+        <% @photo.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
 
-<%= form_for [:dashboard,@album,@photo], remote: true do |f| %>
-  <% if @photo.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@photo.errors.count, "error") %> prohibited this photo from being saved:</h2>
-
-      <ul>
-      <% @photo.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="row drop">
-    <div id="dropzone" class="fade well col-md-12">拖曳檔案至此處</div>
-    <div class="col-md-12">
-      <span class="btn btn-success fileinput-button">
+    <div class="row drop">
+      <div id="dropzone" class="fade well col-md-12">拖曳檔案至此處</div>
+      <div class="col-md-12">
+        <span class="btn btn-success fileinput-button">
           <i class="glyphicon glyphicon-plus"></i>
           <span>選擇檔案...</span>
           <!-- The file input field used as target for the file upload widget -->
           <%= f.file_field :file %>
           <%= f.hidden_field :album_id, value: @album.id %>
           <%= f.hidden_field :user_id, value: current_user.id %>
-      </span>
-    </div>
-  </div>
-  <br>
-  <div id="progress" class="progress">
-      <div class="progress-bar progress-bar-success"></div>
-  </div>
-  <div id="preview" class="row">
-    <div class="media hide">
-      <a class="pull-left" href="#">
-        <img class="media-object" data-src="holder.js/64x64" src="" alt="">
-      </a>
-      <div class="media-body">
-        <h4 class="media-heading"></h4>
-        <a href="#" class="btn btn-danger delete" role="button">Delete</a>
+        </span>
       </div>
     </div>
-  </div>
+    <br>
+    <div id="progress" class="progress">
+        <div class="progress-bar progress-bar-success"></div>
+    </div>
+    <div id="preview" class="row">
+      <div class="media hide">
+        <a class="pull-left" href="#">
+          <img class="media-object" data-src="holder.js/64x64" src="" alt="">
+        </a>
+        <div class="media-body">
+          <h4 class="media-heading"></h4>
+          <a href="#" class="btn btn-danger delete" role="button">Delete</a>
+        </div>
+      </div>
+    </div>
+  <% end %>
 <% end %>
 
 <div id="photolist" class="clearfix">
@@ -57,7 +61,7 @@
       <img src="<%= m.file.medium %>" />
       <% end %>
       <%= link_to "刪除", dashboard_album_photo_path(@album, m), method: :delete, remote: true,
-                        class: "delete btn btn-xs btn-default" if current_user.id == m.user_id %>
+                        class: "delete btn btn-xs btn-default" if current_user.id == m.user_id || @admin%>
     </div>
   <% end  %>
 </div>

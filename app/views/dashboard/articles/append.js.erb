@@ -1,5 +1,5 @@
 <% if @save %>
-  var link = "<%=j render 'comment', co: @comment %>";
+  var link = "<%=j render 'comment', co: @comment, admin: @admin %>";
   $(".comments").append(link);
 <% end %>
 $("#comment_content").val('');
