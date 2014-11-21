@@ -3,11 +3,12 @@
 <% end %>
 
 <div class="col-xs-12 new">
-  <%= link_to '新增', new_dashboard_admin_music_path, :class => 'btn btn-success' if @inside %>
+  <%= link_to '新增', new_dashboard_music_path, :class => 'btn btn-success' if @inside %>
 </div>
-
-<% @musics.each do |m|%>
-  <%= link_to m.title, dashboard_music_path(m.id) %>
-  <%= File.basename(m.file.path) %>
-  <%= m.user.name %>
-<% end %>
+<div class="col-xs-12 list">
+  <% @musics.each do |m|%>
+    <%= link_to m.title, dashboard_music_path(m.id) %>
+    <%= File.basename(m.file.path) %>
+    <%= m.user.name %>
+  <% end %>
+</div>

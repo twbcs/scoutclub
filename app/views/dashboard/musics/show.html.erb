@@ -3,11 +3,16 @@
   <li class="active"><%= @music.title %></li>
 <% end %>
 
-<%= @music.title %>
-<%= link_to File.basename(@music.file.path), "#{@music.file}" %>
-<div class="content">
-  <%= markdown(@music.description) %>
+<div class="list">
+  <span class="head"><%= @music.title %></span>
+  <%= link_to File.basename(@music.file.path), "#{@music.file}" %>
+  <audio controls>
+    <source src="<%= @music.file %>" type="audio/mpeg">
+    您使用的瀏覽器不支援直接播放音樂.
+  </audio>
+  <div class="content">
+    <%= markdown(@music.description) %>
+  </div>
+  <%= link_to "修改", edit_dashboard_music_path(@music.id), class: "btn btn-xs btn-success" if @inside%>
+  <%= link_to "刪除", dashboard_music_path(@music.id), method: :delete, class: "btn btn-xs btn-danger" if @admin %>
 </div>
-<%= markdown(@music.description) %>
-<%= link_to "修改", edit_dashboard_music_path(@music.id), class: "btn btn-xs btn-success" if @inside%>
-<%= link_to "刪除", dashboard_music_path(@music.id), method: :delete, class: "btn btn-xs btn-danger" if @admin %>

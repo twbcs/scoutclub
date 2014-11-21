@@ -3,8 +3,14 @@
   <li class="active"><%= @music.title %></li>
 <% end %>
 
-<%= @music.title %>
-File.basename(m.file.path)
-<div class="content">
-  <%= markdown(@music.description) %>
+<div class="list">
+  <span class="head"><%= @music.title %></span>
+  <%= link_to File.basename(@music.file.path), "#{@music.file}" %>
+  <audio controls>
+    <source src="<%= @music.file %>" type="audio/mpeg">
+    您使用的瀏覽器不支援直接播放音樂.
+  </audio>
+  <div class="content">
+    <%= markdown(@music.description) %>
+  </div>
 </div>
