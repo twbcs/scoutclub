@@ -2,7 +2,7 @@ class Dashboard::Admin::AlbumsController < Dashboard::Admin::AdminController
   before_action :set_album, only: [:show, :edit, :update, :destroy]
   after_action :view_add, only: [:show]
   def index
-    @albums = Album.all
+    @albums = Album.all.includes(:photos)
   end
 
   def new

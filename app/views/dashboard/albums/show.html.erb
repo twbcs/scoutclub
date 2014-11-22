@@ -9,8 +9,8 @@
   <%= time_parser(@album.add_photo_to) %>
   <%= link_to "修改", edit_dashboard_album_path(@album) if @admin %>
 </div>
-<% a =  @album.add_photo_to || Time.now %>
-<% if a > Time.now %>
+<% b =  @album.add_photo_to || Time.now %>
+<% if b > Time.now %>
   <%= form_for [:dashboard,@album,@photo], remote: true do |f| %>
     <% if @photo.errors.any? %>
       <div id="error_explanation">
@@ -58,7 +58,7 @@
   <% @photos.each do |m| %>
     <div id="p<%= m.id %>" class="photo">
       <%= link_to(dashboard_album_photo_path(@album, m)) do %>
-      <img src="<%= m.file.medium %>" />
+        <%= image_tag m.file.medium %>
       <% end %>
       <%= link_to "刪除", dashboard_album_photo_path(@album, m), method: :delete, remote: true,
                         class: "delete btn btn-xs btn-default" if current_user.id == m.user_id || @admin%>

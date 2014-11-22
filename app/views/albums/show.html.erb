@@ -13,7 +13,7 @@
   <% @photos.each do |m| %>
     <div id="p<%= m.id %>" class="photo">
       <%= link_to(album_photo_path(@album, m)) do %>
-      <img src="<%= m.file.medium %>" />
+        <%= image_tag m.file.medium %>
       <% end %>
     </div>
   <% end  %>

@@ -7,10 +7,15 @@
 <div class="col-xs-12 list">
   <% @albums.each do |m|%>
     <% a =  m.public_at || Time.now %>
+    <% b =  m.add_photo_to || Time.now %>
     <% if a < Time.now || @admin %>
-      <%= link_to m.title, dashboard_album_path(m) %>
-      <%= m.description %>
-      <%= m.view_count %>
+      <div class="photos">
+        <%= link_to dashboard_album_path(m) do %>
+        <%= image_tag(m.photos.first.file.medium) %><br/>
+        <span class="<%= "icon-lock" unless m.public_at || a >= Time.now %>"><%= m.title %></span>
+        <% end%>
+        <span class="<%= "icon-plus" if b > Time.now %>"></span>
+      </div>
     <% end %>
   <% end %>
 </div>

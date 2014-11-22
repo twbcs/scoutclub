@@ -64,7 +64,6 @@ Rails.application.routes.draw do
   end
   resources :boards,    only: [:index]
   resources :schedules, only: [:index, :show]
-  resources :musics,    only: [:index, :show]
   resources :albums,    only: [:index, :show] do
     resources :photos, only: [:show]
   end

@@ -4,8 +4,14 @@
 
 <div class="col-xs-12 list">
   <% @albums.each do |m|%>
-    <%= link_to m.title, album_path(m) %>
-    <%= m.description %>
-    <%= m.view_count %>
+    <% a =  m.public_at || Time.now %>
+    <% if a < Time.now %>
+      <div class="photos">
+        <%= link_to album_path(m) do %>
+          <%= image_tag(m.photos.first.file.medium) %><br/>
+          <%= m.title %>
+        <% end%>
+      </div>
+    <% end %>
   <% end %>
 </div>

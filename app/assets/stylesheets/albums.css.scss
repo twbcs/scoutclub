@@ -41,3 +41,12 @@ html {
     background: rgba(255,255,255,0.6);
   }
 }
+.photos {
+  list-style-type: none;
+  display: list-item;
+  position: relative;
+  float: left;
+  padding: 5px 5px 5px 0px;
+  max-width: 142px;
+  min-height: 180px;
+}

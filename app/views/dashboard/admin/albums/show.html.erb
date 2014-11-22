@@ -56,7 +56,7 @@
   <% @photos.each do |m| %>
     <div id="p<%= m.id %>" class="photo">
       <%= link_to(dashboard_admin_album_photo_path(@album, m)) do %>
-      <img src="<%= m.file.medium %>" />
+      <%= image_tag m.file.medium %>
       <% end %>
       <%= link_to "刪除", dashboard_admin_album_photo_path(@album, m), method: :delete, remote: true, class: "delete btn btn-xs btn-default" %>
     </div>

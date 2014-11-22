@@ -1,7 +1,7 @@
 class Dashboard::AlbumsController < Dashboard::DashboardController
   after_action :view_add , only: [:show]
   def index
-    @albums = Album.all
+    @albums = Album.all.includes(:photos)
   end
 
   def new
