@@ -1,6 +1,6 @@
 class Dashboard::TitlesController < Dashboard::DashboardController
 	before_action :set_title, only: [:edit, :update, :destroy]
-	before_action :is_inside, except: [:index]
+	before_action :is_inside, except: [:index, :title_ths]
 
   def index
 		if params[:id]
@@ -21,6 +21,11 @@ class Dashboard::TitlesController < Dashboard::DashboardController
   		render :edit
   	end
   end
+
+	def title_ths
+		@title_ths = TitleTh.all.includes(:member, :title).order_by_year.order_by_title
+		@year = TitleTh.all.order_by_year.group(:title_year).select(:title_year)
+	end
 
   private
 

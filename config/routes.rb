@@ -7,34 +7,33 @@ Rails.application.routes.draw do
   }
 
   namespace :dashboard do #登入後的網頁
-    resources :title_ths, only: [:index] # not admin
-    resources :members, except: [:show]
-    resources :titles, only: [:index, :edit, :update]
-    resources :schedules
-    resources :musics
+    resources :titles, only: [:index, :edit, :update] do
+      get 'title_ths', :on => :collection
+    end
     resources :albums do
       resources :photos, only: [:create, :destroy, :show]
     end
-    resources :boards, except: [:show]
     resources :articles, except: [:destroy] do
         post :append, :on => :member
         delete 'comment_destroy', :on => :member
     end
-    resources :user_groups, except: [:show] #admin only
     resources :forums , only: [:index, :show] do
       resources :posts, except: [:index]
     end
+    resources :members, except: [:show]
+    resources :schedules
+    resources :musics
+    resources :boards, except: [:show]
+    resources :user_groups, except: [:show]
     root 'welcomes#index'
 
     namespace :admin do  #, :path => "sekret" 改路徑名
-      resources :members, except: [:show]
-      resources :titles, except: [:show]
-      resources :schedules
-      resources :musics
+      resources :titles, except: [:show] do
+        get 'title_ths', :on => :collection
+      end
       resources :albums do
         resources :photos, only: [:create, :destroy, :show]
       end
-      resources :boards, except: [:show]
       resources :articles do
           post :append, :on => :member
           delete 'comment_destroy', :on => :member
@@ -50,27 +49,29 @@ Rails.application.routes.draw do
       resources :forum_kinds, except: [:show] do #admin only
         resources :forums
       end
+      resources :boards, except: [:show]
+      resources :members, except: [:show]
+      resources :schedules
+      resources :musics
       resources :art_kinds, except: [:show] #admin only
       resources :doing_kinds, except: [:show] #admin only
-      resources :title_ths, only: [:index] # not admin
-
       root 'welcomes#index'
     end
   end
 
-  resources :articles,  only: [:index, :show]
   resources :forums,    only: [:index, :show] do
     resources :posts,   only: [:show]
   end
-  resources :boards,    only: [:index]
-  resources :schedules, only: [:index, :show]
   resources :albums,    only: [:index, :show] do
     resources :photos, only: [:show]
   end
+  resources :titles,    only: [:index] do
+    get 'title_ths', :on => :collection
+  end
   resources :members,   only: [:index]
-  resources :titles,    only: [:index]
-  resources :title_ths, only: [:index] # not admin
-
+  resources :boards,    only: [:index]
+  resources :schedules, only: [:index, :show]
+  resources :articles,  only: [:index, :show]
   root 'welcomes#index'
 
   if ::Rails.env.development? # production 需要改設定

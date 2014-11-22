@@ -40,6 +40,11 @@ class Dashboard::Admin::TitlesController < Dashboard::Admin::AdminController
   	redirect_to dashboard_admin_titles_url
   end
 
+	def title_ths
+		@title_ths = TitleTh.all.includes(:member, :title).order_by_year.order_by_title
+		@year = TitleTh.all.order_by_year.group(:title_year).select(:title_year)
+	end
+
   private
 
   def set_title
