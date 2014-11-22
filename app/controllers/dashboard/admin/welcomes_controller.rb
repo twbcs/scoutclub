@@ -5,5 +5,6 @@ class Dashboard::Admin::WelcomesController < Dashboard::Admin::AdminController
     @training_list = Schedule.where(doing_kind_id: 2).order_by_time.limit(5)
     @articles_list = Article.all.order_by_time.limit(5)
     @album_list    = Album.all.order_by_time.limit(5)
+    @movie_list    = Movie.all.order_by_time.limit(5)
   end
 end

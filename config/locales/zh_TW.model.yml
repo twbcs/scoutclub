@@ -74,3 +74,8 @@ zh_TW:
         description: "說明"
         public_at: "公開日期"
         add_photo_to: "新增相片期限"
+      movie:
+        title: "名稱"
+        description: "說明"
+        is_public: "公開"
+        url: "網址"

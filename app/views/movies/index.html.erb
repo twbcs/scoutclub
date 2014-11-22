@@ -1,0 +1,14 @@
+<% content_for :breadcrumb do %>
+<li class="active">影片目錄</li>
+<% end %>
+
+<%= will_paginate @movies, renderer: BootstrapPagination::Rails %>
+<div class="col-xs-12 list">
+  <% @movies.each do |m|%>
+  <%= link_to m.title, movie_path(m) %>
+  <%= m.user_name %>
+  <%= m.public_is ? "公開" : "對內" %>
+  <%= time_parser(m.created_at) %>
+  <% end  %>
+</div>
+<%= will_paginate @movies, renderer: BootstrapPagination::Rails %>

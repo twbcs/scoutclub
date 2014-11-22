@@ -7,6 +7,7 @@ class WelcomesController < ApplicationController
     @training_list = Schedule.where(doing_kind_id: 2).order_by_time.limit(5)
     @articles_list = Article.all.order_by_time.limit(5)
     @album_list    = Album.all.order_by_time.limit(5)
+    @movie_list    = Movie.where(public_is: true).order_by_time.limit(5)
   end
 
   def error_404

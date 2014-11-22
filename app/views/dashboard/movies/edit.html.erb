@@ -1,0 +1,8 @@
+<% content_for :breadcrumb do %>
+<li><%= link_to "影片目錄", dashboard_movies_path %></li>
+<li class="active">修改影片</li>
+<% end %>
+
+<div class="list">
+  <%= render 'form', movie: @movie %>
+</div>

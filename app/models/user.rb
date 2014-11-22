@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :musics
   has_many :photos
+  has_many :movies
   has_many :schedule_attends
   has_many :schedule, :through => :schedule_attends
   has_many :user_groups, :dependent => :destroy

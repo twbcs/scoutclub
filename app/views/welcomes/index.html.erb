@@ -132,6 +132,27 @@
 </div>
 <div class="col-md-6">
   <div id="movies" class="list">
-    近期影片
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <td>
+            <strong>近期影片</strong>
+          </td>
+          <td align="right">
+            <%= link_to "更多...", movies_path %>
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <% @movie_list.each do |movie| %>
+        <tr>
+          <td><%= link_to movie.title, movie_path(movie.id) %></td>
+          <td align="right">
+            <%= timeago_tag movie.created_at, :nojs => true, :limit => 30.days.ago, :lang => 'zh-TW' %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 </div>

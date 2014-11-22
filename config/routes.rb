@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     resources :forums , only: [:index, :show] do
       resources :posts, except: [:index]
     end
+    resources :movies, except: [:destroy]
     resources :members, except: [:show]
     resources :schedules
     resources :musics
@@ -44,11 +45,11 @@ Rails.application.routes.draw do
       resources :groups do #admin only
         resources :group_forums, except: [:show, :index]
       end
-      resources :user_groups, except: [:show] #admin only
-
       resources :forum_kinds, except: [:show] do #admin only
         resources :forums
       end
+      resources :user_groups, except: [:show] #admin only
+      resources :movies
       resources :boards, except: [:show]
       resources :members, except: [:show]
       resources :schedules
@@ -68,6 +69,7 @@ Rails.application.routes.draw do
   resources :titles,    only: [:index] do
     get 'title_ths', :on => :collection
   end
+  resources :movies, only: [:index, :show]
   resources :members,   only: [:index]
   resources :boards,    only: [:index]
   resources :schedules, only: [:index, :show]

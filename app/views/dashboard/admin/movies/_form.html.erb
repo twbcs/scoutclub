@@ -1,0 +1,25 @@
+<%= form_for [:dashboard,:admin,movie] do |f| %>
+  <div class="form-group">
+    <%= f.label :title, class: "col-sm-1 control-label" %>
+    <div class="col-sm-11">
+      <%= f.text_field :title, class: "form-control", placeholder: "標題" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :url, class: "col-sm-1 control-label" %>
+    <div class="col-sm-11">
+      <%= f.text_field :url, class: "form-control", placeholder: "影片網址" %>
+    </div>
+  </div>
+  <%= f.text_area :description, class: "form-control", rows: "20", placeholder: "說明" %>
+  <div class="btn-group col-xs-12" data-toggle="buttons">
+    <% movie.public_is ? (at, bt = '','active') : (at, bt = 'active','') %>
+    <label class="btn btn-default <%=raw at %>">
+      <%= movie.public_is ? f.radio_button( :public_is, 'false' ) : f.radio_button( :public_is, 'false', { :checked => true } )  %> 對內
+    </label>
+    <label class="btn btn-default <%=raw bt %>">
+      <%= movie.public_is ? f.radio_button( :public_is, 'true', { :checked => true } ) : f.radio_button( :public_is, 'true' ) %> 公開
+    </label>
+  </div>
+  <%= f.submit "確認", class: "btn btn-success" %>
+  <% end %>

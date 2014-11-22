@@ -2,7 +2,7 @@ class Dashboard::MusicsController < Dashboard::DashboardController
   before_action :is_inside
 
   def index
-    @musics = Music.all.includes(:user)
+    @musics = Music.all.includes(:user).paginate(:page => params[:page], :per_page => 20)
   end
 
   def new

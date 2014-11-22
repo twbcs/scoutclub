@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141108181153) do
+ActiveRecord::Schema.define(version: 20141122151609) do
 
   create_table "albums", force: true do |t|
     t.string   "title",                    null: false
@@ -120,6 +120,16 @@ ActiveRecord::Schema.define(version: 20141108181153) do
   end
 
   add_index "modifies", ["user_id"], name: "index_modifies_on_user_id", using: :btree
+
+  create_table "movies", force: true do |t|
+    t.string   "title"
+    t.string   "url"
+    t.integer  "user_id"
+    t.boolean  "public_is"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "musics", force: true do |t|
     t.string   "file"

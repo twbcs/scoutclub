@@ -2,7 +2,7 @@ class Dashboard::Admin::MusicsController < Dashboard::Admin::AdminController
   before_action :set_music, only: [:show, :edit, :update, :destroy]
 
   def index
-    @musics = Music.all.includes(:user)
+    @musics = Music.all.includes(:user).paginate(:page => params[:page], :per_page => 20)
   end
 
   def new

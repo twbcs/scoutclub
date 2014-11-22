@@ -1,0 +1,14 @@
+<% content_for :breadcrumb do %>
+<li><%= link_to "影片目錄", dashboard_movies_path %></li>
+<li class="active">影片：<%= @movie.title %></li>
+<% end %>
+
+<div class="list">
+  <span class="head"><%= @movie.title %></span><br/>
+  <div class="center responsive-container">
+    <iframe width="1280" height="720" src="<%= @movie.url.sub(/^(http:|https:)/,'').sub(/(watch\?v=)/,'embed/') %>?VQ=HD720" frameborder="0" allowfullscreen></iframe>
+  </div>
+  <div class="content">
+    <%= @movie.description %>
+  </div>
+</div>
