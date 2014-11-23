@@ -2,11 +2,11 @@
   <%= render 'shared/errors', object: f.object %>
   <div class="field">
     <%= f.label :subject %><br>
-    <%= f.text_field :subject, :class => 'form-control fieldw' %>
+    <%= f.text_field :subject, :class => 'form-control fieldw', placeholder: "主題" %>
   </div>
   <div class="field">
     <%= f.label :content %><br>
-    <%= f.text_area :content, :class => 'form-control fieldh' %>
+    <%= f.text_area :content, :class => 'form-control fieldh', placeholder: "內容" %>
   </div>
   <div class="actions">
     <% params[:action] == 'edit' ? btn = '更新' : '新增' %>

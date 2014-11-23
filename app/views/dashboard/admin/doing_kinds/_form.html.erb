@@ -1,5 +1,5 @@
-<%= form_for [:dashboard,:admin,art_kind] do |f| %>
+<%= form_for [:dashboard,:admin,doing_kind]  do |f| %>
   <%= render 'shared/errors', object: f.object %>
-  <%= f.text_field :name, class: "form-control", placeholder: "名稱" %>
+  <%= f.text_field :title, class: "form-control", placeholder: "標題" %>
   <%= f.submit "確認", :disable_with => '處理中...', class: "btn btn-success" %>
 <% end %>

@@ -1,6 +1,6 @@
 <%= form_for [:dashboard,forum,post] do |f| %>
   <%= render 'shared/errors', object: f.object %>
-  <div class="list">
+  <div class="list padding">
     <%= f.text_field :subject, class: "form-control", placeholder: "標題"%><br/>
     <%= f.text_area :body, class: "form-control", rows: "20", "data-provide" => "markdown" %>
     <%= f.hidden_field :forum_id %>

@@ -2,7 +2,7 @@
   <li class="active">討論區權限</li>
 <% end %>
 
-<div class="list">
+<div class="list padding">
   <% @user_groups.each do |m| %>
     <img src="http://graph.facebook.com/<%= m.uid %>/picture?type=square" height="42" width="42"/>
     <%= m.name  %>

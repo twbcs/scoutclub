@@ -1,6 +1,6 @@
 <%= form_for [:dashboard,:admin,forum_kind] do |f| %>
   <%= render 'shared/errors', object: f.object %>
-  <%= f.text_field :title %>
-  <%= f.text_area  :description %>
+  <%= f.text_field :title, class: "form-control", placeholder: "標題" %>
+  <%= f.text_area  :description, class: "form-control", placeholder: "說明" %>
   <%= f.submit "確認", class: " btn btn-success" %>
 <% end %>

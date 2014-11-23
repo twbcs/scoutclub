@@ -1,8 +1,8 @@
 <%= form_for [:dashboard,:admin,article] do |f| %>
   <%= render 'shared/errors', object: f.object %>
-  <div class="list">
+  <div class="list padding">
     <%= f.label :title %>
-    <%= f.text_field :title, class: "form-control" %>
+    <%= f.text_field :title, class: "form-control", placeholder: "標題" %>
     <%= f.label :art_kind_id %>
     <%= f.select(:art_kind_id, ArtKind.all.collect {|u| [u.name, u.id]},
         { :prompt => '請選擇'}, :class => 'form-control' ) %>

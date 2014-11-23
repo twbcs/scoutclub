@@ -1,6 +1,6 @@
 <%= form_for [:dashboard,:admin,title] do |f| %>
   <%= render 'shared/errors', object: f.object %>
-  <div class="list">
+  <div class="list padding">
     <div class="form-inline">
       <%= f.label :title %>
       <%= f.text_field :title, :placeholder => "輸入職務", :class => "form-control" %>

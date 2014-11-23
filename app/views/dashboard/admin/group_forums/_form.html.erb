@@ -1,6 +1,6 @@
 <%= form_for [:dashboard,:admin,group,group_forum] do |f| %>
   <%= render 'shared/errors', object: f.object %>
-  <div class="list">
+  <div class="list padding">
     <%= f.hidden_field :group_id %>
     <div class="form-inline">
       <%= f.label :forum_id %>

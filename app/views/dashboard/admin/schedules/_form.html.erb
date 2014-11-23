@@ -1,13 +1,13 @@
 <%= form_for [:dashboard,:admin,schedule] do |f| -%>
 <%= render 'shared/errors', object: f.object %>
-  <div class="list">
+  <div class="list padding">
     <div class="form-group">
       <%= f.label :title %>
-      <%= f.text_field :title %>
+      <%= f.text_field :title, class: "form-control" %>
     </div>
     <div class="form-group">
       <%= f.label :number	%>
-      <%= f.text_field :number %>
+      <%= f.text_field :number, class: "form-control" %>
     </div>
     <div class="form-group">
       <%= f.label :start_date %>
@@ -35,7 +35,7 @@
     </div>
     <div class="form-group">
       <%= f.label :local %>
-      <%= f.text_field :local %>
+      <%= f.text_field :local, class: "form-control" %>
     </div>
     <div class="form-group">
       <%= f.label :doing_kind_id %>
