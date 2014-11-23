@@ -28,7 +28,7 @@ class Dashboard::ForumsController < Dashboard::DashboardController
   def post_list_power
     if current_user
       power = UserGroup.where(user_id: current_user.id).pluck(:group_id)
-      view = GroupForum.where(group_id: power, forum_id: params[:forum_id]).pluck(:forum_id, :level)
+      view = GroupForum.where(group_id: power, forum_id: params[:id]).pluck(:forum_id, :level)
       @post_view = view.sort.last
       redirect_to(dashboard_forums_path, alert: '子版錯誤或無權限進入') unless @post_view
     end
