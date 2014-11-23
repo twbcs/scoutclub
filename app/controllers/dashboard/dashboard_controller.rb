@@ -5,14 +5,19 @@ class Dashboard::DashboardController < ApplicationController
 
   private
   def set_permission
-    if UserGroup.where(user_id: current_user.id, group_id: [2,7]).count > 0
+    session[:user_level] = UserGroup.where(user_id: current_user.id).pluck(:group_id) unless session[:user_level]
+    user_level = session[:user_level]
+    if [1, 2, 7].any? { |i| user_level.include?(i) }
       @admin = true
     end
-    if UserGroup.where(user_id: current_user.id, group_id: 1).count > 0
+    if user_level.include?(1)
       @superadmin = true
     end
-    if UserGroup.where(user_id: current_user.id, group_id: [2,4,5,7]).count > 0
+    if [2,4,5,7].any? { |i| user_level.include?(i) }
       @inside = true
+    end
+    if user_level.include?(3)
+      @junior = true
     end
   end
 

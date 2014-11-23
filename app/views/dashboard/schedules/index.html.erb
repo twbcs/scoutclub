@@ -33,6 +33,7 @@
         <tr>
           <td>
             <%= link_to t.title, dashboard_schedule_path(t) %>
+            <span class="<%= "icon-eye-blocked" if t.public_at == nil || t.public_at > Time.now %>"></span>
           </td>
           <td>
             <%= time_parser(t.start_date) %>
@@ -52,7 +53,7 @@
           <td>
             <%= t.kind_title %>
             <%= link_to "修改", edit_dashboard_schedule_path(t), class: "btn btn-xs btn-success" if @inside %>
-            <%= link_to "刪除", dashboard_schedule_path(t), method: :delete, class: "btn btn-xs btn-danger" if @inside %>
+            <%= link_to "刪除", dashboard_schedule_path(t), method: :delete, class: "btn btn-xs btn-danger" if @admin %>
           </td>
         </tr>
         <% end %>

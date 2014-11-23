@@ -14,7 +14,8 @@
       <tbody>
         <% @training_list.each do |train| %>
         <tr>
-          <td><%= link_to train.title, dashboard_schedule_path(train.id) %></td>
+          <td><%= link_to train.title, dashboard_schedule_path(train.id) %>
+            <span class="<%= "icon-eye-blocked" if train.public_at == nil || train.public_at > Time.now %>"></span></td>
           <td align="right">
             <%= '還有' if train.start_date > Time.now %>
             <%= timeago_tag train.start_date, :nojs => true, :limit => 30.days.ago, :lang => 'zh-TW' %>
@@ -41,7 +42,8 @@
       <tbody>
         <% @schedule_list.each do |doing| %>
         <tr>
-          <td><%= link_to doing.title, dashboard_schedule_path(doing.id) %></td>
+          <td><%= link_to doing.title, dashboard_schedule_path(doing.id) %>
+            <span class="<%= "icon-eye-blocked" if doing.public_at == nil || doing.public_at > Time.now %>"></span></td>
           <td align="right">
             <%= '還有' if doing.start_date > Time.now %>
             <%= timeago_tag doing.start_date, :nojs => true, :limit => 30.days.ago, :lang => 'zh-TW' %>
@@ -120,7 +122,8 @@
       <tbody>
         <% @album_list.each do |album| %>
         <tr>
-          <td><%= link_to album.title, dashboard_album_path(album.id) %></td>
+          <td><%= link_to album.title, dashboard_album_path(album.id) %>
+              <span class="<%= "icon-eye-blocked" if album.public_at == nil || album.public_at > Time.now %>"></span></td>
           <td align="right">
             <%= timeago_tag album.created_at, :nojs => true, :limit => 30.days.ago, :lang => 'zh-TW' %>
           </td>
@@ -146,7 +149,8 @@
       <tbody>
         <% @movie_list.each do |movie| %>
         <tr>
-          <td><%= link_to movie.title, dashboard_movie_path(movie.id) %></td>
+          <td><%= link_to movie.title, dashboard_movie_path(movie.id) %>
+            <span class="<%= "icon-eye-blocked" if movie.public_is == false %>"></span></td>
           <td align="right">
             <%= timeago_tag movie.created_at, :nojs => true, :limit => 30.days.ago, :lang => 'zh-TW' %>
           </td>

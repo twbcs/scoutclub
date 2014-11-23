@@ -68,12 +68,8 @@ class Dashboard::Admin::PostsController < Dashboard::Admin::AdminController
 
   def post_list_power
     if current_user
-      view = Array.new
-      temp1 = Array.new
-      power = UserGroup.where(user_id: current_user.id)
-      power.each{|x| temp1 << x.group_id}
-      temp2 = GroupForum.where(group_id: temp1, forum_id: params[:forum_id])
-      temp2.each{|v| view << [v.forum_id, v.level]}
+      power = UserGroup.where(user_id: current_user.id).pluck(:group_id)
+      view = GroupForum.where(group_id: power, forum_id: params[:forum_id]).pluck(:forum_id, :level)
       @post_view = view.sort.last
       redirect_to(dashboard_admin_forums_path, alert: '子版錯誤或無權限進入') unless @post_view
     end

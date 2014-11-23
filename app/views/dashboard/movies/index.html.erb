@@ -8,11 +8,13 @@
 <%= will_paginate @movies, renderer: BootstrapPagination::Rails %>
 <div class="col-xs-12 list">
   <% @movies.each do |m|%>
-    <%= link_to m.title, dashboard_movie_path(m) %>
-    <%= m.user_name %>
-    <%= m.public_is ? "公開" : "對內" %>
-    <%= time_parser(m.created_at) %>
-    <%= link_to "修改", edit_dashboard_movie_path(m), class: "btn btn-xs btn-success" if @inside %>
+    <% if m.public_is == true || @junior %>
+      <%= link_to m.title, dashboard_movie_path(m) %>
+      <span class="<%= "icon-eye-blocked" if m.public_is == false %>"></span>
+      <%= m.user_name %>
+      <%= time_parser(m.created_at) %>
+      <%= link_to "修改", edit_dashboard_movie_path(m), class: "btn btn-xs btn-success" if @inside %>
+    <% end %>
   <% end  %>
 </div>
 <%= will_paginate @movies, renderer: BootstrapPagination::Rails %>

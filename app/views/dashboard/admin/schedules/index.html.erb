@@ -32,6 +32,7 @@
         <tr>
           <td>
             <%= link_to t.title, dashboard_admin_schedule_path(t) %>
+            <span class="<%= "icon-eye-blocked" if t.public_at == nil || t.public_at > Time.now %>"></span>
           </td>
           <td>
             <%= time_parser(t.start_date) %>
