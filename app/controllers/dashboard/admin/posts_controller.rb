@@ -2,18 +2,17 @@ class Dashboard::Admin::PostsController < Dashboard::Admin::AdminController
   before_action :post_list_power, only: [:show, :new, :edit]
   before_action :login,         except: [:show]
   before_action :set_post,        only: [:edit, :update, :destroy]
+  before_action :set_forum,       only: [:show, :new, :edit]
   after_action  :view_add,        only: [:show]
 
   def show
     @posts = Post.where("id = ? OR reply_id = ?", params[:id], params[:id])
             .includes(:user)
-    @forum = Forum.find_by(id: params[:forum_id])
   end
 
   def new
     @post = Post.new(forum_id: params[:forum_id])
     @post.reply_id = params[:id] if params[:id]
-    @forum = Forum.find_by(id: params[:forum_id])
     @posts = Post.where("id = ? OR reply_id = ?", params[:id], params[:id])
             .includes(:user) if params[:id]
   end
@@ -27,20 +26,19 @@ class Dashboard::Admin::PostsController < Dashboard::Admin::AdminController
     if @post.save
       have_reply_id(@post)
     else
-      @forum = Forum.find_by(id: params[:forum_id])
+      set_forum
       render :new
     end
   end
 
   def edit
-      @forum = Forum.find_by(id: params[:forum_id])
   end
 
   def update
     if @post.update(post_params)
       have_reply_id(@post)
     else
-      @forum = Forum.find_by(id: params[:forum_id])
+      set_forum
       render :edit
     end
   end
@@ -64,6 +62,10 @@ class Dashboard::Admin::PostsController < Dashboard::Admin::AdminController
 
   def set_post
     @post = Post.find(params[:id])
+  end
+
+  def set_forum
+    @forum = Forum.find_by(id: params[:forum_id])
   end
 
   def post_list_power

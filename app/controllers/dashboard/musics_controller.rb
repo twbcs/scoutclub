@@ -1,5 +1,6 @@
 class Dashboard::MusicsController < Dashboard::DashboardController
   before_action :is_inside
+  before_action :set_music ,except: [:index, :new, :create]
 
   def index
     @musics = Music.all.includes(:user).paginate(:page => params[:page], :per_page => 20)
@@ -20,12 +21,9 @@ class Dashboard::MusicsController < Dashboard::DashboardController
   end
 
   def edit
-    @music = Music.find(params[:id])
   end
 
   def update
-    @music = Music.find(params[:id])
-
     if @music.update(music_params)
       redirect_to dashboard_music_path(params[:id])
     else
@@ -34,11 +32,9 @@ class Dashboard::MusicsController < Dashboard::DashboardController
   end
 
   def show
-    @music = Music.find(params[:id])
   end
 
   def destroy
-    @music = Music.find(params[:id])
     @music.remove_file!
     @music.destroy
     redirect_to dashboard_musics_path
@@ -47,5 +43,9 @@ class Dashboard::MusicsController < Dashboard::DashboardController
   private
   def music_params
     params.require(:music).permit(:file, :title, :description, :user_id)
+  end
+
+  def set_music
+    @music = Music.find(params[:id])
   end
 end

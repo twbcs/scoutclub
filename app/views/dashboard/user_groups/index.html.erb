@@ -4,6 +4,7 @@
 
 <div class="list">
   <% @user_groups.each do |m| %>
+    <img src="http://graph.facebook.com/<%= m.uid %>/picture?type=square" height="42" width="42"/>
     <%= m.name  %>
     <%= m.email %>
     <%= link_to "新增權限", new_dashboard_user_group_path(user_id: m.id), class: "btn btn-xs btn-success" %><br/>

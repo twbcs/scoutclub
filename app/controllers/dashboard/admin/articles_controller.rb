@@ -1,4 +1,5 @@
 class Dashboard::Admin::ArticlesController < Dashboard::Admin::AdminController
+  before_action :set_article, only: [:edit, :update, :destroy]
   def index
     if params[:art_kind_id]
       @articles = Article.where(art_kind_id: params[:art_kind_id]).includes(:user, :art_kind)
@@ -24,7 +25,6 @@ class Dashboard::Admin::ArticlesController < Dashboard::Admin::AdminController
   end
 
   def edit
-    @article = Article.find(params[:id])
   end
 
   def update
@@ -75,5 +75,9 @@ class Dashboard::Admin::ArticlesController < Dashboard::Admin::AdminController
 
   def comment_params
     params.require(:comment).permit(:content, :article_id, :user_id)
+  end
+
+  def set_article
+    @article = Article.find(params[:id])
   end
 end

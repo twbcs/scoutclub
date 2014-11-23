@@ -1,5 +1,7 @@
 class Dashboard::ArticlesController < Dashboard::DashboardController
   before_action :is_inside, only: [:new, :create, :edit, :update]
+  before_action :set_article, only: [:edit, :update]
+
   def index
     if params[:art_kind_id]
       @articles = Article.where(art_kind_id: params[:art_kind_id]).includes(:user, :art_kind)
@@ -25,11 +27,9 @@ class Dashboard::ArticlesController < Dashboard::DashboardController
   end
 
   def edit
-    @article = Article.find(params[:id])
   end
 
   def update
-    @article = Article.find(params[:id])
     if @article.update(art_params)
       redirect_to dashboard_article_path(@article.id)
     else
@@ -70,5 +70,9 @@ class Dashboard::ArticlesController < Dashboard::DashboardController
 
   def comment_params
     params.require(:comment).permit(:content, :article_id, :user_id)
+  end
+
+  def set_article
+    @article = Article.find(params[:id])
   end
 end

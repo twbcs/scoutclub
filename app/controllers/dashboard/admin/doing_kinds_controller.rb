@@ -31,7 +31,6 @@ class Dashboard::Admin::DoingKindsController < Dashboard::Admin::AdminController
 
   def destroy
   	@doing_kind.destroy
-
   	redirect_to dashboard_admin_doing_kinds_url
   end
 
