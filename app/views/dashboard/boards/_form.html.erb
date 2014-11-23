@@ -1,4 +1,5 @@
 <%= form_for [:dashboard,board] do |f| %>
+  <%= render 'shared/errors', object: f.object %>
   <div class="field">
     <%= f.label :subject %><br>
     <%= f.text_field :subject, :class => 'form-control fieldw' %>

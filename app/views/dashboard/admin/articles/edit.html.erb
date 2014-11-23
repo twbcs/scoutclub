@@ -2,6 +2,5 @@
   <li><%= link_to "文章總覽", dashboard_admin_articles_path %></li>
   <li class="active">修改文章 | <%= @article.title %></li>
 <% end %>
-<div class="list">
-  <%= render 'form', article: @article %>
-</div>
+
+<%= render 'form', article: @article %>

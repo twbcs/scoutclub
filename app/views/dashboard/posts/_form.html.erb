@@ -1,12 +1,15 @@
-<% content_for :breadcrumb do %>
-  <li><%= link_to "討論區", forums_path %></li>
-  <li><%= link_to @forum.title, forum_path(@forum) %></li>
-  <li class="active" ><%= @posts.first.subject %></li>
+<%= form_for [:dashboard,forum,post] do |f| %>
+  <%= render 'shared/errors', object: f.object %>
+  <div class="list">
+    <%= f.text_field :subject, class: "form-control", placeholder: "標題"%><br/>
+    <%= f.text_area :body, class: "form-control", rows: "20", "data-provide" => "markdown" %>
+    <%= f.hidden_field :forum_id %>
+    <%= f.hidden_field :reply_id %>
+    <%= f.submit  "確認", class: "btn btn-success", style: "margin-top: 10px;margin-bottom: 10px;" %>
+  </div>
 <% end %>
 
-<% view = @post_view.first == @forum.id if @post_view %>
-
-<% if @forum.public_at || view %>
+<% if @posts %>
   <% @posts.each do |m| %>
     <div class="col-md-2 user">
       <img src="http://graph.facebook.com/<%= m.user_uid %>/picture?type=normal"/><br/>
@@ -22,11 +25,6 @@
         <%= markdown(m.body) %>
       </div>
       <div class="controller">
-        <% if m.updated_at != m.created_at  %>
-          修改於：<%= time_parser(m.updated_at) %>
-        <% else %>
-          新增於：<%= time_parser(m.created_at) %>
-        <% end %>
       </div>
     </div>
   <% end %>

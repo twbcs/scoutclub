@@ -1,4 +1,5 @@
 <%= form_for [:dashboard,article] do |f| %>
+  <%= render 'shared/errors', object: f.object %>
   <%= f.text_field :title, class: "form-control" %>
   <%= f.select(:art_kind_id, ArtKind.all.collect {|u| [u.name, u.id]},
       { :prompt => '請選擇'}, :class => 'form-control' ) %>

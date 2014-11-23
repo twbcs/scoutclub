@@ -3,7 +3,4 @@
   <li class="active">修改文章分類 | <%= @art_kind.name %></li>
 <% end %>
 
-<%= form_for [:dashboard,:admin,@art_kind] do |f| %>
-  <%= f.text_field :name, class: "form-control" %>
-  <%= f.submit "確認", :disable_with => '處理中...', class: "btn btn-success" %>
-<% end %>
+<%= render 'form', art_kind: @art_kind %>

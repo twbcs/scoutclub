@@ -3,8 +3,4 @@
   <li class="active">修改 | <%= @doing_kind.title %></li>
 <% end %>
 
-<%= form_for [:dashboard,:admin,@doing_kind]  do |f| %>
-
-<%= f.text_field :title %>
-<%= f.submit "確認", :disable_with => '處理中...' %>
-<% end %>
+<%= render 'form', doing_kind: @doing_kind %>

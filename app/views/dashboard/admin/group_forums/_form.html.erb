@@ -1,5 +1,6 @@
-<div class="list">
-  <%= form_for [:dashboard,:admin,group,group_forum] do |f| %>
+<%= form_for [:dashboard,:admin,group,group_forum] do |f| %>
+  <%= render 'shared/errors', object: f.object %>
+  <div class="list">
     <%= f.hidden_field :group_id %>
     <div class="form-inline">
       <%= f.label :forum_id %>
@@ -8,7 +9,7 @@
     <div class="form-inline">
     <%= f.label :level %>
     <%= f.select(:level, forum_ability, { :prompt => '請選擇'}, :class => 'form-control' )  %>
-  </div>
+    </div>
     <%= f.submit "確認", :disable_with => '處理中...', class: "btn btn-success" %>
-  <% end %>
-</div>
+  </div>
+<% end %>

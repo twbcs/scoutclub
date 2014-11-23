@@ -1,0 +1,22 @@
+<%= form_for [:dashboard,:admin,album] do |f| %>
+<%= render 'shared/errors', object: f.object %>
+<div class="list">
+  <%= f.label :title %>
+  <%= f.text_field :title, class: "form-control" %>
+  <%= f.label :public_at %>
+  <div class='input-group date' id='datetimepicker1'>
+    <%= f.text_field :public_at, class: "form-control", 'data-date-format' => "YYYY/MM/DD HH:mm" %>
+    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+  </span>
+</div>
+<%= f.label :add_photo_to %>
+<div class='input-group date' id='datetimepicker2'>
+  <%= f.text_field :add_photo_to, class: "form-control", 'data-date-format' => "YYYY/MM/DD HH:mm" %>
+  <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+</span>
+</div>
+<%= f.label :description %>
+<%= f.text_area :description, rows: "20", class: "form-control" %>
+<%= f.submit "確認", class: "btn btn-success" %>
+</div>
+<% end %>

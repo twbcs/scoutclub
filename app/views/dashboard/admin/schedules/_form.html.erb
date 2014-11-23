@@ -1,5 +1,6 @@
-<div class="list">
-  <%= form_for [:dashboard,:admin,schedule] do |f| -%>
+<%= form_for [:dashboard,:admin,schedule] do |f| -%>
+<%= render 'shared/errors', object: f.object %>
+  <div class="list">
     <div class="form-group">
       <%= f.label :title %>
       <%= f.text_field :title %>
@@ -45,5 +46,5 @@
       <%= f.text_area :description, class: "form-control", rows: "20", "data-provide" => "markdown" %>
     </div>
     <%= f.submit "確認", :disable_with => '處理中...', class: "btn btn-success" %>
-  <% end %>
-</div>
+  </div>
+<% end %>

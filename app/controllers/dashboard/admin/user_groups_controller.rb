@@ -1,7 +1,7 @@
 class Dashboard::Admin::UserGroupsController < Dashboard::Admin::AdminController
   def index
     @user_rule = Modify.find_by(user_id: current_user)
-    @user_groups = User.all.includes(:groups)
+    @user_groups = User.all.includes(:groups) #.order('groups.group_id')res
   end
 
   def new

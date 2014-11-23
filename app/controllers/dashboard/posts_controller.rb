@@ -48,8 +48,7 @@ class Dashboard::PostsController < Dashboard::DashboardController
       @post.destroy
       redirect_to dashboard_forum_post_path(forum_id: @post.forum_id, id: @post.reply_id)
     else
-      @posts = Post.where(reply_id: params[:id])
-      @posts.each{|x| x.destroy} if @posts
+      @posts = Post.destroy_all(reply_id: params[:id])
       @post.destroy
       redirect_to dashboard_forum_path(@post.forum_id)
     end

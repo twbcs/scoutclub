@@ -5,5 +5,6 @@ class Forum < ActiveRecord::Base
 	belongs_to :forum_kind
 	delegate :title, :to => :forum_kind, :prefix => true
 
+	validates_presence_of :title, :on => :create, :message => "不能為空"
 	scope :order_by_forum_kind, -> { order(forum_kind_id: :asc) }
 end

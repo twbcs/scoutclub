@@ -3,8 +3,4 @@
   <li class="active">新增</li>
 <% end %>
 
-<%= form_for [:dashboard,:admin,@forum_kind] do |f| %>
-  <%= f.text_field :title %>
-  <%= f.text_area  :description %>
-  <%= f.submit "確認", class: " btn btn-success" %>
-<% end %>
+<%= render 'form', forum_kind: @forum_kind %>

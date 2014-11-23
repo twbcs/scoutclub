@@ -1,10 +1,11 @@
-<div class="list">
-  <%= form_for [:dashboard,user_group] do |f| %>
-  <%= f.hidden_field :user_id %>
-  <div class="form-inline">
-    <%= f.label :group_id %>
-    <%= f.select(:group_id, Group.where.not(id: [1,5,7]).collect {|u| [u.name, u.id]}, { :prompt => '請選擇'}, :class => 'form-control' ) %>
-  </div>
+<%= form_for [:dashboard,user_group] do |f| %>
+  <%= render 'shared/errors', object: f.object %>
+  <div class="list">
+    <%= f.hidden_field :user_id %>
+    <div class="form-inline">
+      <%= f.label :group_id %>
+      <%= f.select(:group_id, Group.where.not(id: [1,5,7]).collect {|u| [u.name, u.id]}, { :prompt => '請選擇'}, :class => 'form-control' ) %>
+    </div>
     <%= f.submit "確認", class: " btn btn-success" %>
-  <% end %>
-</div>
+  </div>
+<% end %>
