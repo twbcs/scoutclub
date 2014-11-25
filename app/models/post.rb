@@ -13,6 +13,12 @@ class Post < ActiveRecord::Base
 		 		as reply_id FROM (select * from posts where reply_id IS NULL AND first_post)
 				 AS po join posts as rep ON po.id = rep.reply_id group by rep.reply_id")}
 
+	def set_subject
+		if self.reply_id && self.subject == ""
+			self.subject = "回文"
+		end
+	end
+
 	private
 	def update_first
 	 	if self.reply_id

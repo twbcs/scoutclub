@@ -17,7 +17,7 @@ module ApplicationHelper
     params[:controller].sub(/.*\//,'') == controller && params[:action] == action
   end
 
-  def controller_only(controller)
-    params[:controller].sub(/.*\//,'') == controller
+  def controller?(*controllers)
+    'active' if controllers.include?(params[:controller].sub(/.*\//,''))
   end
 end

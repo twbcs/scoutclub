@@ -9,8 +9,8 @@
   </div>
 <% end %>
 
-<% if @posts %>
-  <% @posts.each do |m| %>
+<% if posts %>
+  <% posts.each do |m| %>
     <div class="col-md-2 user">
       <img src="http://graph.facebook.com/<%= m.user_uid %>/picture?type=normal"/><br/>
       <%= link_to m.user_name, "http://www.facebook.com/#{m.user_uid}" %><br/>

@@ -20,9 +20,7 @@ class Dashboard::PostsController < Dashboard::DashboardController
   def create
     @post = Post.new(post_params)
     @post.set_user(current_user.id)
-    if @post.reply_id && @post.subject == ""
-      @post.subject = "回文"
-    end
+    @post.set_subject
     if @post.save
       have_reply_id(@post)
     else

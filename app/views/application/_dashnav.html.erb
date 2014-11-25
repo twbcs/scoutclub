@@ -16,14 +16,14 @@
       <ul class="nav navbar-nav">
         <li class="<%= 'active' if controller_action('welcomes','index') %>">
           <%= link_to "最新消息", dashboard_root_path %></li>
-          <li class="dropdown <%= 'active' if controller_only('boards') || controller_only('forums') %>">
+          <li class="dropdown <%= controller?('boards','forums') %>">
             <a href="#" class="dropdown-toggle clearfix" data-toggle="dropdown">交流區</a>
           <ul class="dropdown-menu" role="menu">
             <li><%= link_to " 留言板", dashboard_boards_path, class: "icon-bubbles" %></li>
             <li><%= link_to " 討論區", dashboard_forums_path, class: "icon-newspaper" %></li>
           </ul>
         </li>
-        <li class="dropdown <%= 'active' if controller_only('articles') %>">
+        <li class="dropdown <%= controller?('articles') %>">
           <a href="#" class="dropdown-toggle clearfix" data-toggle="dropdown">文章總覽</a>
           <ul class="dropdown-menu" role="menu">
             <li><%= link_to " 文章總覽", dashboard_articles_path, class: "icon-quill" %></li>
@@ -36,7 +36,7 @@
             <li><%= link_to " 課程相關資料", dashboard_articles_path, class: "icon-profile" %></li>
           </ul>
         </li>
-        <li class="dropdown <%= 'active' if controller_only('albums') || controller_only('musics') || controller_only('movies')%>">
+        <li class="dropdown <%= controller?('albums','musics','movies') %>">
           <a href="#" class="dropdown-toggle clearfix" data-toggle="dropdown">花絮集錦</a>
           <ul class="dropdown-menu" role="menu">
             <li><%= link_to " 相簿", dashboard_albums_path, class: "icon-image" %></li>
@@ -44,18 +44,18 @@
             <li><%= link_to " 影片連結", dashboard_movies_path, class: "icon-film" %></li>
           </ul>
         </li>
-        <li class="dropdown <%= 'active' if controller_only('members') || controller_only('titles') %>">
+        <li class="dropdown <%= controller?('members','titles') %>">
           <a href="#" class="dropdown-toggle clearfix" data-toggle="dropdown">歷史資料</a>
           <ul class="dropdown-menu" role="menu">
+            <li><%= link_to "職務表", dashboard_titles_path %></li>
             <li><%= link_to " 團員資料", dashboard_members_path, class: "icon-user" %></li>
             <li><%= link_to " 各屆幹部", title_ths_dashboard_titles_path, class: "icon-users" %></li>
             <li><%= link_to " 活動表", dashboard_schedules_path, class: "icon-calendar" %></li>
           </ul>
         </li>
-        <li class="dropdown <%= 'active' if params[:controller] == 'doing_kinds' || params[:controller] == 'titles'%>">
+        <li class="dropdown <%= controller?('user_groups') %>">
           <a href="#" class="dropdown-toggle clearfix" data-toggle="dropdown">輔助功能</a>
           <ul class="dropdown-menu" role="menu">
-            <li><%= link_to "職務表", dashboard_titles_path %></li>
             <li><%= link_to "使用者群組", dashboard_user_groups_path if admin %></li>
           </ul>
         </li>
