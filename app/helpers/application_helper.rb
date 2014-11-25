@@ -12,4 +12,12 @@ module ApplicationHelper
       time.strftime("%Y %m %d %H:%M")
     end
   end
+
+  def controller_action(controller,action)
+    params[:controller].sub(/.*\//,'') == controller && params[:action] == action
+  end
+
+  def controller_only(controller)
+    params[:controller].sub(/.*\//,'') == controller
+  end
 end

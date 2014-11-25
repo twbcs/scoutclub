@@ -5,7 +5,7 @@
 
 <%= form_for [:dashboard,:admin,@music] do |f| %>
   <%= render 'shared/errors', object: f.object %>
-  <div class="lsit padding">
+  <div class="list padding">
     <%= f.text_field :title, class: "form-control", placeholder: "標題" %>
     <% if @music.file %>
     <%= File.basename(@music.file.path) %>
