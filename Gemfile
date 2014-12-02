@@ -47,6 +47,7 @@ gem "cocoon"
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'bootstrap-sass', '~> 3.3.1'
+gem 'semantic-ui-sass', '~> 0.19.3.1'
 gem 'activerecord-mysql-unsigned'
 gem 'momentjs-rails', '>= 2.8.1'
 gem 'bootstrap3-datetimepicker-rails', '~> 3.1.3'

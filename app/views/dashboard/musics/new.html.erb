@@ -3,7 +3,7 @@
   <li class="active">新增音樂</li>
 <% end %>
 
-<%= form_for [:dashboard,@music] do |f| %>
+<%= form_for [:dashboard,@music],:multipart => true do |f| %>
   <%= render 'shared/errors', object: f.object %>
   <div class="list padding">
     <%= f.text_field :title, class: "form-control", placeholder: "標題" %>

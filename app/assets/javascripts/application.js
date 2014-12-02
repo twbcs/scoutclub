@@ -19,6 +19,7 @@
 //= require bootstrap-sprockets
 //= require bootstrap-markdown
 //= require bootstrap-datetimepicker
+//= require semantic-ui
 //= require rails-timeago
 //= require locales/jquery.timeago.zh-TW.js
 //= require to-markdown

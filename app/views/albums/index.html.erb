@@ -8,8 +8,8 @@
     <% if a < Time.now %>
       <div class="photos">
         <%= link_to album_path(m) do %>
-          <%= image_tag(m.photos.first.file.medium) %><br/>
-          <%= m.title %>
+        <%= image_tag(m.photos.first.file.medium) if m.photos.count > 0 %><br/>
+        <%= m.title %>
         <% end%>
       </div>
     <% end %>

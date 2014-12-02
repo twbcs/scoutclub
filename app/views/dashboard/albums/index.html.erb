@@ -11,7 +11,7 @@
     <% if a < Time.now || @inside %>
       <div class="photos">
         <%= link_to dashboard_album_path(m) do %>
-        <%= image_tag(m.photos.first.file.medium) %><br/>
+        <%= image_tag(m.photos.first.file.medium) if m.photos.count > 0 %><br/>
         <span class="<%= "eye-blocked" unless m.public_at || a >= Time.now %>"><%= m.title %></span>
         <% end%>
         <span class="<%= "icon-plus" if b > Time.now %>"></span>

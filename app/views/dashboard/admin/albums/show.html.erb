@@ -10,7 +10,7 @@
   <%= link_to "修改", edit_dashboard_admin_album_path(@album) %>
 </div>
 
-<%= form_for [:dashboard,:admin,@album,@photo], remote: true do |f| %>
+<%= form_for [:dashboard,:admin,@album,@photo], remote: true,:multipart => true do |f| %>
   <% if @photo.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@photo.errors.count, "error") %> prohibited this photo from being saved:</h2>

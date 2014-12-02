@@ -3,7 +3,7 @@
   <div class='comment-user'>
     <%= co.user_name %>
     <%= timeago_tag co.created_at, :nojs => true, :limit => 30.days.ago, :lang => 'zh-TW' %>
-    <%= link_to "刪除", comment_destroy_dashboard_admin_article_path(article_id: co.article_id, comment_id: co.id)
+    <%= link_to "刪除", comment_destroy_dashboard_admin_article_path(article_id: co.article_id, comment_id: co.id),
                        remote: true, method: :delete, class: "btn btn-xs btn-danger" %>
   </div>
 </div>
