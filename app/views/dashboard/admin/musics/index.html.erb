@@ -8,9 +8,10 @@
 <%= will_paginate @musics, renderer: BootstrapPagination::Rails %>
 <div class="col-xs-12 list">
   <% @musics.each do |m|%>
+  <div class="item">
     <%= link_to m.title, dashboard_admin_music_path(m.id) %>
-    <%= File.basename(m.file.path) %>
     <%= m.user.name %>
+  </div>
   <% end %>
 </div>
 <%= will_paginate @musics, renderer: BootstrapPagination::Rails %>

@@ -4,7 +4,7 @@
 <% end %>
 
 <div class="">
-  <%= @album.title %>
+  <h3 class="ui teal ribbon label"><%= @album.title %></h3>
   <%= @album.description %>
   <%= time_parser(@album.add_photo_to) %>
   <%= link_to "修改", edit_dashboard_admin_album_path(@album) %>

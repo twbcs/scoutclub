@@ -4,8 +4,9 @@
 
 <div class="col-xs-12 list">
   <% @musics.each do |m|%>
-    <%= link_to m.title, music_path(m.id) %>
-    <%= File.basename(m.file.path) %>
+  <div class="item">
+    <%= link_to m.title, dashboard_admin_music_path(m.id) %>
     <%= m.user.name %>
+  </div>
   <% end %>
 </div>
