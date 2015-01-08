@@ -36,6 +36,7 @@ class Dashboard::Admin::ArtKindsController < Dashboard::Admin::AdminController
   end
 
   private
+
   def art_params
     params.require(:art_kind).permit(:name)
   end

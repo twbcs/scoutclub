@@ -2,7 +2,7 @@ class Dashboard::Admin::MusicsController < Dashboard::Admin::AdminController
   before_action :set_music, only: [:show, :edit, :update, :destroy]
 
   def index
-    @musics = Music.all.includes(:user).paginate(:page => params[:page], :per_page => 20)
+    @musics = Music.all.includes(:user).paginate(page: params[:page], per_page: 20)
   end
 
   def new
@@ -40,6 +40,7 @@ class Dashboard::Admin::MusicsController < Dashboard::Admin::AdminController
   end
 
   private
+
   def music_params
     params.require(:music).permit(:file, :title, :description, :user_id)
   end

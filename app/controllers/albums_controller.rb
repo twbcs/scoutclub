@@ -1,5 +1,5 @@
 class AlbumsController < ApplicationController
-  after_action :view_add , only: [:show]
+  after_action :view_add, only: [:show]
   def index
     @albums = Album.all.includes(:photos)
   end

@@ -3,11 +3,11 @@ class Dashboard::Admin::ArticlesController < Dashboard::Admin::AdminController
   def index
     if params[:art_kind_id]
       @articles = Article.where(art_kind_id: params[:art_kind_id]).includes(:user, :art_kind)
-                         .paginate(:page => params[:page], :per_page => 10)
+                  .paginate(page: params[:page], per_page: 10)
     else
-      @articles = Article.all.includes(:user, :art_kind).paginate(:page => params[:page], :per_page => 10)
+      @articles = Article.all.includes(:user, :art_kind).paginate(page: params[:page], per_page: 10)
     end
-      @art_kind = ArtKind.all
+    @art_kind = ArtKind.all
   end
 
   def new
@@ -47,7 +47,7 @@ class Dashboard::Admin::ArticlesController < Dashboard::Admin::AdminController
       check = Comment.where(user_id: current_user.id).last.created_at
     end
     @save = false
-    if check==nil || (Time.now - check)  > 5 #避免因JS問題重複回應
+    if check == nil? || (Time.now - check)  > 5 #避免因JS問題重複回應
       @comment = Comment.new(comment_params)
       @comment.set_user(current_user.id)
       @comment.save
@@ -69,6 +69,7 @@ class Dashboard::Admin::ArticlesController < Dashboard::Admin::AdminController
   end
 
   private
+
   def art_params
     params.require(:article).permit(:title, :content, :user_id, :art_kind_id)
   end

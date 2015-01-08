@@ -1,7 +1,6 @@
 # encoding: utf-8
 
 class ImageUploader < CarrierWave::Uploader::Base
-
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
@@ -25,16 +24,16 @@ class ImageUploader < CarrierWave::Uploader::Base
   # end
 
   # Process files as they are uploaded:
-  process :resize_to_limit => [1920, 1920]
+  process resize_to_limit: [1920, 1920]
   #
   # def scale(width, height)
   #   resize_to_limit
   # end
   version :small do
-      process :resize_to_fill => [64, 64]
+    process resize_to_fill: [64, 64]
   end
   version :medium do
-      process :resize_to_fill => [137, 137]
+    process resize_to_fill: [137, 137]
   end
   # Create different versions of your uploaded files:
   # version :thumb do
@@ -49,5 +48,4 @@ class ImageUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
-
 end

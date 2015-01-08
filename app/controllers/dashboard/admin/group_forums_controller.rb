@@ -41,6 +41,7 @@ class Dashboard::Admin::GroupForumsController < Dashboard::Admin::AdminControlle
   end
 
   private
+
   def group_forum_params
     params.require(:group_forum).permit(:group_id, :forum_id, :level)
   end

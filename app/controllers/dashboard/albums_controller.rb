@@ -1,5 +1,5 @@
 class Dashboard::AlbumsController < Dashboard::DashboardController
-  after_action :view_add , only: [:show]
+  after_action :view_add, only: [:show]
   def index
     @albums = Album.all.includes(:photos)
   end
@@ -30,11 +30,11 @@ class Dashboard::AlbumsController < Dashboard::DashboardController
     end
   end
 
-def show
-  @album = Album.find(params[:id])
-  @photos = Photo.where(album_id: params[:id])
-  @photo = Photo.new
-end
+  def show
+    @album = Album.find(params[:id])
+    @photos = Photo.where(album_id: params[:id])
+    @photo = Photo.new
+  end
 
   def destroy
     @album = Album.find(params[:id])
@@ -43,8 +43,9 @@ end
   end
 
   private
+
   def album_params
-    params.require(:album).permit(:title,:description,:add_photo_to,:public_at)
+    params.require(:album).permit(:title, :description, :add_photo_to, :public_at)
   end
 
   def view_add

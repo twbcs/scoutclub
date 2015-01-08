@@ -26,6 +26,7 @@ class Dashboard::PhotosController < Dashboard::DashboardController
   end
 
   private
+
   def photo_params
     params.require(:photo).permit(:file, :user_id, :album_id, :name)
   end

@@ -1,6 +1,5 @@
 class Dashboard::Admin::AlbumsController < Dashboard::Admin::AdminController
   before_action :set_album, only: [:show, :edit, :update, :destroy]
-  after_action :view_add, only: [:show]
   def index
     @albums = Album.all.includes(:photos)
   end
@@ -40,16 +39,12 @@ class Dashboard::Admin::AlbumsController < Dashboard::Admin::AdminController
   end
 
   private
+
   def album_params
-    params.require(:album).permit(:title,:description,:add_photo_to,:public_at)
+    params.require(:album).permit(:title, :description, :add_photo_to, :public_at)
   end
 
   def set_album
     @album = Album.find(params[:id])
-  end
-
-  def view_add
-    view = Album.find(params[:id])
-    view.update_column(:view_count, view.view_count + 1)
   end
 end

@@ -36,6 +36,7 @@ class Dashboard::Admin::ForumKindsController < Dashboard::Admin::AdminController
   end
 
   private
+
   def set_forum_kind
     @forum_kind = ForumKind.find(params[:id])
   end

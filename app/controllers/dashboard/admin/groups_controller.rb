@@ -29,8 +29,8 @@ class Dashboard::Admin::GroupsController < Dashboard::Admin::AdminController
   end
 
   def show
-    @group_forums = GroupForum.where(:group_id => params[:id] ).joins(:forum)
-                  .select("group_forums.id, group_forums.level, forums.title")
+    @group_forums = GroupForum.where(group_id: params[:id]).joins(:forum)
+                    .select('group_forums.id, group_forums.level, forums.title')
   end
 
   def destroy
@@ -39,6 +39,7 @@ class Dashboard::Admin::GroupsController < Dashboard::Admin::AdminController
   end
 
   private
+
   def group_params
     params.require(:group).permit(:name, :admin)
   end

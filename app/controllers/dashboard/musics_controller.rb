@@ -1,9 +1,9 @@
 class Dashboard::MusicsController < Dashboard::DashboardController
   before_action :is_inside
-  before_action :set_music ,except: [:index, :new, :create]
+  before_action :set_music, except: [:index, :new, :create]
 
   def index
-    @musics = Music.all.includes(:user).paginate(:page => params[:page], :per_page => 20)
+    @musics = Music.all.includes(:user).paginate(page: params[:page], per_page: 20)
   end
 
   def new
@@ -41,6 +41,7 @@ class Dashboard::MusicsController < Dashboard::DashboardController
   end
 
   private
+
   def music_params
     params.require(:music).permit(:file, :title, :description, :user_id)
   end

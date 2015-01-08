@@ -1,5 +1,4 @@
 class Dashboard::Admin::PhotosController < Dashboard::Admin::AdminController
-
   def create
     @photo = Photo.new(photo_params)
     @photo.save
@@ -27,6 +26,7 @@ class Dashboard::Admin::PhotosController < Dashboard::Admin::AdminController
   end
 
   private
+
   def photo_params
     params.require(:photo).permit(:file, :user_id, :album_id, :name)
   end

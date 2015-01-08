@@ -3,18 +3,18 @@ class Dashboard::PostsController < Dashboard::DashboardController
   before_action :login,         except: [:show]
   before_action :set_post,        only: [:edit, :update, :destroy]
   before_action :set_forum,       only: [:show, :new, :edit]
-  after_action  :view_add,        only: [:show]
+  after_action :view_add,         only: [:show]
 
   def show
-    @posts = Post.where("id = ? OR reply_id = ?", params[:id], params[:id])
-            .includes(:user)
+    @posts = Post.where('id = ? OR reply_id = ?', params[:id], params[:id])
+             .includes(:user)
   end
 
   def new
     @post = Post.new(forum_id: params[:forum_id])
     @post.reply_id = params[:id] if params[:id]
-    @posts = Post.where("id = ? OR reply_id = ?", params[:id], params[:id])
-            .includes(:user) if params[:id]
+    @posts = Post.where('id = ? OR reply_id = ?', params[:id], params[:id])
+             .includes(:user) if params[:id]
   end
 
   def create
@@ -22,7 +22,7 @@ class Dashboard::PostsController < Dashboard::DashboardController
     @post.set_user(current_user.id)
     @post.set_subject
     if @post.save
-      have_reply_id(@post)
+      reply_id?(@post)
     else
       set_forum
       render :new
@@ -34,7 +34,7 @@ class Dashboard::PostsController < Dashboard::DashboardController
 
   def update
     if @post.update(post_params)
-      have_reply_id(@post)
+      reply_id?(@post)
     else
       set_forum
       render :edit
@@ -53,6 +53,7 @@ class Dashboard::PostsController < Dashboard::DashboardController
   end
 
   private
+
   def post_params
     params.require(:post).permit(:forum_id, :subject, :body, :reply_id, :user_id, :update_post)
   end
@@ -66,12 +67,11 @@ class Dashboard::PostsController < Dashboard::DashboardController
   end
 
   def post_list_power
-    if current_user
-      power = UserGroup.where(user_id: current_user.id).pluck(:group_id)
-      view = GroupForum.where(group_id: power, forum_id: params[:forum_id]).pluck(:forum_id, :level)
-      @post_view = view.sort.last
-      redirect_to(dashboard_forums_path, alert: '子版錯誤或無權限進入') unless @post_view
-    end
+    return unless current_user
+    power = UserGroup.where(user_id: current_user.id).pluck(:group_id)
+    view = GroupForum.where(group_id: power, forum_id: params[:forum_id]).pluck(:forum_id, :level)
+    @post_view = view.sort.last
+    redirect_to(dashboard_forums_path, alert: '子版錯誤或無權限進入') unless @post_view
   end
 
   def view_add
@@ -83,7 +83,7 @@ class Dashboard::PostsController < Dashboard::DashboardController
     redirect_to(dashboard_forums_path, alert: '子版錯誤或無權限進入') unless current_user
   end
 
-  def have_reply_id(post)
+  def reply_id?(post)
     if post.reply_id
       redirect_to dashboard_forum_post_path(post.forum_id, post.reply_id)
     else

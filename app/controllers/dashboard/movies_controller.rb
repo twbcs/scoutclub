@@ -2,7 +2,8 @@ class Dashboard::MoviesController < Dashboard::DashboardController
   before_action :set_movie, only: [:edit, :update]
   before_action :is_inside, except: [:index, :show]
   def index
-    @movies = Movie.all.includes(:user).paginate(:page => params[:page], :per_page => 20)
+    @movies = Movie.all.includes(:user)
+              .paginate(page: params[:page], per_page: 20)
   end
 
   def show
@@ -35,6 +36,7 @@ class Dashboard::MoviesController < Dashboard::DashboardController
   end
 
   private
+
   def movie_params
     params.require(:movie).permit(:title, :description, :url, :public_is, :user_id)
   end
