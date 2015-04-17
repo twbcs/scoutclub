@@ -6,7 +6,7 @@ class CreateMusics < ActiveRecord::Migration
       t.text :description
       t.integer :user_id
 
-      t.timestamps
+      t.timestamps null: false
     end
     add_index :musics, :user_id
   end

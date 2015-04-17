@@ -2,6 +2,7 @@
 <html lang="zh-Hant">
 <head>
   <%= render 'meta'%>
+  <%= render 'google' %>
 </head>
 <body>
 <span id='top'> </span>
@@ -26,6 +27,5 @@
   </div>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= yield :script %>
-  <%= render 'google' %>
 </body>
 </html>

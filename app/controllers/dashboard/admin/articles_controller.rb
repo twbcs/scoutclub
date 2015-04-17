@@ -28,7 +28,6 @@ class Dashboard::Admin::ArticlesController < Dashboard::Admin::AdminController
   end
 
   def update
-    @article = Article.find(params[:id])
     if @article.update(art_params)
       redirect_to dashboard_admin_article_path(@article.id)
     else
@@ -47,7 +46,7 @@ class Dashboard::Admin::ArticlesController < Dashboard::Admin::AdminController
       check = Comment.where(user_id: current_user.id).last.created_at
     end
     @save = false
-    if check == nil? || (Time.now - check)  > 5 #避免因JS問題重複回應
+    if check == nil? || (Time.now - check)  > 5 # anti-JS rep
       @comment = Comment.new(comment_params)
       @comment.set_user(current_user.id)
       @comment.save
@@ -63,7 +62,6 @@ class Dashboard::Admin::ArticlesController < Dashboard::Admin::AdminController
   end
 
   def destroy
-    @article = Article.find(params[:id])
     @article.destroy
     redirect_to dashboard_admin_articles_path
   end

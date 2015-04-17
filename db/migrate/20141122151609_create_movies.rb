@@ -5,9 +5,9 @@ class CreateMovies < ActiveRecord::Migration
       t.string :url
       t.integer :user_id
       t.boolean :public_is
-      t.text    :description
+      t.text :description
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

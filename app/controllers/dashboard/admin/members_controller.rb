@@ -52,6 +52,6 @@ class Dashboard::Admin::MembersController < Dashboard::Admin::AdminController
 
   def member_params
     params.require(:member).permit(:name, :nname, :fname, :th, :sex, :year, :user_id,
-      :title_ths_attributes => [:id, :member_id, :title_id, :title_year, :_destroy])
+     title_ths_attributes: [:id, :member_id, :title_id, :title_year, :_destroy])
   end
 end

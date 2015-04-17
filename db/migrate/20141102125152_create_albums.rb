@@ -7,7 +7,7 @@ class CreateAlbums < ActiveRecord::Migration
       t.datetime :public_at
       t.datetime :add_photo_to
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

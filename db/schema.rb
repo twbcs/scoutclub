@@ -19,8 +19,8 @@ ActiveRecord::Schema.define(version: 20141125153313) do
     t.integer  "view_count",   default: 0, null: false
     t.datetime "public_at"
     t.datetime "add_photo_to"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "art_kinds", force: true do |t|
@@ -32,8 +32,8 @@ ActiveRecord::Schema.define(version: 20141125153313) do
     t.text     "content",     limit: 16777215, null: false
     t.integer  "user_id"
     t.integer  "art_kind_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   add_index "articles", ["art_kind_id"], name: "index_articles_on_art_kind_id", using: :btree
@@ -43,8 +43,8 @@ ActiveRecord::Schema.define(version: 20141125153313) do
     t.integer  "user_id"
     t.string   "subject"
     t.text     "content",    null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   add_index "boards", ["user_id"], name: "index_boards_on_user_id", using: :btree
@@ -53,8 +53,8 @@ ActiveRecord::Schema.define(version: 20141125153313) do
     t.text     "content",    null: false
     t.integer  "user_id"
     t.integer  "article_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   add_index "comments", ["article_id"], name: "index_comments_on_article_id", using: :btree
@@ -74,8 +74,8 @@ ActiveRecord::Schema.define(version: 20141125153313) do
     t.text     "description"
     t.integer  "forum_kind_id"
     t.boolean  "lock"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.boolean  "public_at",     default: true
     t.date     "closing_date"
   end
@@ -86,8 +86,8 @@ ActiveRecord::Schema.define(version: 20141125153313) do
     t.integer  "group_id"
     t.integer  "forum_id"
     t.integer  "level",      limit: 1
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   add_index "group_forums", ["forum_id"], name: "index_group_forums_on_forum_id", using: :btree
@@ -106,8 +106,8 @@ ActiveRecord::Schema.define(version: 20141125153313) do
     t.boolean  "sex"
     t.integer  "year",       limit: 2, unsigned: true
     t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   add_index "members", ["user_id"], name: "index_members_on_user_id", using: :btree
@@ -115,8 +115,8 @@ ActiveRecord::Schema.define(version: 20141125153313) do
   create_table "modifies", force: true do |t|
     t.integer  "user_id"
     t.integer  "user_rule",  limit: 1
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   add_index "modifies", ["user_id"], name: "index_modifies_on_user_id", using: :btree
@@ -127,8 +127,8 @@ ActiveRecord::Schema.define(version: 20141125153313) do
     t.integer  "user_id"
     t.boolean  "public_is"
     t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   add_index "movies", ["user_id"], name: "index_movies_on_user_id", using: :btree
@@ -138,8 +138,8 @@ ActiveRecord::Schema.define(version: 20141125153313) do
     t.string   "title"
     t.text     "description"
     t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   add_index "musics", ["user_id"], name: "index_musics_on_user_id", using: :btree
@@ -148,8 +148,8 @@ ActiveRecord::Schema.define(version: 20141125153313) do
     t.string   "file"
     t.string   "title"
     t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.integer  "album_id"
   end
 
@@ -163,8 +163,8 @@ ActiveRecord::Schema.define(version: 20141125153313) do
     t.integer  "reply_id"
     t.integer  "user_id"
     t.datetime "lock_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.string   "type"
     t.integer  "view_count",  default: 0, null: false
     t.datetime "update_post"
@@ -178,8 +178,8 @@ ActiveRecord::Schema.define(version: 20141125153313) do
     t.integer  "user_id"
     t.integer  "schedule_id"
     t.integer  "level",       limit: 1
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   add_index "schedule_attends", ["schedule_id"], name: "index_schedule_attends_on_schedule_id", using: :btree
@@ -194,8 +194,8 @@ ActiveRecord::Schema.define(version: 20141125153313) do
     t.integer  "number",        limit: 2, unsigned: true
     t.integer  "doing_kind_id"
     t.text     "description",                             null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   add_index "schedules", ["doing_kind_id"], name: "index_schedules_on_doing_kind_id", using: :btree
@@ -204,8 +204,8 @@ ActiveRecord::Schema.define(version: 20141125153313) do
     t.integer  "member_id",  null: false
     t.integer  "title_id",   null: false
     t.integer  "title_year", null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   add_index "title_ths", ["member_id"], name: "index_title_ths_on_member_id", using: :btree
@@ -215,15 +215,15 @@ ActiveRecord::Schema.define(version: 20141125153313) do
     t.string   "title",                                        null: false
     t.text     "description", limit: 16777215
     t.integer  "level",       limit: 1,        unsigned: true
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "user_groups", force: true do |t|
     t.integer  "user_id"
     t.integer  "group_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   add_index "user_groups", ["group_id"], name: "index_user_groups_on_group_id", using: :btree
@@ -240,8 +240,8 @@ ActiveRecord::Schema.define(version: 20141125153313) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.string   "uid",                    default: "", null: false
     t.string   "provider",               default: "", null: false
     t.string   "name",                                null: false
