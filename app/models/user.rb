@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   after_create :rules
-	# Include default devise modules. Others available are:
+  # Include default devise modules. Others available are
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :omniauthable, :recoverable,
          :registerable, :rememberable, :trackable, :validatable
@@ -36,7 +36,7 @@ class User < ActiveRecord::Base
 
   def self.new_with_session(params, session)
     super.tap do |user|
-      if data == session["devise.facebook_data"] && session["devise.facebook_data"]['extra']['raw_info']
+      if data == session['devise.facebook_data'] && session['devise.facebook_data']['extra']['raw_info']
         user.email ||= data['email']
       end
     end
@@ -47,10 +47,10 @@ class User < ActiveRecord::Base
   def rules
     user_count = User.all.count
     if user_count == 1
-      user_rule = Modify.create(user_id: self.id, user_rule: 63)
-      forum_rule = UserGroup.create(user_id: self.id, group_id: 1)
+      Modify.create(user_id: self.id, user_rule: 63)
+      UserGroup.create(user_id: self.id, group_id: 1)
     else
-      forum_rule = UserGroup.create(user_id: self.id, group_id: 6)
+      UserGroup.create(user_id: self.id, group_id: 6)
     end
   end
 end

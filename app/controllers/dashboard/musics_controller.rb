@@ -3,7 +3,7 @@ class Dashboard::MusicsController < Dashboard::DashboardController
   before_action :set_music, except: [:index, :new, :create]
 
   def index
-    @musics = Music.all.includes(:user).paginate(page: params[:page], per_page: 20)
+    @musics = Music.all.page_set
   end
 
   def new
@@ -12,7 +12,7 @@ class Dashboard::MusicsController < Dashboard::DashboardController
 
   def create
     @music = Music.new(music_params)
-    @music.set_user(current_user.id)
+    @music.setup_user(current_user.id)
     if @music.save
       redirect_to dashboard_music_path(@music)
     else

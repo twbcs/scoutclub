@@ -1,4 +1,6 @@
 class Article < ActiveRecord::Base
+  include Right
+
   belongs_to :user
   delegate :name, to: :user, prefix: 'user'
   belongs_to :art_kind
@@ -8,8 +10,5 @@ class Article < ActiveRecord::Base
   validates_presence_of :art_kind_id, on: :create, message: '必須選擇一個'
   validates_presence_of :content, on: :create, message: '不能為空'
   scope :order_by_time, -> { order(created_at: :desc) }
-
-  def set_user(user)
-    self.user_id = user
-  end
+  scope :page_set, -> { includes(:user, :art_kind).paginate(page: params[:page], per_page: 10) }
 end

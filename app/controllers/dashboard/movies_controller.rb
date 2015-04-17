@@ -2,8 +2,7 @@ class Dashboard::MoviesController < Dashboard::DashboardController
   before_action :set_movie, only: [:edit, :update]
   before_action :is_inside, except: [:index, :show]
   def index
-    @movies = Movie.all.includes(:user)
-              .paginate(page: params[:page], per_page: 20)
+    @movies = Movie.all.page_set
   end
 
   def show
@@ -16,7 +15,7 @@ class Dashboard::MoviesController < Dashboard::DashboardController
 
   def create
     @movie = Movie.new(movie_params)
-    @movie.set_user(current_user.id)
+    @movie.setup_user(current_user.id)
     if @movie.save
       redirect_to dashboard_movie_path(@movie)
     else

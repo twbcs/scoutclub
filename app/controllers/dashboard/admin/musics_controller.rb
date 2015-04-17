@@ -2,7 +2,7 @@ class Dashboard::Admin::MusicsController < Dashboard::Admin::AdminController
   before_action :set_music, only: [:show, :edit, :update, :destroy]
 
   def index
-    @musics = Music.all.includes(:user).paginate(page: params[:page], per_page: 20)
+    @musics = Music.all.page_set
   end
 
   def new
@@ -11,7 +11,7 @@ class Dashboard::Admin::MusicsController < Dashboard::Admin::AdminController
 
   def create
     @music = Music.new(music_params)
-    @music.set_user(current_user.id)
+    @music.setup_user(current_user.id)
     if @music.save
       redirect_to dashboard_admin_music_path(@music)
     else

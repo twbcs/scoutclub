@@ -2,7 +2,8 @@ class Dashboard::WelcomesController < Dashboard::DashboardController
   def index
     @articles_list = Article.all.order_by_time.limit(5)
     @post_list     = Post.where(reply_id: nil).order_by_update_post.limit(5)
-                     .includes(:forum).where('forums.public_at = ?', true).references(:forums)
+                     .includes(:forum).where('forums.public_at = ?', true)
+                     .references(:forums)
     if @admin
       @album_list    = Album.all.order_by_time.limit(5)
       @training_list = Schedule.where(doing_kind_id: 2).order_by_time.limit(5)

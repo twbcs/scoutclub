@@ -16,7 +16,7 @@ class Dashboard::BoardsController < Dashboard::DashboardController
 
   def create
     @board = Board.new(board_params)
-    @board.set_user(current_user.id)
+    @board.setup_user(current_user.id)
     if @board.save
       redirect_to dashboard_boards_url, notice: '留言已新增.'
     else
@@ -26,7 +26,7 @@ class Dashboard::BoardsController < Dashboard::DashboardController
 
   def update
     params[:board][:content] << "\n\n由#{current_user.name}修改於#{Time.now.strftime('%Y年%m月%d日 %H:%S')}"
-    if @board.update(params.require(:board).permit(:user_id, :subject, :content ))
+    if @board.update(board_params)
       redirect_to dashboard_boards_url, notice: '修改完成.'
     else
       render :edit

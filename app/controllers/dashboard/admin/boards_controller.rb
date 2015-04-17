@@ -25,7 +25,7 @@ class Dashboard::Admin::BoardsController < Dashboard::Admin::AdminController
 
   def update
     params[:board][:content] << "\n\n由#{current_user.name}修改於#{Time.now.strftime('%Y年%m月%d日 %H:%S')}"
-    if @board.update(params.require(:board).permit(:user_id, :subject, :content))
+    if @board.update(board_params)
       redirect_to dashboard_admin_boards_url, notice: '修改完成.'
     else
       render(:edit)

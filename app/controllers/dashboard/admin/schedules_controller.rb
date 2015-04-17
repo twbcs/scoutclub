@@ -2,11 +2,9 @@ class Dashboard::Admin::SchedulesController < Dashboard::Admin::AdminController
   before_action :set_schedule, only: [:edit, :update, :destroy, :show]
   def index
     if params[:doing_kind_id]
-      @schedules = Schedule.where(doing_kind_id: params[:doing_kind_id]).includes(:doing_kind)
-                   .order_by_time.paginate(page: params[:page], per_page: 20)
+      @schedules = Schedule.where(doing_kind_id: params[:doing_kind_id]).page_set
     else
-      @schedules = Schedule.all.includes(:doing_kind).order_by_time
-                   .paginate(page: params[:page], per_page: 20)
+      @schedules = Schedule.all.page_set
     end
     @kinds = DoingKind.all
   end
@@ -51,6 +49,6 @@ class Dashboard::Admin::SchedulesController < Dashboard::Admin::AdminController
 
   def scheduls_params
     params.require(:schedule).permit(:title, :start_date, :end_date, :public_at,
-     :local, :number, :description, :doing_kind_id)
+                                     :local, :number, :description, :doing_kind_id)
   end
 end

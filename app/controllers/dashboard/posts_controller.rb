@@ -19,7 +19,7 @@ class Dashboard::PostsController < Dashboard::DashboardController
 
   def create
     @post = Post.new(post_params)
-    @post.set_user(current_user.id)
+    @post.setup_user(current_user.id)
     @post.set_subject
     if @post.save
       reply_id?(@post)

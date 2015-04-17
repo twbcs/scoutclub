@@ -2,10 +2,9 @@ class Dashboard::Admin::ArticlesController < Dashboard::Admin::AdminController
   before_action :set_article, only: [:edit, :update, :destroy]
   def index
     if params[:art_kind_id]
-      @articles = Article.where(art_kind_id: params[:art_kind_id]).includes(:user, :art_kind)
-                  .paginate(page: params[:page], per_page: 10)
+      @articles = Article.where(art_kind_id: params[:art_kind_id]).page_set
     else
-      @articles = Article.all.includes(:user, :art_kind).paginate(page: params[:page], per_page: 10)
+      @articles = Article.all.page_set
     end
     @art_kind = ArtKind.all
   end
@@ -16,7 +15,7 @@ class Dashboard::Admin::ArticlesController < Dashboard::Admin::AdminController
 
   def create
     @article = Article.new(art_params)
-    @article.set_user(current_user.id)
+    @article.setup_user(current_user.id)
     if @article.save
       redirect_to dashboard_admin_article_path(@article.id)
     else
@@ -46,9 +45,9 @@ class Dashboard::Admin::ArticlesController < Dashboard::Admin::AdminController
       check = Comment.where(user_id: current_user.id).last.created_at
     end
     @save = false
-    if check == nil? || (Time.now - check)  > 5 # anti-JS rep
+    if check == nil? || (Time.now - check) > 5 # anti-JS rep
       @comment = Comment.new(comment_params)
-      @comment.set_user(current_user.id)
+      @comment.setup_user(current_user.id)
       @comment.save
       @save = true
     end
