@@ -11,6 +11,8 @@ zh_TW:
       forum: "討論區"
       post: "文章"
       article: "文章"
+      camping: "露營地"
+
     attributes:
       member:
         year: "年份"
@@ -79,3 +81,16 @@ zh_TW:
         description: "說明"
         is_public: "公開"
         url: "網址"
+      camping:
+        name: "名稱"
+        description: "說明"
+        area: "區域"
+        url: "網址"
+        electric: "電"
+        camping_area: "露營區"
+        expense: "費用"
+        canopy: "棚頂"
+        water: "水"
+        check: "檢查哨"
+        address: "地址"
+        gmap: "地圖"

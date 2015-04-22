@@ -1,0 +1,65 @@
+<%= form_for(@camping) do |f| %>
+  <% if @camping.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@camping.errors.count, "error") %> prohibited this camping from being saved:</h2>
+
+      <ul>
+      <% @camping.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :area %><br>
+    <%= f.select(:area, [['請選擇',nil],['北部',1],['中部',2],['南部',3],['東部',4],['離島',5]])%>
+  </div>
+  <div class="field">
+    <%= f.label :address %><br>
+    <%= f.text_field :address %>
+  </div>
+  <div class="field">
+    <%= f.label :camping_area %><br>
+    <%= f.check_box :camping_area %>
+  </div>
+  <div class="field">
+    <%= f.label :water %><br>
+    <%= f.check_box :water %>
+  </div>
+  <div class="field">
+    <%= f.label :electric %><br>
+    <%= f.check_box :electric %>
+  </div>
+  <div class="field">
+    <%= f.label :canopy %><br>
+    <%= f.check_box :canopy %>
+  </div>
+  <div class="field">
+    <%= f.label :expense %><br>
+    <%= f.check_box :expense %>
+  </div>
+  <div class="field">
+    <%= f.label :check %><br>
+    <%= f.check_box :check %>
+  </div>
+  <div class="field">
+    <%= f.label :url %><br>
+    <%= f.text_field :url %>
+  </div>
+  <div class="field">
+    <%= f.label :gmap %><br>
+    <%= f.text_field :gmap %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

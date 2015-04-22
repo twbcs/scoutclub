@@ -37,15 +37,15 @@ Rails.application.configure do
   # Email
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
-  config.action_mailer.default_url_options = { :host => "127.0.0.1：3000" }
+  config.action_mailer.default_url_options = { host: '127.0.0.1：3000' }
   config.action_mailer.smtp_settings = {
     address: 'smtp.gmail.com',
     port: '587',
     enable_starttls_auto: true,
     user_name: 'twbcs7',
     password: 'ms6510',
-    authentication: "plain",
-    domain: "gmail.com"
+    authentication: 'plain',
+    domain: 'gmail.com'
   }
-  #GA.tracker = "UA-52347361-1"
+  config.x.googlemap.key = 'AIzaSyBmVproK36ZI213c7EC1XC8Oh8moTP_BUU'
 end
