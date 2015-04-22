@@ -1,5 +1,7 @@
-<h1>New Camping</h1>
-
+<% content_for :breadcrumb do %>
+  <li><%= link_to "露營地", dashboard_campings_path %></li>
+  <li class="active">新增地點</li>
+<% end %>
 <%= render 'form' %>
 
-<%= link_to 'Back', dashboard_campings_path %>
+<%= link_to '返回', dashboard_campings_path %>

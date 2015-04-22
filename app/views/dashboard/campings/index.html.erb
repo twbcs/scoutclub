@@ -1,45 +1,51 @@
-<h1>露營地</h1>
+<% content_for :breadcrumb do %>
+  <li class="active">露營地</li>
+<% end %>
 
-<table>
-  <thead>
-    <tr>
-      <th>名稱</th>
-      <th>區域</th>
-      <th>地址</th>
-      <th>露營區</th>
-      <th>水</th>
-      <th>電</th>
-      <th>棚頂</th>
-      <th>費用</th>
-      <th>檢查哨</th>
-      <th>url</th>
-      <th>map</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class="col-xs-12 new">
+  <%= link_to '新增', new_dashboard_camping_path, :class => 'btn btn-success' if @inside %>
+</div>
 
-  <tbody>
-    <% @campings.each do |camping| %>
-      <tr>
-        <td><%= link_to camping.name, camping %></td>
-        <td><%= area_select(camping.area) %></td>
-        <td><%= camping.address %></td>
-        <td><%= camping.camping_area ? '是' : '非' %></td>
-        <td><%= camping.water ? '有' : '無' %></td>
-        <td><%= camping.electric ? '有' : '無' %></td>
-        <td><%= camping.canopy ? '有' : '無' %></td>
-        <td><%= camping.expense ? '有' : '無' %></td>
-        <td><%= camping.check ? '有' : '無' %></td>
-        <td><%= link_to('url', camping.url, target: 'newwin') if camping.url.size > 1 %></td>
-        <td><%= link_to('gmap', webmap(camping.gmap), target: 'newwin') if camping.gmap.size > 1 %></td>
-        <td><%= link_to '檢視', camping %></td>
-        <td><%= link_to '編輯', edit_dashboard_camping_path(camping) %></td>
-        <td><%= link_to '刪除', camping, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="col-md-12">
+  <div class="list">
+    <table  class="table table-hover">
+      <thead>
+        <tr>
+          <th>名稱</th>
+          <th>區域</th>
+          <th>地址</th>
+          <th>露營區</th>
+          <th>水</th>
+          <th>電</th>
+          <th>棚頂</th>
+          <th>費用</th>
+          <th>檢查哨</th>
+          <th>網址</th>
+          <th>地圖</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
 
-<br>
-
-<%= link_to '新增露營地', new_dashboard_camping_path %>
+      <tbody>
+        <% @campings.each do |camping| %>
+          <tr>
+            <td><%= link_to camping.name, camping %></td>
+            <td><%= area_select(camping.area) %></td>
+            <td><%= camping.address %></td>
+            <td><%= camping.camping_area ? '是' : '非' %></td>
+            <td><%= camping.water ? '有' : '無' %></td>
+            <td><%= camping.electric ? '有' : '無' %></td>
+            <td><%= camping.canopy ? '有' : '無' %></td>
+            <td><%= camping.expense ? '有' : '無' %></td>
+            <td><%= camping.check ? '有' : '無' %></td>
+            <td><%= link_to('官網', camping.url, target: 'newwin') if camping.url.size > 1 %></td>
+            <td><%= link_to('地圖', webmap(camping.gmap), target: 'newwin') if camping.gmap.size > 1 %></td>
+            <td><%= link_to '檢視', camping %></td>
+            <td><%= link_to '編輯', edit_dashboard_camping_path(camping) if @inside %></td>
+            <td><%= link_to '刪除', camping, method: :delete, data: { confirm: 'Are you sure?' } if @inside %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

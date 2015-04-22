@@ -1,3 +1,8 @@
+<% content_for :breadcrumb do %>
+  <li><%= link_to "露營地", dashboard_campings_path %></li>
+  <li class="active">地點：<%= @camping.name %></li>
+<% end %>
+
 <p>
   <strong>名稱:</strong>
   <%= @camping.name %>
@@ -61,5 +66,5 @@
   <strong>說明:</strong>
   <%= @camping.description %>
 </p>
-<%= link_to 'Edit', edit_dashboard_camping_path(@camping) %> |
-<%= link_to 'Back', dashboard_campings_path %>
+<%= link_to '編輯', edit_dashboard_camping_path(@camping) %> |
+<%= link_to '返回', dashboard_campings_path %>

@@ -36,7 +36,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 gem 'dalli'
-gem 'devise'
+gem 'devise', '~> 3.4'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'cocoon'
