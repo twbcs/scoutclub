@@ -55,7 +55,7 @@ gem 'will_paginate-bootstrap'
 gem 'rails_autolink'
 gem 'redcarpet'
 gem 'redis'
-
+gem 'rails_12factor', group: :production
 group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
