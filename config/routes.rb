@@ -42,6 +42,12 @@ Rails.application.routes.draw do
       resources :forums do
         resources :posts, except: [:index]
       end
+      resources :movies
+      resources :boards, except: [:show]
+      resources :members, except: [:show]
+      resources :schedules
+      resources :musics
+
       resources :groups do # admin only
         resources :group_forums, except: [:show, :index]
       end
@@ -49,11 +55,6 @@ Rails.application.routes.draw do
         resources :forums
       end
       resources :user_groups, except: [:show] # admin only
-      resources :movies
-      resources :boards, except: [:show]
-      resources :members, except: [:show]
-      resources :schedules
-      resources :musics
       resources :art_kinds, except: [:show] # admin only
       resources :doing_kinds, except: [:show] # admin only
       root 'welcomes#index'
