@@ -8,7 +8,7 @@
   <div class="list sidebar">
       <%= link_to "全部", dashboard_admin_schedules_path %>
     <% @kinds.each do |k| %>
-      <%= link_to k.title, dashboard_admin_schedules_path(:doing_kind_id => k.id) %>
+      <%= link_to k.title, dashboard_admin_schedules_path(doing_kind_id: k.id) %>
     <% end  %>
   </div>
 </div>

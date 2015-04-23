@@ -19,7 +19,7 @@ class Dashboard::Admin::UserGroupsController < Dashboard::Admin::AdminController
   end
 
   def edit
-    @user_group = UserGroup.find_set
+    @user_group = UserGroup.find_by(user_id: params[:user_id], group_id: params[:group_id])
   end
 
   def update
@@ -32,7 +32,7 @@ class Dashboard::Admin::UserGroupsController < Dashboard::Admin::AdminController
   end
 
   def destroy
-    @user_group = UserGroup.find_set
+    @user_group = UserGroup.find_by(user_id: params[:user_id], group_id: params[:group_id])
     @user_group.destroy
     redirect_to dashboard_admin_user_groups_path
   end

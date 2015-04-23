@@ -1,7 +1,7 @@
 class Dashboard::Admin::MoviesController < Dashboard::Admin::AdminController
   before_action :set_movie, only: [:edit, :update, :destroy]
   def index
-    @movies = Movie.all.page_set
+    @movies = Movie.all.includes(:user).paginate(page: params[:page], per_page: 20)
   end
 
   def show

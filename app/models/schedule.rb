@@ -8,5 +8,4 @@ class Schedule < ActiveRecord::Base
   validates :doing_kind_id, presence: true
 
   scope :order_by_time, -> { order(start_date: :desc) }
-  scope :page_set, -> { includes(:doing_kind).order_by_time.paginate(page: params[:page], per_page: 20) }
 end
