@@ -1,10 +1,10 @@
-<%= form_for(@camping) do |f| %>
-  <% if @camping.errors.any? %>
+<%= form_for [:dashboard,camping] do |f| %>
+  <% if camping.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@camping.errors.count, "error") %> prohibited this camping from being saved:</h2>
+      <h2><%= pluralize(camping.errors.count, "error") %> prohibited this camping from being saved:</h2>
 
       <ul>
-      <% @camping.errors.full_messages.each do |message| %>
+      <% camping.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>

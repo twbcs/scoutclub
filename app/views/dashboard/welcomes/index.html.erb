@@ -18,7 +18,7 @@
             <span class="<%= "icon-eye-blocked" if train.public_at == nil || train.public_at > Time.now %>"></span></td>
           <td align="right">
             <%= '還有' if train.start_date > Time.now %>
-            <%= timeago_tag train.start_date, :nojs => true, :limit => 30.days.ago, :lang => 'zh-TW' %>
+            <%= timeago_tag train.start_date, nojs: true, limit: 30.days.ago, lang: 'zh-TW' %>
           </td>
         </tr>
         <% end %>
@@ -46,7 +46,7 @@
             <span class="<%= "icon-eye-blocked" if doing.public_at == nil || doing.public_at > Time.now %>"></span></td>
           <td align="right">
             <%= '還有' if doing.start_date > Time.now %>
-            <%= timeago_tag doing.start_date, :nojs => true, :limit => 30.days.ago, :lang => 'zh-TW' %>
+            <%= timeago_tag doing.start_date, nojs: true, limit: 30.days.ago, lang: 'zh-TW' %>
           </td>
         </tr>
         <% end %>
@@ -72,7 +72,7 @@
         <tr>
           <td><%= link_to post.subject, dashboard_forum_post_path(forum_id: post.forum_id, id: post.id) %></td>
           <td align="right">
-            <%= timeago_tag post.update_post, :nojs => true, :limit => 30.days.ago, :lang => 'zh-TW' %>
+            <%= timeago_tag post.update_post, nojs: true, limit: 30.days.ago, lang: 'zh-TW' %>
           </td>
         </tr>
         <% end %>
@@ -98,7 +98,7 @@
         <tr>
           <td><%= link_to art.title, dashboard_article_path(art.id) %></td>
           <td align="right">
-            <%= timeago_tag art.created_at, :nojs => true, :limit => 30.days.ago, :lang => 'zh-TW' %>
+            <%= timeago_tag art.created_at, nojs: true, limit: 30.days.ago, lang: 'zh-TW' %>
           </td>
         </tr>
         <% end %>
@@ -125,7 +125,7 @@
           <td><%= link_to album.title, dashboard_album_path(album.id) %>
               <span class="<%= "icon-eye-blocked" if album.public_at == nil || album.public_at > Time.now %>"></span></td>
           <td align="right">
-            <%= timeago_tag album.created_at, :nojs => true, :limit => 30.days.ago, :lang => 'zh-TW' %>
+            <%= timeago_tag album.created_at, nojs: true, limit: 30.days.ago, lang: 'zh-TW' %>
           </td>
         </tr>
         <% end %>
@@ -152,7 +152,7 @@
           <td><%= link_to movie.title, dashboard_movie_path(movie.id) %>
             <span class="<%= "icon-eye-blocked" if movie.public_is == false %>"></span></td>
           <td align="right">
-            <%= timeago_tag movie.created_at, :nojs => true, :limit => 30.days.ago, :lang => 'zh-TW' %>
+            <%= timeago_tag movie.created_at, nojs: true, limit: 30.days.ago, lang: 'zh-TW' %>
           </td>
         </tr>
         <% end %>

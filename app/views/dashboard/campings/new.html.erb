@@ -2,6 +2,7 @@
   <li><%= link_to "露營地", dashboard_campings_path %></li>
   <li class="active">新增地點</li>
 <% end %>
-<%= render 'form' %>
+
+<%= render 'form', camping: @camping %>
 
 <%= link_to '返回', dashboard_campings_path %>

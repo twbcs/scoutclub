@@ -17,7 +17,7 @@
           <td><%= link_to train.title, schedule_path(train.id) %></td>
           <td align="right">
             <%= '還有' if train.start_date > Time.now %>
-            <%= timeago_tag train.start_date, :nojs => true, :limit => 30.days.ago, :lang => 'zh-TW' %>
+            <%= timeago_tag train.start_date, nojs: true, limit: 30.days.ago, lang: 'zh-TW' %>
           </td>
         </tr>
         <% end %>
@@ -44,7 +44,7 @@
           <td><%= link_to doing.title, schedule_path(doing.id) %></td>
           <td align="right">
             <%= '還有' if doing.start_date > Time.now %>
-            <%= timeago_tag doing.start_date, :nojs => true, :limit => 30.days.ago, :lang => 'zh-TW' %>
+            <%= timeago_tag doing.start_date, nojs: true, limit: 30.days.ago, lang: 'zh-TW' %>
           </td>
         </tr>
         <% end %>
@@ -70,7 +70,7 @@
         <tr>
           <td><%= link_to post.subject, forum_post_path(forum_id: post.forum_id, id: post.id) %></td>
           <td align="right">
-            <%= timeago_tag post.update_post, :nojs => true, :limit => 30.days.ago, :lang => 'zh-TW' %>
+            <%= timeago_tag post.update_post, nojs: true, limit: 30.days.ago, lang: 'zh-TW' %>
           </td>
         </tr>
         <% end %>
@@ -96,7 +96,7 @@
         <tr>
           <td><%= link_to art.title, article_path(art.id) %></td>
           <td align="right">
-            <%= timeago_tag art.created_at, :nojs => true, :limit => 30.days.ago, :lang => 'zh-TW' %>
+            <%= timeago_tag art.created_at, nojs: true, limit: 30.days.ago, lang: 'zh-TW' %>
           </td>
         </tr>
         <% end %>
@@ -122,7 +122,7 @@
         <tr>
           <td><%= link_to album.title, album_path(album.id) %></td>
           <td align="right">
-            <%= timeago_tag album.created_at, :nojs => true, :limit => 30.days.ago, :lang => 'zh-TW' %>
+            <%= timeago_tag album.created_at, nojs: true, limit: 30.days.ago, lang: 'zh-TW' %>
           </td>
         </tr>
         <% end %>
@@ -148,7 +148,7 @@
         <tr>
           <td><%= link_to movie.title, movie_path(movie.id) %></td>
           <td align="right">
-            <%= timeago_tag movie.created_at, :nojs => true, :limit => 30.days.ago, :lang => 'zh-TW' %>
+            <%= timeago_tag movie.created_at, nojs: true, limit: 30.days.ago, lang: 'zh-TW' %>
           </td>
         </tr>
         <% end %>

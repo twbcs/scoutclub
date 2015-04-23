@@ -1,4 +1,4 @@
-<%= form_for [:dashboard,movie] do |f| %>
+<%= form_for [:dashboard, movie] do |f| %>
   <%= render 'shared/errors', object: f.object %>
   <div class="list">
     <div class="form-group">
@@ -17,10 +17,10 @@
     <div class="btn-group col-xs-12" data-toggle="buttons">
       <% movie.public_is ? (at, bt = '','active') : (at, bt = 'active','') %>
       <label class="btn btn-default <%=raw at %>">
-        <%= movie.public_is ? f.radio_button( :public_is, 'false' ) : f.radio_button( :public_is, 'false', { :checked => true } )  %> 對內
+        <%= movie.public_is ? f.radio_button( :public_is, 'false' ) : f.radio_button( :public_is, 'false', { checked: true } )  %> 對內
       </label>
       <label class="btn btn-default <%=raw bt %>">
-        <%= movie.public_is ? f.radio_button( :public_is, 'true', { :checked => true } ) : f.radio_button( :public_is, 'true' ) %> 公開
+        <%= movie.public_is ? f.radio_button( :public_is, 'true', { checked: true } ) : f.radio_button( :public_is, 'true' ) %> 公開
       </label>
     </div>
     <%= f.submit "確認", class: "btn btn-success" %>

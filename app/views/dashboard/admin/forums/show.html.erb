@@ -11,7 +11,7 @@
 
 <% if @forum.public_at || view %>
 <div class="col-xs-12 new">
-  <%= link_to '發表文章', new_dashboard_admin_forum_post_path(forum_id: @forum.id), :class => 'btn btn-success' if reply %>
+  <%= link_to '發表文章', new_dashboard_admin_forum_post_path(forum_id: @forum.id), class: 'btn btn-success' if reply %>
 </div>
 <%= will_paginate @posts, renderer: BootstrapPagination::Rails %>
 <div id="forum-list" class="col-xs-12">

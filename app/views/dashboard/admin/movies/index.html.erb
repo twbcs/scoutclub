@@ -3,7 +3,7 @@
 <% end %>
 
 <div class="col-xs-12 new">
-  <%= link_to '新增', new_dashboard_admin_movie_path, :class => 'btn btn-success' %>
+  <%= link_to '新增', new_dashboard_admin_movie_path, class: 'btn btn-success' %>
 </div>
 <%= will_paginate @movies, renderer: BootstrapPagination::Rails %>
 <div class="col-xs-12 list">
@@ -13,7 +13,7 @@
     <%= m.public_is ? "公開" : "對內" %>
     <%= time_parser(m.created_at) %>
     <%= link_to "修改", edit_dashboard_admin_movie_path(m), class: "btn btn-xs btn-success" %>
-    <%= link_to "刪除", dashboard_admin_movie_path(m), :method => :delete, class: "btn btn-xs btn-danger" %>
+    <%= link_to "刪除", dashboard_admin_movie_path(m), method: :delete, class: "btn btn-xs btn-danger" %>
   <% end  %>
 </div>
 <%= will_paginate @movies, renderer: BootstrapPagination::Rails %>

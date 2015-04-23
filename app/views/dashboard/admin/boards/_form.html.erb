@@ -1,15 +1,15 @@
-<%= form_for [:dashboard,:admin,board] do |f| %>
+<%= form_for [:dashboard, :admin, board] do |f| %>
   <%= render 'shared/errors', object: f.object %>
   <div class="field">
     <%= f.label :subject %><br>
-    <%= f.text_field :subject, :class => 'form-control fieldw', placeholder: "主題" %>
+    <%= f.text_field :subject, class: 'form-control fieldw', placeholder: "主題" %>
   </div>
   <div class="field">
     <%= f.label :content %><br>
-    <%= f.text_area :content, :class => 'form-control fieldh', placeholder: "內容" %>
+    <%= f.text_area :content, class: 'form-control fieldh', placeholder: "內容" %>
   </div>
   <div class="actions">
     <% params[:action] == 'edit' ? btn = '更新' : '新增' %>
-    <%= f.submit btn, :class => 'btn btn-primary' %>
+    <%= f.submit btn, class: 'btn btn-primary' %>
   </div>
 <% end %>
