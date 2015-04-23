@@ -17,4 +17,6 @@
 *.rdb
 
 # Ignore uploads temp file
+
+/public/assets/*
 /public/uploads/*
