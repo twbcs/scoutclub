@@ -5,7 +5,7 @@
     <%= f.text_field :title, class: "form-control", placeholder: "標題" %>
     <%= f.label :art_kind_id %>
     <%= f.select(:art_kind_id, ArtKind.all.collect {|u| [u.name, u.id]},
-    { :prompt => '請選擇'}, :class => 'form-control' ) %>
+    { prompt: '請選擇'}, class: 'form-control' ) %>
     <%= f.text_area :content, rows: "20", "data-provide" => "markdown" %>
     <%= f.submit "確認", class: " btn btn-success" %>
   </div>

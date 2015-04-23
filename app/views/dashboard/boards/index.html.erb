@@ -4,7 +4,7 @@
 <% end %>
 
 <div class="col-xs-12 new">
-  <%= link_to '留 言', new_dashboard_board_path, :class => 'btn btn-success' if current_user %>
+  <%= link_to '留 言', new_dashboard_board_path, class: 'btn btn-success' if current_user %>
 </div>
 
 <%= will_paginate @boards, renderer: BootstrapPagination::Rails %>

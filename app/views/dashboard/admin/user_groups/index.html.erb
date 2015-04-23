@@ -12,7 +12,7 @@
       <%= g.name %>
       <%= link_to "修改", edit_dashboard_admin_user_group_path(id: m.id, user_id: m.id, group_id: g.id), class: "btn btn-xs btn-success" %>
       <%= link_to "刪除", dashboard_admin_user_group_path(id: m.id, user_id: m.id, group_id: g.id),
-    :method => :delete, class: "btn btn-xs btn-danger"  %>
+    method: :delete, class: "btn btn-xs btn-danger"  %>
     <% end %> <br/>
   <% end %>
 </div>

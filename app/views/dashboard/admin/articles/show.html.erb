@@ -17,6 +17,6 @@
 <%= form_for(@comment, url: append_dashboard_admin_article_path, remote: true) do |f| %>
   <%= f.text_area :content, class: "form-control", placeholder: "請最少輸入十個字"%>
   <%= f.hidden_field :article_id %>
-  <%= f.submit "回應", :disable_with => "傳送中...", method: :post,
+  <%= f.submit "回應", disable_with: "傳送中...", method: :post,
                   class: "btn btn-success disabled", id: "comment" %>
 <% end %>

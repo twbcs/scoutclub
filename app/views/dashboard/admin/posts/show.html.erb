@@ -34,7 +34,7 @@
         <% end %>
         <%= link_to "修改", edit_dashboard_admin_forum_post_path(forum_id: m.forum_id, id: m.id), class: "btn btn-success btn-xs" if user || edit %>
         <%= link_to "回文", new_dashboard_admin_forum_post_path(forum_id: m.forum_id, id: @posts.first.id), class: "btn btn-success btn-xs" if reply %>
-        <%= link_to "刪除", dashboard_admin_forum_post_path(forum_id: m.forum_id, id: m.id), :method => :delete, class: "btn btn-danger btn-xs" if delete %><br/>
+        <%= link_to "刪除", dashboard_admin_forum_post_path(forum_id: m.forum_id, id: m.id), method: :delete, class: "btn btn-danger btn-xs" if delete %><br/>
       </div>
     </div>
   <% end %>

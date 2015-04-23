@@ -3,14 +3,14 @@
   <div class="list padding">
     <div class="form-inline">
       <%= f.label :title %>
-      <%= f.text_field :title, :placeholder => "輸入職務", :class => "form-control" %>
+      <%= f.text_field :title, placeholder: "輸入職務", class: "form-control" %>
     </div>
     <div class="form-inline">
       <%= f.label :level %>
-      <%= f.text_field :level, :placeholder => "輸入層級", :class => "form-control" %>
+      <%= f.text_field :level, placeholder: "輸入層級", class: "form-control" %>
     </div>
     <%= f.label :description %>
-    <%= f.text_area :description, class: "form-control", rows: "20", "data-provide" => "markdown", :placeholder => "輸入職掌說明" %>
-    <%= f.submit "確認", :disable_with => '處理中...', class: "btn btn-success" %>
+    <%= f.text_area :description, class: "form-control", rows: "20", "data-provide" => "markdown", placeholder: "輸入職掌說明" %>
+    <%= f.submit "確認", disable_with: '處理中...', class: "btn btn-success" %>
   </div>
 <% end %>

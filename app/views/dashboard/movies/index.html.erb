@@ -3,7 +3,7 @@
 <% end %>
 
 <div class="col-xs-12 new">
-  <%= link_to '新增', new_dashboard_movie_path, :class => 'btn btn-success' if @inside %>
+  <%= link_to '新增', new_dashboard_movie_path, class: 'btn btn-success' if @inside %>
 </div>
 <%= will_paginate @movies, renderer: BootstrapPagination::Rails %>
 <div class="col-xs-12 list">

@@ -19,7 +19,7 @@
     <% @articles.each do |art| %>
       <span class="article-title"><%= link_to art.title, dashboard_admin_article_path(art.id) %></span>
       <span class="comment-user"><%= art.user_name %> | <%= art.art_kind.name %>
-      <%= timeago_tag art.created_at, :nojs => true, :limit => 30.days.ago, :lang => 'zh-TW' %>
+      <%= timeago_tag art.created_at, nojs: true, limit: 30.days.ago, lang: 'zh-TW' %>
       </span>
       <%= link_to "修改", edit_dashboard_admin_article_path(art.id), class: "btn btn-xs btn-success" %><br/>
       <div class="content">

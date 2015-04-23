@@ -3,6 +3,6 @@
   <li class="active">修改地點 | <%= @camping.name %></li>
 <% end %>
 
-<%= render 'form' %>
+<%= render 'form', camping: @camping %>
 
 <%= link_to '返回', dashboard_campings_path %>
