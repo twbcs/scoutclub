@@ -2,9 +2,7 @@ class Dashboard::BoardsController < Dashboard::DashboardController
   before_action :set_board, only: [:edit, :update, :destroy]
 
   def index
-    @boards = Board.all.includes(:user)
-              .paginate(page: params[:page], per_page: 20)
-              .order('created_at DESC')
+    @boards = Board.all.includes(:user).page_set(params[:page]).order_by
   end
 
   def new

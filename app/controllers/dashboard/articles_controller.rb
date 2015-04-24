@@ -4,9 +4,10 @@ class Dashboard::ArticlesController < Dashboard::DashboardController
 
   def index
     if params[:art_kind_id]
-      @articles = Article.where(art_kind_id: params[:art_kind_id]).includes(:user, :art_kind).paginate(page: params[:page], per_page: 10)
+      @articles = Article.where(art_kind_id: params[:art_kind_id])
+                  .includes(:user, :art_kind)..page_set(params[:page])
     else
-      @articles = Article.all.includes(:user, :art_kind).paginate(page: params[:page], per_page: 10)
+      @articles = Article.all.includes(:user, :art_kind).page_set(params[:page])
     end
     @art_kind = ArtKind.all
   end

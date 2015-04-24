@@ -2,11 +2,9 @@ class ArticlesController < ApplicationController
   def index
     if params[:art_kind_id]
       @articles = Article.where(art_kind_id: params[:art_kind_id])
-                  .includes(:user, :art_kind)
-                  .page_set(params[:page])
+                  .includes(:user, :art_kind).page_set(params[:page])
     else
-      @articles = Article.all.includes(:user, :art_kind)
-                  .page_set(params[:page])
+      @articles = Article.all.includes(:user, :art_kind).page_set(params[:page])
     end
     @art_kind = ArtKind.all
   end

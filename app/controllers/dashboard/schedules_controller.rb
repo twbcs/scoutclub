@@ -4,9 +4,11 @@ class Dashboard::SchedulesController < Dashboard::DashboardController
 
   def index
     if params[:doing_kind_id]
-      @schedules = Schedule.where(doing_kind_id: params[:doing_kind_id]).includes(:doing_kind).order_by_time.paginate(page: params[:page], per_page: 20)
+      @schedules = Schedule.where(doing_kind_id: params[:doing_kind_id])
+                   .includes(:doing_kind).order_by_time.page_set(params[:page])
     else
-      @schedules = Schedule.all.includes(:doing_kind).order_by_time.paginate(page: params[:page], per_page: 20)
+      @schedules = Schedule.all.includes(:doing_kind)
+                   .order_by_time.page_set(params[:page])
     end
     @kinds = DoingKind.all
   end

@@ -10,5 +10,5 @@ class Article < ActiveRecord::Base
   validates_presence_of :art_kind_id, on: :create, message: '必須選擇一個'
   validates_presence_of :content, on: :create, message: '不能為空'
   scope :order_by_time, -> { order(created_at: :desc) }
-  scope :page_set, -> page { paginate(page: page, per_page: 10)  }
+  scope :page_set, -> page { paginate(page: page, per_page: 10) }
 end

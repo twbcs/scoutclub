@@ -3,7 +3,7 @@ class Dashboard::MusicsController < Dashboard::DashboardController
   before_action :set_music, except: [:index, :new, :create]
 
   def index
-    @musics = Music.all.includes(:user).paginate(page: params[:page], per_page: 20)
+    @musics = Music.all.includes(:user).page_set(params[:page])
   end
 
   def new

@@ -1,6 +1,6 @@
 class MoviesController < ApplicationController
   def index
-    @movies = Movie.where(public_is: true).includes(:user).paginate(page: params[:page], per_page: 20)
+    @movies = Movie.where(public_is: true).includes(:user).page_set(params[:page])
   end
 
   def show
