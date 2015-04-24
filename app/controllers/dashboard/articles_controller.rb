@@ -48,7 +48,7 @@ class Dashboard::ArticlesController < Dashboard::DashboardController
       check = Comment.where(user_id: current_user.id).last.created_at
     end
     @save = false
-    if check == nil? || (Time.now - check) > 5 # 避免因JS問題重複回應
+    if check == nil? || (Time.now - check) > 5  # anti-JS rep
       @comment = Comment.new(comment_params)
       @comment.setup_user(current_user.id)
       @comment.save

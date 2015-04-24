@@ -14,7 +14,7 @@ class Dashboard::Admin::DoingKindsController < Dashboard::Admin::AdminController
     if @doing_kind.save
       redirect_to dashboard_admin_doing_kinds_url
     else
-      render new
+      render :new
     end
   end
 
@@ -25,7 +25,7 @@ class Dashboard::Admin::DoingKindsController < Dashboard::Admin::AdminController
     if @doing_kind.update(doing_kind_params)
       redirect_to dashboard_admin_doing_kinds_url
     else
-      render edit
+      render :edit
     end
   end
 

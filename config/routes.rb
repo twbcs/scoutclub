@@ -19,13 +19,9 @@ Rails.application.routes.draw do
     resources :forums, only: [:index, :show] do
       resources :posts, except: [:index]
     end
+    resources :schedules, :musics, :campings
     resources :movies, except: [:destroy]
-    resources :members, except: [:show]
-    resources :schedules
-    resources :musics
-    resources :boards, except: [:show]
-    resources :user_groups, except: [:show]
-    resources :campings
+    resources :members, :user_groups, :boards, except: [:show]
     root 'welcomes#index'
 
     namespace :admin do  # , :path => "sekret" change path
@@ -42,11 +38,8 @@ Rails.application.routes.draw do
       resources :forums do
         resources :posts, except: [:index]
       end
-      resources :movies
-      resources :boards, except: [:show]
-      resources :members, except: [:show]
-      resources :schedules
-      resources :musics
+      resources :movies, :schedules, :musics
+      resources :boards, :members, except: [:show]
 
       resources :groups do # admin only
         resources :group_forums, except: [:show, :index]
@@ -54,9 +47,7 @@ Rails.application.routes.draw do
       resources :forum_kinds, except: [:show] do # admin only
         resources :forums
       end
-      resources :user_groups, except: [:show] # admin only
-      resources :art_kinds, except: [:show] # admin only
-      resources :doing_kinds, except: [:show] # admin only
+      resources :user_groups, :art_kinds, :doing_kinds, except: [:show] # admin only
       root 'welcomes#index'
     end
   end
@@ -70,12 +61,8 @@ Rails.application.routes.draw do
   resources :titles,    only: [:index] do
     get 'title_ths', on: :collection
   end
-  resources :movies, only: [:index, :show]
-  resources :members,   only: [:index]
-  resources :boards,    only: [:index]
-  resources :schedules, only: [:index, :show]
-  resources :articles,  only: [:index, :show]
-  resources :campings,  only: [:index, :show]
+  resources :movies, :schedules, :articles, :campings, only: [:index, :show]
+  resources :members, :boards,  only: [:index]
   root 'welcomes#index'
 
   if ::Rails.env.development? # production need change

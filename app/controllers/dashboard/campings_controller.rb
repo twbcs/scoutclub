@@ -1,5 +1,6 @@
 class Dashboard::CampingsController < Dashboard::DashboardController
   before_action :set_camping, only: [:show, :edit, :destroy, :update]
+
   def index
     @campings = Camping.all
   end
