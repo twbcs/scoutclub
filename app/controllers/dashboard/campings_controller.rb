@@ -12,7 +12,7 @@ class Dashboard::CampingsController < Dashboard::DashboardController
   def create
     @camping = Camping.new(camping_params)
     if @camping.save
-      redirect_to camping_path(@camping.id)
+      redirect_to dashboard_camping_path(@camping.id)
     else
       render :new
     end
@@ -23,7 +23,7 @@ class Dashboard::CampingsController < Dashboard::DashboardController
 
   def update
     if @camping.update(camping_params)
-      redirect_to camping_path(@camping.id)
+      redirect_to dashboard_camping_path(@camping.id)
     else
       render :edit
     end
@@ -36,7 +36,7 @@ class Dashboard::CampingsController < Dashboard::DashboardController
 
   def destroy
     @camping.destroy
-    redirect_to campings_path
+    redirect_to dashboard_campings_path
   end
 
   private
