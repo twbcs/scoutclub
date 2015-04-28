@@ -27,7 +27,7 @@
     <tbody>
       <% @campings.each do |camping| %>
         <tr>
-          <td><%= link_to camping.name, camping %></td>
+          <td><%= link_to camping.name, dashboard_camping_path(camping) %></td>
           <td><%= area_select(camping.area) %></td>
           <td><%= camping.address %></td>
           <td><%= camping.camping_area ? '是' : '非' %></td>
@@ -38,9 +38,9 @@
           <td><%= camping.check ? '有' : '無' %></td>
           <td><%= link_to('官網', camping.url, target: 'newwin', class: "btn btn-xs btn-success") if camping.url.size > 1 %></td>
           <td><%= link_to('地圖', webmap(camping.gmap), target: 'newwin', class: "btn btn-xs btn-success") if camping.gmap.size > 1 %></td>
-          <td><%= link_to '檢視', camping, class: "btn btn-xs btn-success" %></td>
-          <td><%= link_to '編輯', edit_dashboard_camping_path(camping), class: "btn btn-xs btn-success" if @inside %></td>
-          <td><%= link_to '刪除', camping, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-success" if @inside %></td>
+          <td><%= link_to '檢視', dashboard_camping_path(camping), class: "btn btn-xs btn-success" %>
+              <%= link_to '編輯', edit_dashboard_camping_path(camping), class: "btn btn-xs btn-success" if @inside %>
+              <%= link_to '刪除', dashboard_camping_path(camping), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-success" if @inside %></td>
         </tr>
       <% end %>
     </tbody>
