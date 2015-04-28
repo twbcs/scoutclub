@@ -3,68 +3,70 @@
   <li class="active">地點：<%= @camping.name %></li>
 <% end %>
 
-<p>
-  <strong>名稱:</strong>
-  <%= @camping.name %>
-</p>
+<div class="col-md-12 list">
+  <p>
+    <strong>名稱:</strong>
+    <%= @camping.name %>
+  </p>
 
-<p>
-  <strong>區域:</strong>
-  <%= area_select(@camping.area) %>
-</p>
+  <p>
+    <strong>區域:</strong>
+    <%= area_select(@camping.area) %>
+  </p>
 
-<p>
-  <strong>地址:</strong>
-  <%= @camping.address %>
-</p>
+  <p>
+    <strong>地址:</strong>
+    <%= @camping.address %>
+  </p>
 
-<p>
-  <strong>露營區:</strong>
-  <%= @camping.camping_area ? '是' : '非' %>
-</p>
+  <p>
+    <strong>露營區:</strong>
+    <%= @camping.camping_area ? '是' : '非' %>
+  </p>
 
-<p>
-  <strong>水:</strong>
-  <%= @camping.water ? '有' : '無' %>
-</p>
+  <p>
+    <strong>水:</strong>
+    <%= @camping.water ? '有' : '無' %>
+  </p>
 
-<p>
-  <strong>電:</strong>
-  <%= @camping.electric ? '有' : '無' %>
-</p>
+  <p>
+    <strong>電:</strong>
+    <%= @camping.electric ? '有' : '無' %>
+  </p>
 
-<p>
-  <strong>棚頂:</strong>
-  <%= @camping.canopy ? '有' : '無' %>
-</p>
+  <p>
+    <strong>棚頂:</strong>
+    <%= @camping.canopy ? '有' : '無' %>
+  </p>
 
-<p>
-  <strong>費用:</strong>
-  <%= @camping.expense ? '有' : '無' %>
-</p>
+  <p>
+    <strong>費用:</strong>
+    <%= @camping.expense ? '有' : '無' %>
+  </p>
 
-<p>
-  <strong>檢查哨:</strong>
-  <%= @camping.check ? '有' : '無' %>
-</p>
+  <p>
+    <strong>檢查哨:</strong>
+    <%= @camping.check ? '有' : '無' %>
+  </p>
 
-<p>
-  <strong>網址:</strong>
-  <%= link_to(@camping.url, @camping.url, target: 'newwin') if @camping.url %>
-</p>
+  <p>
+    <strong>網址:</strong>
+    <%= link_to(@camping.url, @camping.url, target: 'newwin') if @camping.url %>
+  </p>
 
-<% if @camping.gmap %>
-  <iframe
-    width="600"
-    height="450"
-    frameborder="0" style="border:0"
-    <%=raw "src='#{@key}&q=#{@camping.gmap}'" %> >
-  </iframe>
-<% end %>
+  <% if @camping.gmap %>
+    <iframe
+      width="600"
+      height="450"
+      frameborder="0" style="border:0"
+      <%=raw "src='#{@key}&q=#{@camping.gmap}'" %> >
+    </iframe>
+  <% end %>
 
-<p>
-  <strong>說明:</strong>
-  <%= @camping.description %>
-</p>
+  <p>
+    <strong>說明:</strong>
+    <%= @camping.description %>
+  </p>
+</div>
 
 <%= link_to 'Back', campings_path %>

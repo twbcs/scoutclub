@@ -16,7 +16,7 @@
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :area %><br>
+    <%= f.label :area %>
     <%= f.select(:area, [['請選擇',nil],['北部',1],['中部',2],['南部',3],['東部',4],['離島',5]])%>
   </div>
   <div class="field">
@@ -24,27 +24,27 @@
     <%= f.text_field :address %>
   </div>
   <div class="field">
-    <%= f.label :camping_area %><br>
+    <%= f.label :camping_area %>
     <%= f.check_box :camping_area %>
   </div>
   <div class="field">
-    <%= f.label :water %><br>
+    <%= f.label :water %>
     <%= f.check_box :water %>
   </div>
   <div class="field">
-    <%= f.label :electric %><br>
+    <%= f.label :electric %>
     <%= f.check_box :electric %>
   </div>
   <div class="field">
-    <%= f.label :canopy %><br>
+    <%= f.label :canopy %>
     <%= f.check_box :canopy %>
   </div>
   <div class="field">
-    <%= f.label :expense %><br>
+    <%= f.label :expense %>
     <%= f.check_box :expense %>
   </div>
   <div class="field">
-    <%= f.label :check %><br>
+    <%= f.label :check %>
     <%= f.check_box :check %>
   </div>
   <div class="field">
@@ -60,6 +60,7 @@
     <%= f.text_area :description %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <% params[:action] == 'edit' ? btn = '更新' : '新增' %>
+    <%= f.submit btn, :class => 'btn btn-primary' %>
   </div>
 <% end %>

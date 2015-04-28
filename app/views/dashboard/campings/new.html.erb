@@ -3,6 +3,8 @@
   <li class="active">新增地點</li>
 <% end %>
 
-<%= render 'form', camping: @camping %>
+<div class="col-md-12 list">
+  <%= render 'form', camping: @camping %>
+</div>
 
-<%= link_to '返回', dashboard_campings_path %>
+<%= link_to '返回', dashboard_campings_path, class: "btn btn-xs btn-success" %>
