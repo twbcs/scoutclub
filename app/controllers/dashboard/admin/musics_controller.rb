@@ -3,6 +3,7 @@ class Dashboard::Admin::MusicsController < Dashboard::Admin::AdminController
 
   def index
     @musics = Music.all.includes(:user).page_set(params[:page])
+  end
 
   def new
     @music = Music.new

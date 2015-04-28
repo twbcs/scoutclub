@@ -58,7 +58,8 @@ class Dashboard::ArticlesController < Dashboard::DashboardController
   end
 
   def comment_destroy
-    @comment = Comment.where(id: params[:comment_id], article_id: params[:article_id]).first
+    @comment = Comment.where(id: params[:comment_id],
+                             article_id: params[:article_id]).first
     @comment.destroy
     respond_to(:js)
   end
