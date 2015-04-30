@@ -61,6 +61,7 @@
   </div>
   <div class="actions">
     <% params[:action] == 'edit' ? btn = '更新' : '新增' %>
-    <%= f.submit btn, :class => 'btn btn-primary' %>
+    <%= f.submit btn, :class => 'btn btn-xs btn-primary' %>
+    <%= link_to '返回', dashboard_campings_path, class: "btn btn-xs btn-success" %>
   </div>
 <% end %>
