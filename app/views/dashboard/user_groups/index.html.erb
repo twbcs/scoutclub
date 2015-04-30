@@ -12,8 +12,7 @@
     <%= g.name %>
      <% unless [1,5,7].include?(g.id) %>
        <%= link_to "修改", edit_dashboard_user_group_path(id: m.id, user_id: m.id, group_id: g.id), class: "btn btn-xs btn-success" %>
-       <%= link_to "刪除", dashboard_user_group_path(id: m.id, user_id: m.id, group_id: g.id),
-        method: :delete, class: "btn btn-xs btn-danger"  %>
+       <%= link_to "刪除", dashboard_user_group_path(id: m.id, user_id: m.id, group_id: g.id), method: :delete, data: { confirm: '確定要刪除嗎?' }, class: "btn btn-xs btn-danger"  %>
      <% end %>
     <% end %> <br/>
   <% end %>

@@ -8,6 +8,6 @@
   <% @art_kinds.each do |art| %>
     <%= art.name %>
     <%= link_to "修改", edit_dashboard_admin_art_kind_path(art), class: "btn btn-xs btn-success" %>
-    <%= link_to "刪除", dashboard_admin_art_kind_path(art), method: :delete, class: "btn btn-xs btn-danger" %><br/>
+    <%= link_to "刪除", dashboard_admin_art_kind_path(art), method: :delete, data: { confirm: '確定要刪除嗎?' }, class: "btn btn-xs btn-danger" %><br/>
   <% end %>
 </div>

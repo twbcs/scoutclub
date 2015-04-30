@@ -30,7 +30,7 @@
       修改於：<%= time_parser(board.updated_at) %>
     <% end %>
     <%= link_to "修改", edit_dashboard_board_path(board), class: "btn btn-success btn-xs" if current_user.id == board.user_id || @admin %>
-    <%= link_to "刪除", dashboard_board_path(board), :method => :delete, class: "btn btn-danger btn-xs" if current_user.id == board.user_id || @admin %><br/>
+    <%= link_to "刪除", dashboard_board_path(board), :method => :delete, data: { confirm: '確定要刪除嗎?' }, class: "btn btn-danger btn-xs" if current_user.id == board.user_id || @admin %><br/>
   </div>
 </div>
 <% end %>
