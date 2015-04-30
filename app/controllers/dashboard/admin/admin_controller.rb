@@ -1,4 +1,5 @@
 class Dashboard::Admin::AdminController < ApplicationController
+  before_action :set_permission
   before_action :user_rule
   layout 'admin'
 
