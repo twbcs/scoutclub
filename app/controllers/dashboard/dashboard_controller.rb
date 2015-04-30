@@ -1,9 +1,14 @@
 class Dashboard::DashboardController < ApplicationController
+  before_action :login_in
   before_action :set_permission
 
   layout 'dashboard'
 
   private
+
+  def login_in
+    redirect_to root_path unless User.find_by(id: current_user)
+  end
 
   def set_permission
     session[:user_level] = UserGroup.where(user_id: current_user.id)
