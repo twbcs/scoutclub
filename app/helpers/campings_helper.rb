@@ -1,14 +1,4 @@
 module CampingsHelper
-  def area_select(area)
-    case area
-    when '1' then '北部'
-    when '2' then '中部'
-    when '3' then '南部'
-    when '4' then '東部'
-    when '5' then '離島'
-    end
-  end
-
   def webmap(gmap)
     web = 'https://www.google.com.tw/maps/place/'
     if /-?\d{1,3}.\d{1,}, ?-?\d{1,3}.\d{1,}/.match(gmap)

@@ -11,7 +11,7 @@
 
   <p>
     <strong>區域:</strong>
-    <%= area_select(@camping.area) %>
+    <%= Camping::AREA[camping.area][0] %>
   </p>
 
   <p>

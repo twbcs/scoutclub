@@ -17,7 +17,7 @@
   </div>
   <div class="field">
     <%= f.label :area %>
-    <%= f.select(:area, [['請選擇',nil],['北部',1],['中部',2],['南部',3],['東部',4],['離島',5]])%>
+    <%= f.select Camping::AREA %>
   </div>
   <div class="field">
     <%= f.label :address %><br>

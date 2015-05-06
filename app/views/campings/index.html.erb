@@ -24,7 +24,7 @@
       <% @campings.each do |camping| %>
         <tr>
           <td><%= link_to camping.name, camping %></td>
-          <td><%= area_select(camping.area) %></td>
+          <td><%= Camping::AREA[camping.area][0] %></td>
           <td><%= camping.address %></td>
           <td><%= camping.camping_area ? '是' : '非' %></td>
           <td><%= camping.water ? '有' : '無' %></td>
