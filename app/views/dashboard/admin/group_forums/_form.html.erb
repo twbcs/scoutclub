@@ -8,7 +8,7 @@
     </div>
     <div class="form-inline">
     <%= f.label :level %>
-    <%= f.select(:level, forum_ability, { prompt: '請選擇'}, class: 'form-control' )  %>
+    <%= f.select(:level, GroupForum::ABILITY, { prompt: '請選擇'}, class: 'form-control' )  %>
     </div>
     <%= f.submit "確認", disable_with: '處理中...', class: "btn btn-success" %>
   </div>

@@ -7,7 +7,7 @@
   <%= @group.admin ? '管理者' : '' %><br/>
   <% @group_forums.each do |g| %>
     <%= g.title %>
-    <%= ability(g.level)  %>
+    <%= GroupForum::ABILITY[g.level][0]  %>
     <%= link_to "修改", edit_dashboard_admin_group_group_forum_path(@group, g.id), class: "btn btn-sm btn-success" %>
     <%= link_to "刪除", dashboard_admin_group_group_forum_path(@group, g.id), method: :delete, class: "btn btn-sm btn-danger" %><br/>
   <% end %>
