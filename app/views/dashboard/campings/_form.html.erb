@@ -25,27 +25,27 @@
   </div>
   <div class="field">
     <%= f.label :camping_area %>
-    <%= f.check_box :camping_area %>
+    <%= render 'shared/check', check: camping.camping_area, check_name: 'camping_area', f: f, title: ['否', '是'] %>
   </div>
   <div class="field">
     <%= f.label :water %>
-    <%= f.check_box :water %>
+    <%= render 'shared/check', check: camping.water, check_name: 'water', f: f, title: ['否', '是'] %>
   </div>
   <div class="field">
     <%= f.label :electric %>
-    <%= f.check_box :electric %>
+    <%= render 'shared/check', check: camping.electric, check_name: 'electric', f: f, title: ['否', '是'] %>
   </div>
   <div class="field">
     <%= f.label :canopy %>
-    <%= f.check_box :canopy %>
+    <%= render 'shared/check', check: camping.canopy, check_name: 'canopy', f: f, title: ['否', '是'] %>
   </div>
   <div class="field">
     <%= f.label :expense %>
-    <%= f.check_box :expense %>
+    <%= render 'shared/check', check: camping.expense, check_name: 'expense', f: f, title: ['否', '是'] %>
   </div>
   <div class="field">
     <%= f.label :check %>
-    <%= f.check_box :check %>
+    <%= render 'shared/check', check: camping.check, check_name: 'check', f: f, title: ['否', '是'] %>
   </div>
   <div class="field">
     <%= f.label :url %><br>

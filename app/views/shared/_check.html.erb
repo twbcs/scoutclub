@@ -1,0 +1,12 @@
+<div class="btn-group" data-toggle="buttons">
+  <% check ? at = '' : at = 'active' %>
+  <label class="btn btn-default <%=raw at %>">
+    <%= check ? f.radio_button( check_name, 'false' ) : f.radio_button( check_name, 'false', { checked: true } )  %>
+    <%= title[0] %>
+  </label>
+  <% check ? bt = 'active' : bt = '' %>
+  <label class="btn btn-default <%=raw bt %>">
+    <%= check ? f.radio_button( check_name, 'true', { checked: true } ) : f.radio_button( check_name, 'true' ) %>
+    <%= title[1] %>
+  </label>
+</div>

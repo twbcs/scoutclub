@@ -20,15 +20,7 @@
     <%= f.label :year %>
     <%= f.text_field :year, placeholder: "輸入學年", class: "form-control" %>
   </div>
-  <div class="btn-group" data-toggle="buttons">
-    <% member.sex ? (at, bt = '','active') : (at, bt = 'active','') %>
-    <label class="btn btn-default <%=raw at %>">
-      <%= member.sex ? f.radio_button( :sex, 'false' ) : f.radio_button( :sex, 'false', { checked: true } )  %> 女
-    </label>
-    <label class="btn btn-default <%=raw bt %>">
-      <%= member.sex ? f.radio_button( :sex, 'true', { checked: true } ) : f.radio_button( :sex, 'true' ) %> 男
-    </label>
-  </div>
+  <%= render 'shared/check', check: member.sex, check_name: 'sex', f: f, title: ['女', '男'] %>
   <%= f.fields_for :title_ths do |title_th| %>
     <%= render "title_th_fields", f: title_th %>
   <% end %>
