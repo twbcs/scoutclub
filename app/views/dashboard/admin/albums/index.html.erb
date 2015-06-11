@@ -10,9 +10,9 @@
       <% a =  m.public_at || Time.now %>
       <% b =  m.add_photo_to || Time.now %>
       <%= link_to dashboard_admin_album_path(m) do %>
-      <%= image_tag(m.photos.first.file.medium) if m.photos.count > 0 %><br/>
-      <span class="<%= "icon-lock" unless m.public_at || a >= Time.now %>"><%= m.title %></span>
-      <% end%>
+        <%= image_tag(m.photos.first.file.medium) if m.photos.count > 0 %><br/>
+        <span class="<%= "icon-lock" unless m.public_at || a >= Time.now %>"><%= m.title %></span>
+      <% end %>
       <span class="<%= "icon-plus" if b > Time.now %>"></span>
     </div>
   <% end %>
