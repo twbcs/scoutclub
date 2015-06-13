@@ -5,15 +5,15 @@
 <div class="col-xs-12 new">
   <%= link_to '新增', new_dashboard_schedule_path, class: 'btn btn-success' if @inside %>
 </div>
-<div class="col-md-2">
+<aside class="col-md-2">
   <div class="list sidebar">
       <%= link_to "全部", dashboard_schedules_path %>
     <% @kinds.each do |k| %>
       <%= link_to k.title, dashboard_schedules_path(doing_kind_id: k.id) %>
     <% end  %>
   </div>
-</div>
-<div class="col-md-10">
+</aside>
+<article class="col-md-10">
   <%= will_paginate @articles, renderer: BootstrapPagination::Rails %>
   <div class="list">
     <table class="table table-hover">
@@ -61,4 +61,4 @@
     </table>
   </div>
   <%= will_paginate @articles, renderer: BootstrapPagination::Rails %>
-</div>
+</article>

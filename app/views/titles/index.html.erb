@@ -2,7 +2,7 @@
   <li class="active">職務職掌</li>
 <% end %>
 
-<div class="col-md-2">
+<aside class="col-md-2">
   <div class="list">
     <table class="table table-hover table-no-padding">
       <tbody>
@@ -10,15 +10,14 @@
         <tr>
           <td>
             <%= link_to t.title, titles_path(id: t.id) %>
-            <%= t.level %>
           </td>
         </tr>
         <% end %>
       </tbody>
     </table>
   </div>
-</div>
-<div class="col-md-10">
+</aside>
+<article class="col-md-10">
   <div id="title" class="list">
     <% if @title %>
       <p class="title-title"><%= @title.title %></p>
@@ -28,4 +27,4 @@
       </div>
     <% end %>
   </div>
-</div>
+</article>

@@ -3,7 +3,7 @@
   <li class="active"><%= @schedule.title %></li>
 <% end %>
 
-<div class="list">
+<article class="list">
   <span class="head"><%= @schedule.title %></span><br/>
   活動時間：<%= time_parser(@schedule.start_date) %><br/>
   結束結束：<%= time_parser(@schedule.end_date) %><br/>
@@ -14,4 +14,4 @@
     <%= markdown(@schedule.description) %>
   </div>
   <%= @schedule.kind_title %>
-</div>
+</article>

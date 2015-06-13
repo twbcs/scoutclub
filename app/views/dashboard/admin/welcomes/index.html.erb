@@ -1,16 +1,8 @@
-<div class="col-md-6">
+<article class="col-md-6">
   <div id="training" class="list">
+    <h4 class="ui teal ribbon label">近期授課</h4>
+    <span class="right more"><%= link_to "更多...", dashboard_schedules_path(doing_kind_id: 2) %></span>
     <table class="table table-hover">
-      <thead>
-        <tr>
-          <td>
-            <strong class="ui teal ribbon label">近期授課</strong>
-          </td>
-          <td align="right">
-            <%= link_to "更多...", dashboard_admin_schedules_path(doing_kind_id: 2) %>
-          </td>
-        </tr>
-      </thead>
       <tbody>
         <% @training_list.each do |train| %>
         <tr>
@@ -25,20 +17,12 @@
       </tbody>
     </table>
   </div>
-</div>
-<div class="col-md-6">
+</article>
+<article class="col-md-6">
   <div id="schedules" class="list">
+    <h4 class="ui teal ribbon label">近期活動</h4>
+    <span class="right more"><%= link_to "更多...", dashboard_admin_schedules_path %></span>
     <table class="table table-hover">
-      <thead>
-        <tr>
-          <td>
-            <strong class="ui teal ribbon label">近期活動</strong>
-          </td>
-          <td align="right">
-            <%= link_to "更多...", dashboard_admin_schedules_path %>
-          </td>
-        </tr>
-      </thead>
       <tbody>
         <% @schedule_list.each do |doing| %>
         <tr>
@@ -53,20 +37,12 @@
       </tbody>
     </table>
   </div>
-</div>
-<div class="col-md-6">
+</article>
+<article class="col-md-6">
   <div id="forums" class="list">
+    <h4 class="ui teal ribbon label">討論區最新主題</h4>
+    <span class="right more"><%= link_to "更多...", dashboard_admin_forums_path %></span>
     <table class="table table-hover">
-      <thead>
-        <tr>
-          <td>
-            <strong class="ui teal ribbon label">討論區最新主題</strong>
-          </td>
-          <td align="right">
-            <%= link_to "更多...", dashboard_admin_forums_path %>
-          </td>
-        </tr>
-      </thead>
       <tbody>
         <% @post_list.each do |post| %>
         <tr>
@@ -79,20 +55,12 @@
       </tbody>
     </table>
   </div>
-</div>
-<div class="col-md-6">
+</article>
+<article class="col-md-6">
   <div id="books" class="list">
+    <h4 class="ui teal ribbon label">近期文章</h4>
+    <span class="right more"><%= link_to "更多...", dashboard_admin_articles_path %></span>
     <table class="table table-hover">
-      <thead>
-        <tr>
-          <td>
-            <strong class="ui teal ribbon label">近期文章</strong>
-          </td>
-          <td align="right">
-            <%= link_to "更多...", dashboard_admin_articles_path %>
-          </td>
-        </tr>
-      </thead>
       <tbody>
         <% @articles_list.each do |art| %>
         <tr>
@@ -105,20 +73,12 @@
       </tbody>
     </table>
   </div>
-</div>
-<div class="col-md-6">
+</article>
+<article class="col-md-6">
   <div id="photos" class="list">
+    <h4 class="ui teal ribbon label">最新相簿</h4>
+    <span class="right more"><%= link_to "更多...", dashboard_admin_albums_path %></span>
     <table class="table table-hover">
-      <thead>
-        <tr>
-          <td>
-            <strong class="ui teal ribbon label">最新相簿</strong>
-          </td>
-          <td align="right">
-            <%= link_to "更多...", dashboard_admin_albums_path %>
-          </td>
-        </tr>
-      </thead>
       <tbody>
         <% @album_list.each do |album| %>
         <tr>
@@ -132,20 +92,12 @@
       </tbody>
     </table>
   </div>
-</div>
-<div class="col-md-6">
+</article>
+<article class="col-md-6">
   <div id="movies" class="list">
+    <h4 class="ui teal ribbon label">近期影片</h4>
+    <span class="right more"><%= link_to "更多...", dashboard_admin_movies_path %></span>
     <table class="table table-hover">
-      <thead>
-        <tr>
-          <td>
-            <strong class="ui teal ribbon label">近期影片</strong>
-          </td>
-          <td align="right">
-            <%= link_to "更多...", dashboard_admin_movies_path %>
-          </td>
-        </tr>
-      </thead>
       <tbody>
         <% @movie_list.each do |movie| %>
         <tr>
@@ -159,4 +111,4 @@
       </tbody>
     </table>
   </div>
-</div>
+</article>
