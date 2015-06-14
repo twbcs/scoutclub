@@ -16,7 +16,6 @@
 //= require jquery.inview
 //= require moment
 //= require moment/zh-tw
-//= require bootstrap-sprockets
 //= require bootstrap-markdown
 //= require bootstrap-datetimepicker
 //= require semantic-ui
