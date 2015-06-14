@@ -26,14 +26,14 @@
 <link rel="alternate" hreflang="zh-Hant" href="http://tw-scout.club/" />
 <script type="text/javascript">
 // Castle snippet
-(function(e,t,n,r){function i(e,n){e=t.createElement("script");e.async=1;e.src=r;n=t.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)}e[n]=e[n]||function(){(e[n].q=e[n].q||[]).push(arguments)};e.attachEvent?e.attachEvent("onload",i):e.addEventListener("load",i,false)})(window,document,"_castle","http://d2t77mnxyo7adj.cloudfront.net/v1/c.js")
+(function(e,t,n,r){function i(e,n){e=t.createElement("script");e.async=1;e.src=r;n=t.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)}e[n]=e[n]||function(){(e[n].q=e[n].q||[]).push(arguments)};e.attachEvent?e.attachEvent("onload",i):e.addEventListener("load",i,false)})(window,document,"_castle","//d2t77mnxyo7adj.cloudfront.net/v1/c.js")
 _castle('setAccount', '327575148397124');
-{{ if logged_in? }}
+<% if current_user %>
   _castle('setUser', {
-    id: '{{ <%= current_user.id if current_user %> }}', // required
-    name: '{{ <%= current_user.name if current_user %> }}', // optional
-    email: '{{ <%= current_user.email if current_user %>}}', // optional
+    id: '{{ <%= current_user.id %> }}', // required
+    name: '{{ <%= current_user.name %> }}', // optional
+    email: '{{ <%= current_user.email %>}}', // optional
   });
-{{ end }}
+<% end %>
 _castle('trackPageview');
 </script>
