@@ -2,113 +2,70 @@
   <div id="training" class="list">
     <h4 class="ui teal ribbon label">近期授課</h4>
     <span class="right more"><%= link_to "更多...", dashboard_schedules_path(doing_kind_id: 2) %></span>
-    <table class="table table-hover">
-      <tbody>
-        <% @training_list.each do |train| %>
-        <tr>
-          <td><%= link_to train.title, dashboard_admin_schedule_path(train.id) %>
-            <span class="<%= "icon-eye-blocked" if train.public_at == nil || train.public_at > Time.now %>"></span></td>
-          <td align="right">
-            <%= '還有' if train.start_date > Time.now %>
-            <%= timeago_tag train.start_date, nojs: true, limit: 30.days.ago, lang: 'zh-TW' %>
-          </td>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
+    <% @training_list.each do |train| %>
+      <p class="atitle"><%= link_to train.title, dashboard_admin_schedule_path(train.id) %>
+        <span class="<%= "icon-eye-blocked" if train.public_at == nil || train.public_at > Time.now %>"></span>
+      <span class="right"><%= '還有' if train.start_date > Time.now %>
+        <%= timeago_tag train.start_date, nojs: true, limit: 30.days.ago, lang: 'zh-TW' %></span></p>
+    <% end %>
   </div>
 </article>
+
 <article class="col-md-6">
   <div id="schedules" class="list">
     <h4 class="ui teal ribbon label">近期活動</h4>
     <span class="right more"><%= link_to "更多...", dashboard_admin_schedules_path %></span>
-    <table class="table table-hover">
-      <tbody>
-        <% @schedule_list.each do |doing| %>
-        <tr>
-          <td><%= link_to doing.title, dashboard_admin_schedule_path(doing.id) %>
-            <span class="<%= "icon-eye-blocked" if doing.public_at == nil || doing.public_at > Time.now %>"></span></td>
-          <td align="right">
-            <%= '還有' if doing.start_date > Time.now %>
-            <%= timeago_tag doing.start_date, nojs: true, limit: 30.days.ago, lang: 'zh-TW' %>
-          </td>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
+    <% @schedule_list.each do |doing| %>
+      <p class="atitle"><%= link_to doing.title, dashboard_admin_schedule_path(doing.id) %>
+        <span class="<%= "icon-eye-blocked" if doing.public_at == nil || doing.public_at > Time.now %>"></span>
+      <span class="right"><%= '還有' if doing.start_date > Time.now %>
+        <%= timeago_tag doing.start_date, nojs: true, limit: 30.days.ago, lang: 'zh-TW' %></span></p>
+    <% end %>
   </div>
 </article>
+
 <article class="col-md-6">
   <div id="forums" class="list">
     <h4 class="ui teal ribbon label">討論區最新主題</h4>
     <span class="right more"><%= link_to "更多...", dashboard_admin_forums_path %></span>
-    <table class="table table-hover">
-      <tbody>
-        <% @post_list.each do |post| %>
-        <tr>
-          <td><%= link_to post.subject, dashboard_admin_forum_post_path(forum_id: post.forum_id, id: post.id) %></td>
-          <td align="right">
-            <%= timeago_tag post.update_post, nojs: true, limit: 30.days.ago, lang: 'zh-TW' %>
-          </td>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
+    <% @post_list.each do |post| %>
+      <p class="atitle"><%= link_to post.subject, dashboard_admin_forum_post_path(forum_id: post.forum_id, id: post.id) %>
+      <span class="right"><%= timeago_tag post.update_post, nojs: true, limit: 30.days.ago, lang: 'zh-TW' %></span></p>
+    <% end %>
   </div>
 </article>
+
 <article class="col-md-6">
   <div id="books" class="list">
     <h4 class="ui teal ribbon label">近期文章</h4>
     <span class="right more"><%= link_to "更多...", dashboard_admin_articles_path %></span>
-    <table class="table table-hover">
-      <tbody>
-        <% @articles_list.each do |art| %>
-        <tr>
-          <td><%= link_to art.title, dashboard_admin_article_path(art.id) %></td>
-          <td align="right">
-            <%= timeago_tag art.created_at, nojs: true, limit: 30.days.ago, lang: 'zh-TW' %>
-          </td>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
+    <% @articles_list.each do |art| %>
+      <p class="atitle"><%= link_to art.title, dashboard_admin_article_path(art.id) %>
+      <span class="right"><%= timeago_tag art.created_at, nojs: true, limit: 30.days.ago, lang: 'zh-TW' %></span></p>
+    <% end %>
   </div>
 </article>
+
 <article class="col-md-6">
   <div id="photos" class="list">
     <h4 class="ui teal ribbon label">最新相簿</h4>
     <span class="right more"><%= link_to "更多...", dashboard_admin_albums_path %></span>
-    <table class="table table-hover">
-      <tbody>
-        <% @album_list.each do |album| %>
-        <tr>
-          <td><%= link_to album.title, dashboard_admin_album_path(album.id) %>
-            <span class="<%= "icon-eye-blocked" if album.public_at == nil || album.public_at > Time.now %>"></span></td>
-          <td align="right">
-            <%= timeago_tag album.created_at, nojs: true, limit: 30.days.ago, lang: 'zh-TW' %>
-          </td>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
+    <% @album_list.each do |album| %>
+      <p class="atitle"><%= link_to album.title, dashboard_admin_album_path(album.id) %>
+        <span class="<%= "icon-eye-blocked" if album.public_at == nil || album.public_at > Time.now %>"></span>
+      <span class="right"><%= timeago_tag album.created_at, nojs: true, limit: 30.days.ago, lang: 'zh-TW' %></span></p>
+    <% end %>
   </div>
 </article>
+
 <article class="col-md-6">
   <div id="movies" class="list">
     <h4 class="ui teal ribbon label">近期影片</h4>
     <span class="right more"><%= link_to "更多...", dashboard_admin_movies_path %></span>
-    <table class="table table-hover">
-      <tbody>
-        <% @movie_list.each do |movie| %>
-        <tr>
-          <td><%= link_to movie.title, dashboard_admin_movie_path(movie.id) %>
-            <span class="<%= "icon-eye-blocked" if movie.public_is == false %>"></span></td>
-          <td align="right">
-            <%= timeago_tag movie.created_at, nojs: true, limit: 30.days.ago, lang: 'zh-TW' %>
-          </td>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
+    <% @movie_list.each do |movie| %>
+      <p class="atitle"><%= link_to movie.title, dashboard_admin_movie_path(movie.id) %>
+        <span class="<%= "icon-eye-blocked" if movie.public_is == false %>"></span>
+      <span class="right"><%= timeago_tag movie.created_at, nojs: true, limit: 30.days.ago, lang: 'zh-TW' %></span></p>
+    <% end %>
   </div>
 </article>
