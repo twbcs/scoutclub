@@ -5,14 +5,16 @@
 <div class="col-xs-12 new">
   <%= link_to '新增文章', new_dashboard_admin_article_path, :class => 'btn btn-success' %>
 </div>
+
 <div class="col-md-2">
-  <div class="list sidebar">
-    <%= link_to "全部", dashboard_admin_articles_path %><br/>
+  <aside class="ui vertical menu">
+    <%= link_to "全部", dashboard_admin_articles_path, class: "item" %>
     <% @art_kind.each do |at| %>
-      <%= link_to at.name, dashboard_admin_articles_path(art_kind_id: at.id) %><br/>
+      <%= link_to raw("#{at.name}<div class='ui teal label'>#{@art_count[at.id]}</div>"), dashboard_admin_articles_path(art_kind_id: at.id), class: "item" %>
     <% end %>
-  </div>
+  </aside>
 </div>
+
 <div class="col-md-10">
   <%= will_paginate @articles, renderer: BootstrapPagination::Rails %>
   <div class="list">

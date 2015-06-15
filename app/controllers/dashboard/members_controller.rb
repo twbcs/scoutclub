@@ -10,7 +10,7 @@ class Dashboard::MembersController < Dashboard::DashboardController
     else
       @members = Member.all.order_by_year
     end
-    @years = Member.all.order_by_year.group(:year).select(:year)
+    @years = Member.all.order_by_year.group(:year).select(:year).count
   end
 
   def new

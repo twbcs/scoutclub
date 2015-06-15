@@ -1,6 +1,7 @@
 class Dashboard::ArticlesController < Dashboard::DashboardController
   before_action :is_inside, only: [:new, :create, :edit, :update]
   before_action :set_article, only: [:edit, :update]
+  before_action :art_count, only: [:index]
 
   def index
     if params[:art_kind_id]
@@ -9,7 +10,6 @@ class Dashboard::ArticlesController < Dashboard::DashboardController
     else
       @articles = Article.all.includes(:user, :art_kind).page_set(params[:page])
     end
-    @art_kind = ArtKind.all
   end
 
   def new
@@ -76,5 +76,10 @@ class Dashboard::ArticlesController < Dashboard::DashboardController
 
   def set_article
     @article = Article.find(params[:id])
+  end
+
+  def art_count
+    @art_kind = ArtKind.all
+    @art_count = Article.all.group(:art_kind_id).count
   end
 end

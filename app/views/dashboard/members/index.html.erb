@@ -5,14 +5,16 @@
 <div class="col-xs-12 new">
   <%= new_btn if @inside %>
 </div>
-<div class="col-md-1">
-  <div class="list sidebar">
-    <%= link_to "全 部", dashboard_members_path %>
-    <% @years.each do |y| %>
-      <%= link_to y.year, dashboard_members_path(year: y.year) %>
+
+<div class="col-md-2">
+  <aside class="ui vertical menu">
+    <%= link_to "全部", dashboard_members_path, class: "item" %>
+    <% @years.each do |year, number| %>
+      <%= link_to raw("#{year}<div class='ui teal label'>#{number}</div>"), dashboard_members_path(year: year), class: "item" %>
     <% end %>
-  </div>
+  </aside>
 </div>
+
 <div class="col-md-10">
   <div class="list">
     <table class="table table-hover">
