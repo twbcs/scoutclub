@@ -57,7 +57,7 @@ class Dashboard::SchedulesController < Dashboard::DashboardController
   end
 
   def kind_count
-    @kind_count = Schedule.where.group(:doing_kind_id).count
+    @kind_count = Schedule.group(:doing_kind_id).count
     @kinds = DoingKind.all
   end
 end
