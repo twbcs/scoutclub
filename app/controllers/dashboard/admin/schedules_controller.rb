@@ -1,5 +1,7 @@
 class Dashboard::Admin::SchedulesController < Dashboard::Admin::AdminController
   before_action :set_schedule, only: [:edit, :update, :destroy, :show]
+  before_action :kind_count, only: [:index]
+
   def index
     if params[:doing_kind_id]
       @schedules = Schedule.where(doing_kind_id: params[:doing_kind_id])
@@ -8,7 +10,6 @@ class Dashboard::Admin::SchedulesController < Dashboard::Admin::AdminController
       @schedules = Schedule.all.includes(:doing_kind)
                    .order_by_time.page_set(params[:page])
     end
-    @kinds = DoingKind.all
   end
 
   def new
@@ -52,5 +53,10 @@ class Dashboard::Admin::SchedulesController < Dashboard::Admin::AdminController
   def scheduls_params
     params.require(:schedule).permit(:title, :start_date, :end_date, :public_at,
                                      :local, :number, :description, :doing_kind_id)
+  end
+
+  def kind_count
+    @kind_count = Schedule.where.group(:doing_kind_id).count
+    @kinds = DoingKind.all
   end
 end

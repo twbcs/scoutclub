@@ -1,17 +1,20 @@
 <% content_for :breadcrumb do %>
   <li class="active">活動行事曆</li>
 <% end %>
+
 <div class="col-xs-12 new">
   <%= link_to '新增', new_dashboard_admin_schedule_path, class: 'btn btn-success' %>
 </div>
-<aside class="col-md-2">
-  <div class="list sidebar">
-      <%= link_to "全部", dashboard_admin_schedules_path %>
+
+<div class="col-md-2">
+  <aside class="ui vertical menu">
+    <%= link_to "全部", dashboard_admin_schedules_path, class: "item" %>
     <% @kinds.each do |k| %>
-      <%= link_to k.title, dashboard_admin_schedules_path(doing_kind_id: k.id) %>
-    <% end  %>
-  </div>
-</aside>
+      <%= link_to raw("#{k.title}<div class='ui teal label'>#{@kind_count[k.id]}</div>"), dashboard_admin_schedules_path(doing_kind_id: k.id), class: "item" %>
+    <% end %>
+  </aside>
+</div>
+
 <article class="col-md-10">
   <%= will_paginate @articles, renderer: BootstrapPagination::Rails %>
   <div class="list">
