@@ -45,14 +45,13 @@ class Dashboard::Admin::ForumsController < Dashboard::Admin::AdminController
   end
 
   def destroy
-    post = Post.where(forum_id: params[:id]).count
-    if post < 1
+    if Post.where(forum_id: params[:id]).any?
+      redirect_to(dashboard_admin_forum_kinds_url, alert: '板內有文章，無法進行刪除作業')
+    else
       @group_forums = GroupForum.where(forum_id: params[:id])
       @group_forums.each { |x| x.destroy } if @group_forums
       @forum.destroy
       redirect_to(dashboard_admin_forum_kinds_url, notice: '討論板已刪除')
-    else
-      redirect_to(dashboard_admin_forum_kinds_url, alert: '板內有文章，無法進行刪除作業')
     end
   end
 

@@ -14,10 +14,10 @@ module ApplicationHelper
   end
 
   def controller_action(controller, action)
-    params[:controller].sub(/.*\//, '') == controller && params[:action] == action
+    params[:controller].sub(%r{.*/}, '') == controller && params[:action] == action
   end
 
   def controller?(*controllers)
-    'active' if controllers.include?(params[:controller].sub(/.*\//, ''))
+    'active' if controllers.include?(params[:controller].sub(%r{.*/}, ''))
   end
 end

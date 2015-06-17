@@ -42,7 +42,7 @@ class Dashboard::Admin::ArticlesController < Dashboard::Admin::AdminController
   end
 
   def append
-    if Comment.where(user_id: current_user.id).count > 0
+    if Comment.where(user_id: current_user.id).any?
       check = Comment.where(user_id: current_user.id).last.created_at
     end
     @save = false
